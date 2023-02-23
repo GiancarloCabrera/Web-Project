@@ -4,6 +4,9 @@ import React, { useState } from 'react'
 import { styled } from '@mui/system';
 import { Box } from '@mui/material';
 import Gif from '../assets/login_image.gif';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleIcon from '@mui/icons-material/Google';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const H1 = styled('h1')({
     fontWeight: 700,
@@ -92,7 +95,13 @@ const Button = styled('button')({
     '.ghost': {
         backgroundColor: 'rgba(225, 225, 225, 0.2)',
         border: '2px solid #fff',
-        color: '#fff'
+        color: '#fff',
+        'i': {
+            position: 'absolute',
+            opacity: 0,
+            transition: '0.3s ease-in-out',
+
+        }
         // PENDIENTE POR RESLVER LOS ICONOS
         // button.ghost i {
         //     position: absolute;
@@ -129,7 +138,7 @@ const Form = styled('form')({
     padding: '0 50px',
     height: '100%',
     textAlign: 'center'
-})
+});
 
 const Input = styled('input')({
     backgroundColor: '#eee',
@@ -138,7 +147,7 @@ const Input = styled('input')({
     padding: '12px 15px',
     margin: '8px 0',
     width: '100%'
-})
+});
 
 const Container = styled('div')({
     backgroundColor: '#fff',
@@ -149,10 +158,7 @@ const Container = styled('div')({
     width: '768px',
     maxWidth: '100%',
     minHeight: '500px',
-    // '.right-panel-active': {
-    //     transform: 'translateX(100%)'
-    // }
-})
+});
 
 const FormContainerLogin = styled('div')({
     position: 'absolute',
@@ -162,17 +168,7 @@ const FormContainerLogin = styled('div')({
     left: 0,
     width: '50%',
     zIndex: 2,
-    backgroundColor: 'green',
-    '.right-panel-active': {
-        backgroundColor: 'black',
-        transform: 'translateX(100%)'
-    }
-    // PENDIENTE POR INCLUIR LAS CLASES DERECHA O IZQUIERDA
-    // .container.right-panel-active .login-container {
-        // transform: 'translateX(100%)'
-    // }
-  
-})
+});
 
 const FormContainerRegister = styled('div')({
     position: 'absolute',
@@ -183,21 +179,7 @@ const FormContainerRegister = styled('div')({
     width: '50%',
     opacity: 0,
     zIndex: 1,
-    backgroundColor: 'green',
-    '.right-panel-active': {
-        backgroundColor: 'black',
-        transform: 'translateX(100%)',
-        opacity: 1,
-        zIndex: 5,
-        animation: 'show 0.6s'
-    }
-      // .container.right-panel-active .register-container {
-    //     transform: translateX(100%);
-    //     opacity: 1;
-    //     z-index: 5;
-    //     animation: show 0.6s;
-    // }
-})
+});
 
 const OverlayContainer = styled('div')({
     position: 'absolute',
@@ -208,19 +190,9 @@ const OverlayContainer = styled('div')({
     overflow: 'hidden',
     transition: 'transform 0.6s ease-in-out',
     zIndex: 100,
-    '.right-panel-active': {
-        backgroundColor: 'black',
-        transform: 'translateX(-100%)',
-    }
-    // PENDIENTE POR AGREGAR
-    // .container.right-panel-active .overlay-container {
-        // transform: 'translate(-100%)'
-    // }
-    
 });
 
 const Overlay = styled('div')({
-    // backgroundColor: 'blue',
     backgroundImage: `url(${Gif}})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
@@ -241,14 +213,6 @@ const Overlay = styled('div')({
         bottom: 0,
         background: 'linear-gradient(to top, rgba(46, 94, 109, 0.4) 40%, rgba(46, 94, 109, 0))'
     },
-    '.right-panel-active': {
-        backgroundColor: 'black',
-        transform: 'translateX(50%)',
-    }
-    // PENDIENTE POR AGREGAR
-    // .container.right-panel-active .overlay {
-        // transform: 'translateX(50%)'
-    // }
 });
 
 const OverlayPanelLeft = styled('div')({
@@ -257,7 +221,7 @@ const OverlayPanelLeft = styled('div')({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    padding: '0 40px',
+    padding: '0',
     textAlign: 'center',
     top: 0,
     height: '100%',
@@ -265,19 +229,6 @@ const OverlayPanelLeft = styled('div')({
     transform: 'translateX(0)',
     transition: 'transform 0.6s ease-in-out',
     transform: 'translateX(-20%)',
-    '.right-panel-active': {
-        backgroundColor: 'black',
-        transform: 'translateX(0)',
-    }
-    // PENDIENTE POR AGREGAR
-
-    // .container.right-panel-active .overlay-left {
-    //     transform: translateX(0);
-    // }
-    
-    // .container.right-panel-active .overlay-right {
-    //     transform: translateX(20%);
-    // }
 });
 
 const OverlayPanelRight = styled('div')({
@@ -286,7 +237,7 @@ const OverlayPanelRight = styled('div')({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    padding: '0 40px',
+    padding: '0',
     textAlign: 'center',
     top: 0,
     height: '100%',
@@ -295,10 +246,6 @@ const OverlayPanelRight = styled('div')({
     transition: 'transform 0.6s ease-in-out',
     right: 0,
     transform: 'translateX(0)',
-    '.right-panel-active': {
-        backgroundColor: 'black',
-        transform: 'translateX(20%)',
-    }
 });
 
 const SocialContainer = styled('div')({
@@ -317,83 +264,115 @@ const SocialContainer = styled('div')({
             border: '1px solid #4bb6b7'
         }
     }
-
 })
 
 export default function LoginCard() {
 
     const [ loginRegis, setLoginRegis ] = useState(true);
 
-  return (
-    <Container>
-        <FormContainerRegister className={!loginRegis ? 'right-panel-active' : null}>
-            <Form action="#">
-                <H1>Register hire.</H1>
-                <Input type="text" placeholder="Name"/>
-                <Input type="email" placeholder="Email"/>
-                <Input type="password" placeholder="Password"/>
-                <Button>Register</Button>
-                <Span>or use your account</Span>
-                <SocialContainer>
-                    <Link href="#" className="social"><i className="lni lni-facebook-fill"></i></Link>
-                    <Link href="#" className="social"><i className="lni lni-google"></i></Link>
-                    <Link href="#" className="social"><i className="lni lni-linkedin-original"></i></Link>
-                </SocialContainer>
-            </Form>
-        </FormContainerRegister>
+    return (
+        <Container>
+            <FormContainerRegister 
+                style={ !loginRegis ? {
+                    backgroundColor: 'black',
+                    transform: 'translateX(100%)',
+                    opacity: 1,
+                    zIndex: 5,
+                    animation: 'show 0.6s'
+                }: null}
+            >
+                <Form >
+                    <H1>Register hire.</H1>
+                    <Input type="text" placeholder="Name"/>
+                    <Input type="email" placeholder="Email"/>
+                    <Input type="password" placeholder="Password"/>
+                    <Button>Register</Button>
+                    <Span>or use your account</Span>
+                    <SocialContainer>
+                        <Link href="#" className="social"><FacebookIcon /></Link>
+                        <Link href="#" className="social"><GoogleIcon /></Link>
+                        <Link href="#" className="social"><LinkedInIcon /></Link>
+                    </SocialContainer>
+                </Form>
+            </FormContainerRegister>
 
-        <FormContainerLogin className={!loginRegis ? 'right-panel-active' : null}>
-            <Form action="#">
-                <H1>Login hire.</H1>
-                <Input type="email" placeholder="Email"/>
-                <Input type="password" placeholder="Password"/>
-                <Content>
-                    <Box className="checkbox">
-                        <Input type="checkbox" name="checkbox" id="checkbox"/>
-                        <label>Remember me</label>
-                    </Box>
-                    <Box className="pass-link">
-                        <Link href="#">Forgot password?</Link>
-                    </Box>
-                </Content>
-                <Button>Login</Button>
-                <Span>or use your account</Span>
-                <SocialContainer>
-                    <Link href="#" className="social"><i className="lni lni-facebook-fill"></i></Link>
-                    <Link href="#" className="social"><i className="lni lni-google"></i></Link>
-                    <Link href="#" className="social"><i className="lni lni-linkedin-original"></i></Link>
-                </SocialContainer>
-            </Form>
-        </FormContainerLogin>
+            <FormContainerLogin 
+                style={ !loginRegis ? {
+                    backgroundColor: 'black',
+                    transform: 'translateX(100%)'
+                }: null}    
+            >
+                <Form >
+                    <H1>Login hire.</H1>
+                    <Input type="email" placeholder="Email"/>
+                    <Input type="password" placeholder="Password"/>
+                    <Content>
+                        <Box className="checkbox">
+                            <Input type="checkbox" name="checkbox" id="checkbox"/>
+                            <label>Remember me</label>
+                        </Box>
+                        <Box className="pass-link">
+                            <Link href="#">Forgot password?</Link>
+                        </Box>
+                    </Content>
+                    <Button>Login</Button>
+                    <Span>or use your account</Span>
+                    <SocialContainer>
+                        <Link href="#" className="social"><FacebookIcon/></Link>
+                        <Link href="#" className="social"><GoogleIcon /></Link>
+                        <Link href="#" className="social"><LinkedInIcon /></Link>
+                    </SocialContainer>
+                </Form>
+            </FormContainerLogin>
 
-        <OverlayContainer className={!loginRegis ? 'right-panel-active' : null}>
-            <Overlay className={!loginRegis ? 'right-panel-active' : null}>
-                <OverlayPanelLeft className={!loginRegis ? 'right-panel-active' : null}>
-                    <Title>Hello <Span> friends</Span></Title>
-                    <Paragraph>if Yout have an account, login here and have fun</Paragraph>
-                    <Button 
-                        className="ghost" 
-                        id="login"
-                        onClick={() => setLoginRegis(true)}
+            <OverlayContainer 
+                style={ !loginRegis ? {
+                    backgroundColor: 'black',
+                    transform: 'translateX(-100%)',
+                }: null} 
+            >
+                <Overlay 
+                    style={ !loginRegis ? {
+                        backgroundColor: 'black',
+                        transform: 'translateX(50%)',
+                    }: null} 
+                >
+                    <OverlayPanelLeft 
+                        style={ !loginRegis ? {
+                            backgroundColor: 'black',
+                            transform: 'translateX(0)',
+                        }: null}     
                     >
-                        Login
-                        <i className="lni lni-arrow-left login"></i>
-                    </Button>
-                </OverlayPanelLeft>
-                <OverlayPanelRight className={!loginRegis ? 'right-panel-active' : null}>
-                    <Title>Start your <Span> journy now</Span></Title>
-                    <Paragraph>if you dont have an account yet, join us and start your journey. jnnonoini</Paragraph>
-                    <Button 
-                        className="ghost" 
-                        id="register"
-                        onClick={() => setLoginRegis(false)}    
+                        <Title>Hello friends</Title>
+                        <Paragraph>if Yout have an account, login here and have fun</Paragraph>
+                        <Button 
+                            className="ghost" 
+                            id="login"
+                            onClick={() => setLoginRegis(true)}
+                        >
+                            Login
+                            <i className="lni lni-arrow-left login"></i>
+                        </Button>
+                    </OverlayPanelLeft>
+                    <OverlayPanelRight 
+                        style={ !loginRegis ? {
+                            backgroundColor: 'black',
+                            transform: 'translateX(20%)',
+                        }: null} 
                     >
-                        Register
-                        <i className="lni lni-arrow-right register"></i>
-                    </Button>
-                </OverlayPanelRight>
-            </Overlay>
-        </OverlayContainer>
-    </Container>
-  )
+                        <Title>Start your journey now</Title>
+                        <Paragraph>if you dont have an account yet, join us and start your journey.</Paragraph>
+                        <Button 
+                            className="ghost" 
+                            id="register"
+                            onClick={() => setLoginRegis(false)}    
+                        >
+                            Register
+                            <i className="lni lni-arrow-right register"></i>
+                        </Button>
+                    </OverlayPanelRight>
+                </Overlay>
+            </OverlayContainer>
+        </Container>
+    )
 }
