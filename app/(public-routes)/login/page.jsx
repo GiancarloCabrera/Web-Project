@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginCard from '@/components/LoginCard';
+import theme from '@/styles/Material_Ui';
 
 export default function Home() {
 
@@ -7,7 +8,7 @@ export default function Home() {
     <div
       style={{
         display: 'flex',
-        backgroundColor: '#f6f5f7',
+        backgroundColor: {theme},
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
