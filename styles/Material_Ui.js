@@ -16,7 +16,7 @@ const theme = createTheme({
       mode: "dark"
     },
     typography: {
-      fontFamily: 'Noto Sans Mono, monospace',
+      fontFamily: 'Quicksand, san-serif',
     },
   });
 

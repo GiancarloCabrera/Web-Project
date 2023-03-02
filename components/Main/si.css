@@ -1,0 +1,13 @@
+.header.fixed{
+    padding: 10px 10%;
+    background-color: #020312;
+    border-bottom:1px solid #0e1630 ;
+    transition: .3s;
+
+}
+
+.si:hover{
+    transform: scale(1.01) translateY(-5px);
+    border-top: 5px solid #ff8808;
+
+}
