@@ -13,7 +13,15 @@ const theme = createTheme({
       },
     },
     palette: {
-      mode: "dark"
+      mode: "dark",
+      // This Color are being Tested
+      primary: {  
+        main: "#11cb5f"
+      },
+      secondary: {
+        // This is green.A700 as hex.
+        main: '#11cb5f',
+      },
     },
     typography: {
       fontFamily: 'Noto Sans Mono, monospace',
