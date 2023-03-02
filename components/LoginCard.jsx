@@ -339,7 +339,6 @@ export default function LoginCard() {
                 >
                     <OverlayPanelLeft 
                         style={ !loginRegis ? {
-                            backgroundColor: 'black',
                             transform: 'translateX(0)',
                         }: null}     
                     >
@@ -356,7 +355,6 @@ export default function LoginCard() {
                     </OverlayPanelLeft>
                     <OverlayPanelRight 
                         style={ !loginRegis ? {
-                            backgroundColor: 'black',
                             transform: 'translateX(20%)',
                         }: null} 
                     >
