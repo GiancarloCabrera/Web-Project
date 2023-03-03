@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {faHeart} from '@fortawesome/free-regular-svg-icons';
 import Graphics from '../../assets/imageGraphics1.jpg';
 import Graphics2 from '../../assets/imagenGraphics2.jpg';
@@ -109,9 +110,9 @@ const RowIcon = styled('div')({
 export default function ExamplesPage(){
     return(
 
-        <Examples>
+        <Examples id='examples'>
             <MainText>
-                <h2>Proyects</h2>
+                <h2>Examples</h2>
                 <h4>Examples of <Span>River Bird</Span></h4>
             </MainText>
 
@@ -123,7 +124,7 @@ export default function ExamplesPage(){
                             <h6 className='xd'>Graphics</h6>
                         </RowText>
                         <RowIcon>
-                            <FontAwesomeIcon icon={faHeart}/>
+                            < FavoriteBorderIcon className='i'/>
                         </RowIcon>
                     </MainRow>
                     <h3>Responsible time management statistics</h3>
@@ -137,7 +138,7 @@ export default function ExamplesPage(){
                             <h6>Graphics</h6>
                         </RowText>
                         <RowIcon>
-                            <FontAwesomeIcon className='i' icon={faHeart}/>
+                            < FavoriteBorderIcon className='i'/>
                         </RowIcon>
                     </MainRow>
                     <h3>Responsible time management statistics</h3>
@@ -151,7 +152,7 @@ export default function ExamplesPage(){
                             <h6>Graphics</h6>
                         </RowText>
                         <RowIcon>
-                            <FontAwesomeIcon icon={faHeart}/>
+                            < FavoriteBorderIcon className='i'/>
                         </RowIcon>
                     </MainRow>
                     <h3>Responsible time management statistics</h3>
@@ -164,7 +165,7 @@ export default function ExamplesPage(){
                             <h6>Graphics</h6>
                         </RowText>
                         <RowIcon>
-                            <FontAwesomeIcon icon={faHeart}/>
+                            < FavoriteBorderIcon className='i'/>
                         </RowIcon>
                     </MainRow>
                     <h3>Responsible time management statistics</h3>
@@ -177,7 +178,7 @@ export default function ExamplesPage(){
                             <h6>Graphics</h6>
                         </RowText>
                         <RowIcon>
-                            <FontAwesomeIcon icon={faHeart}/>
+                            < FavoriteBorderIcon className='i'/>
                         </RowIcon>
                     </MainRow>
                     <h3>Responsible time management statistics</h3>
@@ -190,7 +191,7 @@ export default function ExamplesPage(){
                             <h6>Graphics</h6>
                         </RowText>
                         <RowIcon>
-                            <FontAwesomeIcon icon={faHeart}/>
+                            < FavoriteBorderIcon className='i'/>
                         </RowIcon>
                     </MainRow>
                     <h3>Responsible time management statistics</h3>

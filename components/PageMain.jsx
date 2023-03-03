@@ -12,6 +12,8 @@ import AboutPage from "./Main/AboutPage";
 import HeaderPage from "./Main/HeaderPage";
 import ServicesPage from "./Main/ServicesPage";
 import ExamplesPage from "./Main/ExamplesPage";
+import ConctacPage from "./Main/ContactPage";
+import LowerPart from "./Main/LowerPart";
 
 const ButtonLogin = styled("button")({});
 
@@ -80,7 +82,7 @@ export default function PageMain() {
     <Body>
       <HeaderPage />
 
-      <Home className="home">
+      <Home className="home" id="home">
         <HomeText>
           <Title>Hellow</Title>
           <Somos>
@@ -99,6 +101,10 @@ export default function PageMain() {
       <ServicesPage/>
 
       <ExamplesPage/>
+
+      <ConctacPage/>
+
+      <LowerPart/>
     </Body>
   );
 }

@@ -110,10 +110,11 @@ export default function HeaderPage() {
 
             <Navbar>
                 
-                <Li><A href="">Home</A></Li>
-                <Li><A href="">About</A></Li>
-                <Li><A href="">Service</A></Li>
-                <Li><A href="">Contact</A></Li>
+                <Li><A href="#home">Home</A></Li>
+                <Li><A href="#about">About</A></Li>
+                <Li><A href="#services">Service</A></Li>
+                <Li><A href="#examples">Examples</A></Li>
+                <Li><A href="#contact">Contact</A></Li>
 
                 {/* Arreglar boton */}
                 {/* <Li><A href="">Login</A></Li> */}

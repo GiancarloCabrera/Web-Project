@@ -85,7 +85,7 @@ const GetStarted = styled('a')({
 export default function AboutPage(){
     return(
 
-        <About>
+        <About id="about">
             <AboutImg>
                 <Image className="img" src={imagen}/>
             </AboutImg>

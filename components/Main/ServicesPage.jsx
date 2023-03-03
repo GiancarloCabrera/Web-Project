@@ -86,7 +86,7 @@ const Box = styled('div')({
 export default function ServicesPage() {
     return(
 
-        <Services>
+        <Services id='services'>
             <MainText>
                 <h2>Our services</h2>
                 <h4>Better Expericences</h4>
