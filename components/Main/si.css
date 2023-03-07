@@ -6,9 +6,25 @@
 
 }
 
-.si:hover{
+/* .si:hover{
     transform: scale(1.01) translateY(-5px);
     border-top: 5px solid #ff8808;
+
+} */
+
+@media (max-width: 1325px) {
+    .header.fixed{
+        padding: 8px 3%;
+    }
+
+    
+    
+}
+
+@media (max-width: 830px){
+    .xd.active{
+        top: 100%;
+    }
 
 }
 

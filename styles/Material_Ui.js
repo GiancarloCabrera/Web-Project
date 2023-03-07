@@ -10,6 +10,9 @@ const theme = createTheme({
         md: 1024,
         lg: 1900,
         xl: 2400,
+        h: 1325,
+        ms: 970,
+        mx: 830,
       },
     },
     palette: {

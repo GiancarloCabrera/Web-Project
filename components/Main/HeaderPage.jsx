@@ -1,14 +1,19 @@
 import Image from "next/image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import MenuIcon from '@mui/icons-material/Menu';
 import styled from "@emotion/styled"
 import imagen from '../../public/images/River_Bird_free-file1.png';
 import { useState } from "react";
-import './si.css'
+import './si.css';
+// import {styled} from '@mui/material/styles';
+import { green } from "@mui/material/colors";
 
 
 
-const Header = styled('header')({
+const Header = styled('header')(({theme})=>({
+
+    
     position: 'fixed',
     right: 0,
     top: 0,
@@ -22,15 +27,18 @@ const Header = styled('header')({
     borderBottom: '1px solid trasparent',
     transition: 'all .40 ease',
     boxSizing: 'border-box',
-    // '.header.fixed':  {
-    //     backgroundColor: 'red',
-        
-    // }
+    
+    [theme.breakpoints.down('h')]: {
+        padding: '16px 3%'
+    },
+    
+    
+    
     
 
     
     
-});
+}));
 
 
 const Logo = styled('a')({
@@ -43,17 +51,30 @@ const Logo = styled('a')({
 
 });
 
-const BxMenu = styled('div')({
+const BxMenu = styled('div')(({theme})=>({
+    '.iconMenu': {
+        fontSize: '36px',
+        color: '#fff',
+        zIndex: '10001',
+        cursor: 'pointer',
+        display: 'none',
 
-    fontSize: '36px',
-    color: '#fff',
-    zIndex: '10001',
-    cursor: 'pointer',
-    display: 'none',
+        [theme.breakpoints.down('mx')]: {
+            display: 'block',
+            
+    
+        },
 
-});
+    }
 
-const Navbar = styled('ul')({
+    
+
+    
+
+
+}));
+
+const Navbar = styled('ul')(({theme})=>({
     display: 'flex',   
     'a':{
         color: 'gray',
@@ -62,14 +83,38 @@ const Navbar = styled('ul')({
         padding: '10px 25px',
         margin: '0 2px',
         borderRadius: '0.5rem',
-        transition: 'all .40s ease'
+        transition: 'all .40s ease',
+
+        [theme.breakpoints.down('mx')]: {
+            display: 'block',
+            padding: '1rem',
+            margin: '1rem',
+
+            
+    
+        },
     },
     'a:hover': {
         background: '#ff8808',
         color: '#fff',
         
-    }
-});
+    },
+
+    [theme.breakpoints.down('mx')]: {
+        position: 'absolute',
+        top: '-600px',
+        right: '0',
+        left: '0',
+        display: 'flex',
+        flexDirection: 'column',
+        background: '#12141c',
+        textAling: 'left',
+        transition: 'all .40s ease',
+        paddingLeft: '0',   
+        
+
+    },
+}));
 
 const Li = styled('li')({
     listStyle: 'none',
@@ -87,6 +132,7 @@ const A = styled('a')({
 export default function HeaderPage() {
 
     const [fix,setFix] = useState(false);
+    const [active, setActive] = useState(false);
 
     const setFixed = () => {
 
@@ -97,7 +143,9 @@ export default function HeaderPage() {
         }
 
     }
-    window.addEventListener("scroll", setFixed)
+    window.addEventListener("scroll", setFixed);
+
+
 
 
     
@@ -105,10 +153,10 @@ export default function HeaderPage() {
 
         <Header className={fix ? 'header fixed': 'header'} >
             <Logo><Image  className="img" src={imagen}/></Logo>
-            <BxMenu id="menu-ico"><FontAwesomeIcon icon={faBars} /></BxMenu>
+            <BxMenu id="menu-ico"><MenuIcon className={`iconMenu ${active && 'active'}`} onClick= {() => setActive(!active)} /></BxMenu>
 
 
-            <Navbar>
+            <Navbar className={`xd ${active && 'active'}`}>
                 
                 <Li><A href="#home">Home</A></Li>
                 <Li><A href="#about">About</A></Li>

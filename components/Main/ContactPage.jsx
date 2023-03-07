@@ -6,8 +6,9 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { fontSize } from '@mui/system';
+import Fade from 'react-reveal/Fade';
 
-const Contact = styled('section')({
+const Contact = styled('section')(({theme})=>({
 
     padding: '160px 10% 90px',
     display: 'grid',
@@ -15,8 +16,17 @@ const Contact = styled('section')({
     alignItems: 'center',
     gap: '3rem',
 
+    [theme.breakpoints.down('h')]: {
+        padding: '130px 3% 60px '
+    },
 
-});
+    [theme.breakpoints.down('ms')]: {
+        padding: '70px 3% 60px ',
+        gridTemplateColumns: '1fr'
+    },
+
+
+}));
 
 const ContactText = styled('div')({
 
@@ -145,35 +155,37 @@ const LastText = styled('div')({
 
 export default function ConctacPage() {
     return(
-        <Contact id='contact'>
-            <ContactText>
-                <h2>Contact</h2>
-                <h4>Give us a Review</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga ipsum, nostrum consequuntur praesentium soluta eos in earum aliquam aliquid. Saepe, atque ad? Omnis, alias dolores! Deleniti magni quod perspiciatis eaque?</p>
-                <ContactList>
-                    <Li><A className='info' href="">Giancarlo Cabrera - Hamlet Pirazan</A></Li>
-                    <Li><A className='info' href="">giancarlo.cabrera@unac.edu.co - hamletj.pirazanp@unac.edu.co</A></Li>
-                    <Li><A className='info' href="">0123354 - 131231312</A></Li>
-                </ContactList>
-                <ContactIcons>
-                    <A href=''><LinkedInIcon className='i'/></A>
-                    <A href=''><FacebookIcon className='i'/></A>
-                    <A href=''><InstagramIcon className='i'/></A>
-                    <A href=''><TwitterIcon className='i'/></A>
-                </ContactIcons> 
+        <Fade bottom>
+            <Contact id='contact'>
+                <ContactText>
+                    <h2>Contact</h2>
+                    <h4>Give us a Review</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga ipsum, nostrum consequuntur praesentium soluta eos in earum aliquam aliquid. Saepe, atque ad? Omnis, alias dolores! Deleniti magni quod perspiciatis eaque?</p>
+                    <ContactList>
+                        <Li><A className='info' href="">Giancarlo Cabrera - Hamlet Pirazan</A></Li>
+                        <Li><A className='info' href="">giancarlo.cabrera@unac.edu.co - hamletj.pirazanp@unac.edu.co</A></Li>
+                        <Li><A className='info' href="">0123354 - 131231312</A></Li>
+                    </ContactList>
+                    <ContactIcons>
+                        <A href=''><LinkedInIcon className='i'/></A>
+                        <A href=''><FacebookIcon className='i'/></A>
+                        <A href=''><InstagramIcon className='i'/></A>
+                        <A href=''><TwitterIcon className='i'/></A>
+                    </ContactIcons> 
 
-            </ContactText>
+                </ContactText>
 
-            <ContactForm>
-                <form action="">
-                    <input type="" placeholder='Enter Your Name' required />
-                    <input type="email" placeholder='Enter Your Email' required />
-                    <input type="" placeholder='Enter ' required/>
-                    <textarea name="" id="" cols="40" rows="10" placeholder='Enter Your Message' required></textarea>
-                    <input type="submit" value="Submit" className='send'/>
-                </form>
-            </ContactForm>
-        </Contact>
+                <ContactForm>
+                    <form action="">
+                        <input type="" placeholder='Enter Your Name' required />
+                        <input type="email" placeholder='Enter Your Email' required />
+                        <input type="" placeholder='Enter ' required/>
+                        <textarea name="" id="" cols="40" rows="10" placeholder='Enter Your Message' required></textarea>
+                        <input type="submit" value="Submit" className='send'/>
+                    </form>
+                </ContactForm>
+            </Contact>
+        </Fade>
 
         
     )

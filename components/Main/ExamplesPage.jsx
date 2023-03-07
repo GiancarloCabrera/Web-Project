@@ -9,13 +9,20 @@ import Graphics3 from '../../assets/imageGraphics3.jpg';
 import Graphics4 from '../../assets/imageGraphics4.jpg';
 import Graphics5 from '../../assets/imageGraphics5.jpg';
 import Graphics6 from '../../assets/imageGraphics6.jpg';
+import Fade from 'react-reveal/Fade';
 
 
-const Examples = styled('section')({
+const Examples = styled('section')(({theme})=>({
     padding: '160px 10% 90px',
+    [theme.breakpoints.down('h')]: {
+        padding: '130px 3% 60px '
+    },
+    [theme.breakpoints.down('ms')]: {
+        padding: '70px 3% 60px '
+    },
     
 
-});
+}));
 
 const MainText = styled('div')({
 
@@ -109,96 +116,97 @@ const RowIcon = styled('div')({
 
 export default function ExamplesPage(){
     return(
+        <Fade bottom>
+            <Examples id='examples'>
+                <MainText>
+                    <h2>Examples</h2>
+                    <h4>Examples of <Span>River Bird</Span></h4>
+                </MainText>
 
-        <Examples id='examples'>
-            <MainText>
-                <h2>Examples</h2>
-                <h4>Examples of <Span>River Bird</Span></h4>
-            </MainText>
-
-            <ExamplesContent>
-                <Row>
-                    <Image className='img' src={Graphics}/>
-                    <MainRow>
-                        <RowText>
-                            <h6 className='xd'>Graphics</h6>
-                        </RowText>
-                        <RowIcon>
-                            < FavoriteBorderIcon className='i'/>
-                        </RowIcon>
-                    </MainRow>
-                    <h3>Responsible time management statistics</h3>
-                </Row>
-
-
-                <Row>
-                    <Image className='img' src={Graphics2}/>
-                    <MainRow>
-                        <RowText>
-                            <h6>Graphics</h6>
-                        </RowText>
-                        <RowIcon>
-                            < FavoriteBorderIcon className='i'/>
-                        </RowIcon>
-                    </MainRow>
-                    <h3>Responsible time management statistics</h3>
-                </Row>
+                <ExamplesContent>
+                    <Row>
+                        <Image className='img' src={Graphics}/>
+                        <MainRow>
+                            <RowText>
+                                <h6 className='xd'>Graphics</h6>
+                            </RowText>
+                            <RowIcon>
+                                < FavoriteBorderIcon className='i'/>
+                            </RowIcon>
+                        </MainRow>
+                        <h3>Responsible time management statistics</h3>
+                    </Row>
 
 
-                <Row>
-                    <Image className='img' src={Graphics3}/>
-                    <MainRow>
-                        <RowText>
-                            <h6>Graphics</h6>
-                        </RowText>
-                        <RowIcon>
-                            < FavoriteBorderIcon className='i'/>
-                        </RowIcon>
-                    </MainRow>
-                    <h3>Responsible time management statistics</h3>
-                </Row>
+                    <Row>
+                        <Image className='img' src={Graphics2}/>
+                        <MainRow>
+                            <RowText>
+                                <h6>Graphics</h6>
+                            </RowText>
+                            <RowIcon>
+                                < FavoriteBorderIcon className='i'/>
+                            </RowIcon>
+                        </MainRow>
+                        <h3>Responsible time management statistics</h3>
+                    </Row>
 
-                <Row>
-                    <Image className='img' src={Graphics4}/>
-                    <MainRow>
-                        <RowText>
-                            <h6>Graphics</h6>
-                        </RowText>
-                        <RowIcon>
-                            < FavoriteBorderIcon className='i'/>
-                        </RowIcon>
-                    </MainRow>
-                    <h3>Responsible time management statistics</h3>
-                </Row>
 
-                <Row>
-                    <Image className='img' src={Graphics5}/>
-                    <MainRow>
-                        <RowText>
-                            <h6>Graphics</h6>
-                        </RowText>
-                        <RowIcon>
-                            < FavoriteBorderIcon className='i'/>
-                        </RowIcon>
-                    </MainRow>
-                    <h3>Responsible time management statistics</h3>
-                </Row>
+                    <Row>
+                        <Image className='img' src={Graphics3}/>
+                        <MainRow>
+                            <RowText>
+                                <h6>Graphics</h6>
+                            </RowText>
+                            <RowIcon>
+                                < FavoriteBorderIcon className='i'/>
+                            </RowIcon>
+                        </MainRow>
+                        <h3>Responsible time management statistics</h3>
+                    </Row>
 
-                <Row>
-                    <Image className='img' src={Graphics6}/>
-                    <MainRow>
-                        <RowText>
-                            <h6>Graphics</h6>
-                        </RowText>
-                        <RowIcon>
-                            < FavoriteBorderIcon className='i'/>
-                        </RowIcon>
-                    </MainRow>
-                    <h3>Responsible time management statistics</h3>
-                </Row>
+                    <Row>
+                        <Image className='img' src={Graphics4}/>
+                        <MainRow>
+                            <RowText>
+                                <h6>Graphics</h6>
+                            </RowText>
+                            <RowIcon>
+                                < FavoriteBorderIcon className='i'/>
+                            </RowIcon>
+                        </MainRow>
+                        <h3>Responsible time management statistics</h3>
+                    </Row>
 
-            </ExamplesContent>
-        </Examples>
+                    <Row>
+                        <Image className='img' src={Graphics5}/>
+                        <MainRow>
+                            <RowText>
+                                <h6>Graphics</h6>
+                            </RowText>
+                            <RowIcon>
+                                < FavoriteBorderIcon className='i'/>
+                            </RowIcon>
+                        </MainRow>
+                        <h3>Responsible time management statistics</h3>
+                    </Row>
+
+                    <Row>
+                        <Image className='img' src={Graphics6}/>
+                        <MainRow>
+                            <RowText>
+                                <h6>Graphics</h6>
+                            </RowText>
+                            <RowIcon>
+                                < FavoriteBorderIcon className='i'/>
+                            </RowIcon>
+                        </MainRow>
+                        <h3>Responsible time management statistics</h3>
+                    </Row>
+
+                </ExamplesContent>
+            </Examples>
+        </Fade>
 
 
     )

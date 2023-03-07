@@ -14,6 +14,8 @@ import ServicesPage from "./Main/ServicesPage";
 import ExamplesPage from "./Main/ExamplesPage";
 import ConctacPage from "./Main/ContactPage";
 import LowerPart from "./Main/LowerPart";
+import './Main/si.css'
+import Fade from 'react-reveal/Fade';
 
 const ButtonLogin = styled("button")({});
 
@@ -22,7 +24,7 @@ const Body = styled("body")({
   color: "#fff",
 });
 
-const Home = styled("section")({
+const Home = styled("section")(({theme})=>({
   padding: "160px 10% 90px",
   height: "100vh",
   width: "100%",
@@ -33,7 +35,16 @@ const Home = styled("section")({
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-start",
-});
+  [theme.breakpoints.down('h')]: {
+    padding: '16px 3%'
+  },
+
+  [theme.breakpoints.down('ms')]: {
+    padding: '70px 3% 60px ',
+    height: '85vh',
+    
+  },
+}));
 
 const HomeText = styled("div")({});
 
@@ -83,17 +94,19 @@ export default function PageMain() {
       <HeaderPage />
 
       <Home className="home" id="home">
-        <HomeText>
-          <Title>Hellow</Title>
-          <Somos>
-            Soy Hamlet <br />
-            Ha<Span>mim</Span>
-          </Somos>
-          <H3>Front-End Developer</H3>
-          <GetStarted href="#" className="btn">
-            Get Started
-          </GetStarted>
-        </HomeText>
+        <Fade bottom>
+          <HomeText>
+            <Title>Hellow</Title>
+            <Somos>
+              Soy Hamlet <br />
+              Ha<Span>mim</Span>
+            </Somos>
+            <H3>Front-End Developer</H3>
+            <GetStarted href="#" className="btn">
+              Get Started
+            </GetStarted>
+          </HomeText>
+        </Fade>
       </Home>
 
       <AboutPage />
