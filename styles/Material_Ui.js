@@ -19,7 +19,7 @@ const theme = createTheme({
       mode: "dark",
       // This Color are being Tested
       primary: {  
-        main: "#11cb5f"
+        main: "#336b87"
       },
       secondary: {
         // This is green.A700 as hex.

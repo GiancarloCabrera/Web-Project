@@ -32,7 +32,7 @@ const ContactText = styled('div')({
 
     'h4':{
         margin: '15px 0',
-        color: '#ff8808',
+        color: '#336b87',
         fontSize: '20px',
         fontWeight: '600',
 
@@ -61,9 +61,9 @@ const ContactIcons = styled('div')({
     '.i': {
         height: '40px',
         width: '40px',
-        background: '#0c0c0c',
+        background: '#2a3132',
         borderRadius: '0.5rem',
-        color: '#ff8808',
+        color: '#763626',
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -103,7 +103,7 @@ const Li = styled('li')({
     },
     'A:hover': {
         transform: 'scale(1.01) translateY(-5px)',
-        color: '#ff8808'
+        color: '#763626'
     }
 
     
@@ -136,7 +136,7 @@ const ContactForm= styled('div')({
         display: 'inline-block',
         fontSize: '17px',
         fontWeight: '500',
-        background: '#ff8808',
+        background: '#763626',
         color: '#fff',
         width: '190px',
         transition: 'all .40s ease',

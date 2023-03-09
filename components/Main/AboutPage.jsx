@@ -38,7 +38,7 @@ const AboutImg = styled('div')(({theme})=>({
 const AboutText = styled('div')({
     'h4':{
         margin: '10px 0',
-        color: '#ff8808',
+        color: '#336b87',
         fontSize: '20px',
         fontWeight: '600',
     },
@@ -79,14 +79,14 @@ const GetStarted = styled('a')({
     borderRadius: '0.5rem',
     fontSize: '17px',
     fontWeight: '500',
-    background: '#ff8808',
+    background: '#763626',
     color: '#fff',
-    border: '1px solid #ff8808',
+    border: '1px solid #763626',
     transition: 'all .40s ease',
     ':hover': {
         transform: 'scale(1.01) translateY(-5px)',
         background: 'transparent',
-        border: '1px solid #ff8808',    
+        border: '1px solid #336b87',    
 
     }
 

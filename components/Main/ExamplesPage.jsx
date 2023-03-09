@@ -33,7 +33,7 @@ const MainText = styled('div')({
 
     },
     'h4': {
-        color: '#ff8808',
+        color: '#336b87',
         fontSize: '24px',
         fontWeight: '600',
 
@@ -42,7 +42,7 @@ const MainText = styled('div')({
 });
 
 const Span = styled("span")({
-    color: "#d64802",
+    color: "#90afc5",
 });
 
 const ExamplesContent = styled('div')({
@@ -74,7 +74,7 @@ const Row = styled('row')({
         fontWeight: '700',
     },
     'h6': {
-        color: '#ff8808',
+        color: '#336b87',
         fontSize: '16px',
         fontWeight: '500',
         letterSpacing: '1px',
@@ -86,7 +86,7 @@ const Row = styled('row')({
     },
 
     ':hover h6':{
-        color: '#d64802'
+        color: '#2a3132'
     }
 
     

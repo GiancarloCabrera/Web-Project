@@ -30,7 +30,7 @@ const MainText = styled('div')({
 
     },
     'h4': {
-        color: '#ff8808',
+        color: '#336b87',
         fontSize: '24px',
         fontWeight: '600',
 
@@ -59,7 +59,7 @@ const Box = styled('div')({
     borderRadius: '0.5rem',
     ':hover': {
         transform: 'scale(1.01) translateY(-5px)',
-        borderTop: '5px solid #ff8808',
+        borderTop: '5px solid #336b87',
 
     }, 
     'h3': {
@@ -79,7 +79,7 @@ const Box = styled('div')({
         height: '60px'
     },
     ':hover h3': {
-        color: '#d64802',
+        color: '#2a3132',
 
     }
 

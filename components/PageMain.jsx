@@ -20,8 +20,14 @@ import Fade from 'react-reveal/Fade';
 const ButtonLogin = styled("button")({});
 
 const Body = styled("body")({
-  background: "#0c0c0c",
-  color: "#fff",
+  background: "#2a3132",
+  color: "#90afc5",
+  '::-webkit-scrollbar':{
+    width: '8px',    /* Tamaño del scroll en vertical */
+    height: '8px',    /* Tamaño del scroll en horizontal */
+    display: 'flex',
+    backgroundColor: "#2a3132"
+  }
 });
 
 const Home = styled("section")(({theme})=>({
@@ -49,10 +55,10 @@ const Home = styled("section")(({theme})=>({
 const HomeText = styled("div")({});
 
 const Span = styled("span")({
-  color: "#ff8808",
+  color: "#90afc5",
 });
 const Title = styled("h4")({
-  color: "#ff8808",
+  color: "#336b87",
   fontSize: "24px",
   fontWeight: "600",
 });
@@ -77,14 +83,14 @@ const GetStarted = styled("a")({
   borderRadius: "0.5rem",
   fontSize: "17px",
   fontWeight: "500",
-  background: "#ff8808",
+  background: "#763626",
   color: "#fff",
-  border: "1px solid #ff8808",
+  border: "1px solid #763626",
   transition: "all .40s ease",
   ":hover": {
     transform: "scale(1.01) translateY(-5px)",
     background: "transparent",
-    border: "1px solid #ff8808",
+    border: "1px solid #336b87",
   },
 });
 

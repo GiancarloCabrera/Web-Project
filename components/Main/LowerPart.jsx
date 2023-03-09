@@ -35,7 +35,7 @@ const Arrow = styled('div')({
     '.i': {
         height: '40px',
         width: '40px',
-        background: '#ff8808',
+        background: '#763626',
         borderRadius: '0.5rem',
         color: '#fff',
         display: 'inline-flex',
