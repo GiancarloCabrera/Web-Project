@@ -1,13 +1,10 @@
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
 import MenuIcon from "@mui/icons-material/Menu";
 import styled from "@emotion/styled";
 import imagen from "../../public/images/image.png";
 import { useState } from "react";
 import "./si.css";
-// import {styled} from '@mui/material/styles';
-import { green } from "@mui/material/colors";
+
 
 const Header = styled("header")(({ theme }) => ({
   position: "fixed",

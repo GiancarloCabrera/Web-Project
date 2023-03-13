@@ -1,6 +1,6 @@
 
 
-import PageMain from "@/components/PageMain"
+import PageMain from "@/components/Main/PageMain"
 
 
 
