@@ -11,22 +11,11 @@ import ConctacPage from "./ContactPage";
 import LowerPart from "./LowerPart";
 import "./si.css";
 
-
-
-const Body = styled("body")({
-  background: "#2a3132",
-  color: "#90afc5",
-  "::-webkit-scrollbar": {
-    width: "8px" /* Tamaño del scroll en vertical */,
-    height: "8px" /* Tamaño del scroll en horizontal */,
-    display: "flex",
-    backgroundColor: "#2a3132",
-  },
-});
+const Main = styled("div")``;
 
 export default function PageMain() {
   return (
-    <Body>
+    <Main>
       <HeaderPage />
 
       <HomePage />
@@ -40,6 +29,6 @@ export default function PageMain() {
       <ConctacPage />
 
       <LowerPart />
-    </Body>
+    </Main>
   );
 }

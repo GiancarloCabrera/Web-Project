@@ -5,7 +5,6 @@ import imagen from "../../public/images/image.png";
 import { useState } from "react";
 import "./si.css";
 
-
 const Header = styled("header")(({ theme }) => ({
   position: "fixed",
   right: 0,
@@ -106,7 +105,7 @@ export default function HeaderPage() {
   return (
     <Header className={fix ? "header fixed" : "header"}>
       <Logo>
-        <Image className="img" src={imagen} />
+        <Image alt="logoImg" className="img" src={imagen} priority={true} />
       </Logo>
       <BxMenu id="menu-ico">
         <MenuIcon

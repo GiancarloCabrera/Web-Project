@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
-
 const LastText = styled("div")({
   p: {
     textAlign: "center",
@@ -10,6 +9,7 @@ const LastText = styled("div")({
     fontSize: "15px",
     fontWeight: "600",
     letterSpacing: "1px",
+    marginBottom: "0",
   },
 });
 

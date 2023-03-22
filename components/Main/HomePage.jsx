@@ -4,7 +4,6 @@ import styled from "@emotion/styled";
 import Imagefond from "../../public/images/sii.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./si.css";
-import Fade from "react-reveal/Fade";
 
 const Home = styled("section")(({ theme }) => ({
   padding: "160px 10% 90px",
@@ -70,19 +69,17 @@ const GetStarted = styled("a")({
 export default function HomePage() {
   return (
     <Home className="home" id="home">
-      <Fade bottom>
-        <div>
-          <Title>Hellow</Title>
-          <Somos>
-            Soy Hamlet <br />
-            Ha<Span>mim</Span>
-          </Somos>
-          <H3>Front-End Developer</H3>
-          <GetStarted href="#" className="btn">
-            Get Started
-          </GetStarted>
-        </div>
-      </Fade>
+      <div>
+        <Title>Hellow</Title>
+        <Somos>
+          Soy Hamlet <br />
+          Ha<Span>mim</Span>
+        </Somos>
+        <H3>Front-End Developer</H3>
+        <GetStarted href="#" className="btn">
+          Get Started
+        </GetStarted>
+      </div>
     </Home>
   );
 }

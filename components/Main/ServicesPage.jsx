@@ -3,7 +3,6 @@ import Image from "next/image";
 import imagen from "../../public/images/iconServices.png";
 import imagenEnergy from "../../public/images/iconEnergy.png";
 import imagenGrapics from "../../public/images/iconGrapics.png";
-import Fade from "react-reveal/Fade";
 
 const Services = styled("section")(({ theme }) => ({
   padding: "160px 10% 90px",
@@ -70,48 +69,61 @@ const Box = styled("div")({
 
 export default function ServicesPage() {
   return (
-    <Fade bottom>
-      <Services id="services">
-        <MainText>
-          <h2>Our services</h2>
-          <h4>Better Expericences</h4>
-        </MainText>
+    <Services id="services">
+      <MainText>
+        <h2>Our services</h2>
+        <h4>Better Expericences</h4>
+      </MainText>
 
-        <ServicesContent>
-          <Box>
-            <Image className="img" src={imagen} />
-            <h3>Mobile App Desing</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-              repellendus nulla consequuntur vero dolorum tenetur vitae earum
-              inventore soluta labore nisi ex corrupti, voluptates eaque illo
-              dolor quae voluptate quos!
-            </p>
-          </Box>
+      <ServicesContent>
+        <Box>
+          <Image
+            alt="imgConfigure"
+            className="img"
+            src={imagen}
+            priority={true}
+          />
+          <h3>Mobile App Desing</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
+            repellendus nulla consequuntur vero dolorum tenetur vitae earum
+            inventore soluta labore nisi ex corrupti, voluptates eaque illo
+            dolor quae voluptate quos!
+          </p>
+        </Box>
 
-          <Box>
-            <Image className="img" src={imagenEnergy} />
-            <h3>Energy</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-              repellendus nulla consequuntur vero dolorum tenetur vitae earum
-              inventore soluta labore nisi ex corrupti, voluptates eaque illo
-              dolor quae voluptate quos!
-            </p>
-          </Box>
+        <Box>
+          <Image
+            alt="imgenergy"
+            className="img"
+            src={imagenEnergy}
+            priority={true}
+          />
+          <h3>Energy</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
+            repellendus nulla consequuntur vero dolorum tenetur vitae earum
+            inventore soluta labore nisi ex corrupti, voluptates eaque illo
+            dolor quae voluptate quos!
+          </p>
+        </Box>
 
-          <Box>
-            <Image className="img" src={imagenGrapics} />
-            <h3>Graphics</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-              repellendus nulla consequuntur vero dolorum tenetur vitae earum
-              inventore soluta labore nisi ex corrupti, voluptates eaque illo
-              dolor quae voluptate quos!
-            </p>
-          </Box>
-        </ServicesContent>
-      </Services>
-    </Fade>
+        <Box>
+          <Image
+            alt="imgGraphics"
+            className="img"
+            src={imagenGrapics}
+            priority={true}
+          />
+          <h3>Graphics</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
+            repellendus nulla consequuntur vero dolorum tenetur vitae earum
+            inventore soluta labore nisi ex corrupti, voluptates eaque illo
+            dolor quae voluptate quos!
+          </p>
+        </Box>
+      </ServicesContent>
+    </Services>
   );
 }
