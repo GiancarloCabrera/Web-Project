@@ -57,6 +57,7 @@ const Box = styled("div")({
     color: "gray",
     fontSize: "1.1rem",
     lineHeight: "30px",
+    fontFamily: "Quicksand, san-serif",
   },
   ".img": {
     width: "60px",
@@ -83,12 +84,12 @@ export default function ServicesPage() {
             src={imagen}
             priority={true}
           />
-          <h3>Mobile App Desing</h3>
+          <h3>Pleasure Designs</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-            repellendus nulla consequuntur vero dolorum tenetur vitae earum
-            inventore soluta labore nisi ex corrupti, voluptates eaque illo
-            dolor quae voluptate quos!
+            We offer an engaging and easy-to-use experience. Our team works
+            tirelessly to create a beautiful, easy-to-navigate app that guides
+            you through all the tools needed for effective and sustainable
+            resource management to help your pocketbook.
           </p>
         </Box>
 
@@ -101,10 +102,9 @@ export default function ServicesPage() {
           />
           <h3>Energy</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-            repellendus nulla consequuntur vero dolorum tenetur vitae earum
-            inventore soluta labore nisi ex corrupti, voluptates eaque illo
-            dolor quae voluptate quos!
+            Our team of energy efficiency experts works with you to identify
+            areas for improvement and develop customized solutions to optimize
+            energy consumption in your business. And dat way help your pocket
           </p>
         </Box>
 
@@ -117,10 +117,10 @@ export default function ServicesPage() {
           />
           <h3>Graphics</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-            repellendus nulla consequuntur vero dolorum tenetur vitae earum
-            inventore soluta labore nisi ex corrupti, voluptates eaque illo
-            dolor quae voluptate quos!
+            Our team of energy efficiency experts works with you to gather
+            valuable information about your resource consumption and present it
+            clearly and concisely in easy-to-understand graphs and
+            visualizations.
           </p>
         </Box>
       </ServicesContent>

@@ -50,6 +50,7 @@ const H3 = styled("h3")({
 });
 
 const GetStarted = styled("a")({
+  textDecoration: "none",
   display: "inline-block",
   padding: "14px 40px",
   borderRadius: "0.5rem",
@@ -63,6 +64,7 @@ const GetStarted = styled("a")({
     transform: "scale(1.01) translateY(-5px)",
     background: "transparent",
     border: "1px solid #336b87",
+    color: "#90afc5",
   },
 });
 
@@ -76,7 +78,7 @@ export default function HomePage() {
           Ha<Span>mim</Span>
         </Somos>
         <H3>Front-End Developer</H3>
-        <GetStarted href="#" className="btn">
+        <GetStarted href="#" type="button">
           Get Started
         </GetStarted>
       </div>

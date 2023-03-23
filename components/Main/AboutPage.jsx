@@ -46,6 +46,7 @@ const AboutText = styled("div")({
     fontSize: "1.1rem",
     lineHeight: "30px",
     marginBottom: "2rem",
+    fontFamily: "Quicksand, san-serif",
   },
 });
 
@@ -65,6 +66,7 @@ const AboutIn = styled("div")({
 });
 
 const GetStarted = styled("a")({
+  textDecoration: "none",
   display: "inline-block",
   padding: "14px 40px",
   borderRadius: "0.5rem",
@@ -78,7 +80,12 @@ const GetStarted = styled("a")({
     transform: "scale(1.01) translateY(-5px)",
     background: "transparent",
     border: "1px solid #336b87",
+    color: "#90afc5",
   },
+});
+
+const Span = styled("span")({
+  color: "#90afc5",
 });
 
 export default function AboutPage() {
@@ -92,10 +99,11 @@ export default function AboutPage() {
         <h2>About Us</h2>
         <h4>We are here to help the nature</h4>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Et asperiores
-          commodi quibusdam possimus, labore numquam. Enim facilis impedit
-          doloribus voluptates incidunt doloremque eos dolores ex velit, ratione
-          saepe tenetur labore?
+          At <Span>River Bird</Span>, we are committed to promoting sustainable
+          practices in the ICT sector. Our team of experts provides valuable
+          information and practical tools to reduce unnecessary resource
+          consumption. Jon us in our mission to create a more sustainable and
+          responsible future for our industry and our planet!
         </p>
         <AboutGrid>
           <AboutIn>
@@ -114,7 +122,8 @@ export default function AboutPage() {
             <h5>4. Higth Quality</h5>
           </AboutIn>
         </AboutGrid>
-        <GetStarted href="#" className="btn">
+
+        <GetStarted href="#" type="button">
           Get Started
         </GetStarted>
       </AboutText>

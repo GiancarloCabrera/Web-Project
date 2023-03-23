@@ -36,6 +36,7 @@ const ContactText = styled("div")({
     fontSize: "1.1rem",
     lineHeight: "30px",
     marginBottom: "2rem",
+    fontFamily: "Quicksand, san-serif",
   },
 });
 
