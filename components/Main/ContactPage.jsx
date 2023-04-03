@@ -101,6 +101,7 @@ const ContactForm = styled("div")({
       fontWeight: "600",
       marginBottom: "0.5rem",
       borderRadius: "0.5rem",
+      fontFamily: "Quicksand, san-serif"
     },
   },
   textarea: {

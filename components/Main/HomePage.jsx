@@ -2,7 +2,6 @@
 
 import styled from "@emotion/styled";
 import Imagefond from "../../public/images/sii.jpg";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./si.css";
 
 const Home = styled("section")(({ theme }) => ({
