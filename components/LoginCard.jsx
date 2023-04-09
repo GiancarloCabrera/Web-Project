@@ -1,13 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/system";
 import { Box } from "@mui/material";
 import Gif from "../assets/login_image.gif";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+
 import Image from "next/image";
+
+import { useDispatch } from "react-redux";
+import { signIn } from "next-auth/react";
 
 const H1 = styled("h1")({
   fontWeight: 700,
@@ -269,6 +273,42 @@ const SocialContainer = styled("div")({
 
 export default function LoginCard() {
   const [loginRegis, setLoginRegis] = useState(true);
+  const dispatch = useDispatch();
+  // Login Form
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  // Login Register
+  const [registerForm, setRegisterForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    console.log(loginForm);
+  }, [loginForm]);
+
+  useEffect(() => {
+    console.log(registerForm);
+  }, [registerForm]);
+
+  const handleLoginChange = ({ target }) => {
+    setLoginForm((val) => ({ ...val, [target.name]: target.value }));
+  };
+
+  const handleRegisterChange = ({ target }) => {
+    setRegisterForm((val) => ({ ...val, [target.name]: target.value }));
+  };
+
+  const handleLogin = async () => {
+    await signIn("credentials", {
+      email: "khkgkkjh@gmail.com",
+      password: "jhfgjfjgf",
+    });
+  };
 
   return (
     <Container>
@@ -286,11 +326,32 @@ export default function LoginCard() {
         }
       >
         <Form>
-          <H1>Register hire.</H1>
-          <Input type="text" placeholder="Name" />
-          <Input type="email" placeholder="Email" />
-          <Input type="password" placeholder="Password" />
-          <Button>Register</Button>
+          <H1>Register here.</H1>
+          <Input
+            required
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={registerForm.name}
+            onChange={handleRegisterChange}
+          />
+          <Input
+            required
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={registerForm.email}
+            onChange={handleRegisterChange}
+          />
+          <Input
+            required
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={registerForm.password}
+            onChange={handleRegisterChange}
+          />
+          <Button type="submit">Register</Button>
           <Span>or use your account</Span>
           <SocialContainer>
             <Link href="#" className="social">
@@ -318,18 +379,41 @@ export default function LoginCard() {
       >
         <Form>
           <H1>Login hire.</H1>
-          <Input type="email" placeholder="Email" />
-          <Input type="password" placeholder="Password" />
+          <Input
+            required
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={loginForm.email}
+            onChange={handleLoginChange}
+          />
+          <Input
+            required
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={loginForm.password}
+            onChange={handleLoginChange}
+          />
           <Content>
             <Box className="checkbox">
               <Input type="checkbox" name="checkbox" id="checkbox" />
-              <label>Remember me</label>
+              <label style={{ color: "black" }}>Remember me</label>
             </Box>
             <Box className="pass-link">
               <Link href="#">Forgot password?</Link>
             </Box>
           </Content>
-          <Button>Login</Button>
+          <Button
+            type="submit"
+            onClick={(e) => {
+              e.preventDefault();
+              handleLogin();
+              // dispatch(loginUser(loginForm))
+            }}
+          >
+            Login
+          </Button>
           <Span>or use your account</Span>
           <SocialContainer>
             <Link href="#" className="social">
