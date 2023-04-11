@@ -121,7 +121,7 @@ export default function Sidebar() {
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title="Home"
-              to="/dasboard/main"
+              to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -210,6 +210,13 @@ export default function Sidebar() {
               title="Line Chart"
               to="/line"
               icon={<TimelineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Geography Chart"
+              to="/geography"
+              icon={<MapOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />

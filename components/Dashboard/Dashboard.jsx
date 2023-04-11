@@ -5,6 +5,19 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import Topbar from "../global/Topbar";
 import Link from "next/link";
 import Sidebar from "../global/Sidebar";
+import styled from "@emotion/styled";
+
+const App = styled("div")({
+  display: "flex",
+  position: "relative",
+  height: "100vh",
+});
+
+const Content = styled("main")({
+  height: "100%",
+  width: "100%",
+  fontFamily: "Source Sans Pro, sans-serif",
+});
 
 export default function Dashboard() {
   const [theme, colorMode] = useMode();
@@ -12,12 +25,12 @@ export default function Dashboard() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <div className="app">
+        <App className="xddd">
           <Sidebar />
-          <main className="content">
+          <Content className="content">
             <Topbar />
-          </main>
-        </div>
+          </Content>
+        </App>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
