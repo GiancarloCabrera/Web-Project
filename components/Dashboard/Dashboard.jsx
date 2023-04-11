@@ -1,17 +1,11 @@
 "use client";
-<<<<<<< HEAD
-import MainDashboard from "@/components/Dashboard/pages/MainDashboard";
-=======
->>>>>>> 3f203c9 (More changes)
 import React from "react";
 import { ColorModeContext, useMode } from "@/theme/theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-
+import Topbar from "../global/Topbar";
 import Link from "next/link";
-import Sidebar from "@/components/global/Sidebar";
+import Sidebar from "../global/Sidebar";
 import styled from "@emotion/styled";
-
-import Topbar from "@/components/global/Topbar";
 
 const App = styled("div")({
   display: "flex",
@@ -28,11 +22,6 @@ const Content = styled("main")({
 export default function Dashboard() {
   const [theme, colorMode] = useMode();
   return (
-<<<<<<< HEAD
-    <div>
-      <MainDashboard />
-    </div>
-=======
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -41,10 +30,8 @@ export default function Dashboard() {
           <Content className="content">
             <Topbar />
           </Content>
-          Hola como estas
         </App>
       </ThemeProvider>
     </ColorModeContext.Provider>
->>>>>>> 3f203c9 (More changes)
   );
 }

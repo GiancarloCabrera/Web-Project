@@ -1,7 +1,5 @@
-"use client";
 import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
-
 import "react-pro-sidebar/dist/css/styles.css";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
@@ -47,13 +45,6 @@ export default function Sidebar() {
   return (
     <Box
       sx={{
-        position: "sticky",
-        display: "flex",
-        height: "100vh",
-
-        top: 0,
-        bottom: 0,
-        zIndex: 10000,
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
         },
@@ -108,7 +99,6 @@ export default function Sidebar() {
                   height="100px"
                   src={Perfil}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
-                  priority
                 />
               </Box>
 
@@ -131,11 +121,7 @@ export default function Sidebar() {
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title="Home"
-<<<<<<< HEAD
-              to="/dasboard"
-=======
-              to="/dasboard/main"
->>>>>>> 3f203c9 (More changes)
+              to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -150,33 +136,21 @@ export default function Sidebar() {
             </Typography>
             <Item
               title="Manage Team"
-<<<<<<< HEAD
-              to="/dasboard/list"
-=======
               to="/team"
->>>>>>> 3f203c9 (More changes)
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Contacts Information"
-<<<<<<< HEAD
-              to="/dasboard/contact"
-=======
               to="/contacts"
->>>>>>> 3f203c9 (More changes)
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Invoices Balances"
-<<<<<<< HEAD
-              to="/dasboard/calendar"
-=======
               to="/invoices"
->>>>>>> 3f203c9 (More changes)
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -191,11 +165,7 @@ export default function Sidebar() {
             </Typography>
             <Item
               title="Profile Form"
-<<<<<<< HEAD
-              to="/dasboard/faq"
-=======
               to="/form"
->>>>>>> 3f203c9 (More changes)
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -240,6 +210,13 @@ export default function Sidebar() {
               title="Line Chart"
               to="/line"
               icon={<TimelineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Geography Chart"
+              to="/geography"
+              icon={<MapOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
