@@ -1,5 +1,7 @@
+"use client";
 import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
+
 import "react-pro-sidebar/dist/css/styles.css";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import Link from "next/link";
@@ -45,6 +47,13 @@ export default function Sidebar() {
   return (
     <Box
       sx={{
+        position: "sticky",
+        display: "flex",
+        height: "100vh",
+
+        top: 0,
+        bottom: 0,
+        zIndex: 10000,
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
         },
@@ -99,6 +108,7 @@ export default function Sidebar() {
                   height="100px"
                   src={Perfil}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
+                  priority
                 />
               </Box>
 
@@ -121,7 +131,7 @@ export default function Sidebar() {
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title="Home"
-              to="/dasboard/main"
+              to="/dasboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -136,14 +146,14 @@ export default function Sidebar() {
             </Typography>
             <Item
               title="Manage Team"
-              to="/team"
+              to="/dasboard/list"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Contacts Information"
-              to="/contacts"
+              to="/dasboard/contact"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

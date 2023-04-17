@@ -1,11 +1,12 @@
 "use client";
-import MainDashboard from "@/components/Dashboard/pages/MainDashboard";
+import List from "@/components/Dashboard/pages/List";
+
 import React from "react";
 
 export default function Home() {
   return (
     <div>
-      <MainDashboard />
+      <List />
     </div>
   );
 }
