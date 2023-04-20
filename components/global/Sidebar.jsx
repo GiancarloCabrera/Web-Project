@@ -160,7 +160,7 @@ export default function Sidebar() {
             />
             <Item
               title="Invoices Balances"
-              to="/invoices"
+              to="/dasboard/calendar"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -175,7 +175,7 @@ export default function Sidebar() {
             </Typography>
             <Item
               title="Profile Form"
-              to="/form"
+              to="/dasboard/faq"
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
