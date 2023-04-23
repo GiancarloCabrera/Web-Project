@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from 'react'
-import { styled } from '@mui/system';
-import { Box } from '@mui/material';
-import Gif from '../assets/login_image.gif';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GoogleIcon from '@mui/icons-material/Google';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { useDispatch } from 'react-redux';
-import { loginUser } from '@/redux/actions/login';
+import React, { useEffect, useState } from "react";
+import { styled } from "@mui/system";
+import { Box } from "@mui/material";
+import Gif from "../assets/login_image.gif";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GoogleIcon from "@mui/icons-material/Google";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { useDispatch } from "react-redux";
+import { signIn } from "next-auth/react";
 
 const H1 = styled("h1")({
   fontWeight: 700,
@@ -269,46 +269,10 @@ const SocialContainer = styled("div")({
 });
 
 export default function LoginCard() {
+  const [loginRegis, setLoginRegis] = useState(true);
     const dispatch = useDispatch();
-
-  return (
-    <Container>
-      <FormContainerRegister
-        style={
-          !loginRegis
-            ? {
-                backgroundColor: "black",
-                transform: "translateX(100%)",
-                opacity: 1,
-                zIndex: 5,
-                animation: "show 0.6s",
-              }
-            : null
-        }
-      >
-        <Form>
-          <H1>Register hire.</H1>
-          <Input type="text" placeholder="Name" />
-          <Input type="email" placeholder="Email" />
-          <Input type="password" placeholder="Password" />
-          <Button>Register</Button>
-          <Span>or use your account</Span>
-          <SocialContainer>
-            <Link href="#" className="social">
-              <FacebookIcon />
-            </Link>
-            <Link href="#" className="social">
-              <GoogleIcon />
-            </Link>
-            <Link href="#" className="social">
-              <LinkedInIcon />
-            </Link>
-          </SocialContainer>
-        </Form>
-      </FormContainerRegister>
-
-    // Login Form
-    const [ loginForm, setLoginForm ] = useState(
+   // Login Form
+   const [ loginForm, setLoginForm ] = useState(
     {
         email: '',
         password: ''
@@ -338,20 +302,31 @@ export default function LoginCard() {
         setRegisterForm((val) => ({ ...val, [target.name]: target.value }))
     }
 
-    return (
-        <Container>
-            <FormContainerRegister 
-                style={ !loginRegis ? {
-                    backgroundColor: 'black',
-                    transform: 'translateX(100%)',
-                    opacity: 1,
-                    zIndex: 5,
-                    animation: 'show 0.6s'
-                }: null}
-            >
-                <Form >
-                    <H1>Register hire.</H1>
-                    <Input 
+    const handleLogin = async () => {
+        await signIn('credentials', {
+          email: 'khkgkkjh@gmail.com', 
+          password: 'jhfgjfjgf'
+        })
+    }
+
+  return (
+    <Container>
+      <FormContainerRegister
+        style={
+          !loginRegis
+            ? {
+                backgroundColor: "black",
+                transform: "translateX(100%)",
+                opacity: 1,
+                zIndex: 5,
+                animation: "show 0.6s",
+              }
+            : null
+        }
+      >
+        <Form>
+          <H1>Register here.</H1>
+          <Input 
                         required
                         type="text" 
                         name="name" 
@@ -375,15 +350,78 @@ export default function LoginCard() {
                         value={registerForm.password}
                         onChange={handleRegisterChange}
                     />
-                    <Button type='submit'>Register</Button>
-                    <Span>or use your account</Span>
-                    <SocialContainer>
-                        <Link href="#" className="social"><FacebookIcon /></Link>
-                        <Link href="#" className="social"><GoogleIcon /></Link>
-                        <Link href="#" className="social"><LinkedInIcon /></Link>
-                    </SocialContainer>
-                </Form>
-            </FormContainerRegister>
+          <Button type='submit'>Register</Button>
+          <Span>or use your account</Span>
+          <SocialContainer>
+            <Link href="#" className="social">
+              <FacebookIcon />
+            </Link>
+            <Link href="#" className="social">
+              <GoogleIcon />
+            </Link>
+            <Link href="#" className="social">
+              <LinkedInIcon />
+            </Link>
+          </SocialContainer>
+        </Form>
+      </FormContainerRegister>
+
+      <FormContainerLogin
+        style={
+          !loginRegis
+            ? {
+                backgroundColor: "black",
+                transform: "translateX(100%)",
+              }
+            : null
+        }
+      >
+        <Form>
+            <H1>Login hire.</H1>
+            <Input 
+                required
+                type="email" 
+                name="email"
+                placeholder="Email" 
+                value={loginForm.email} 
+                onChange={handleLoginChange}  
+            />
+            <Input 
+                required
+                type="password" 
+                name="password"
+                placeholder="Password" 
+                value={loginForm.password}
+                onChange={handleLoginChange}
+            />
+          <Content>
+            <Box className="checkbox">
+              <Input type="checkbox" name="checkbox" id="checkbox" />
+              <label style={{ color: 'black' }}>Remember me</label>
+            </Box>
+            <Box className="pass-link">
+              <Link href="#">Forgot password?</Link>
+            </Box>
+          </Content>
+          <Button type='submit' onClick={(e) => {
+                e.preventDefault();
+                handleLogin();
+                // dispatch(loginUser(loginForm))
+            }}>Login</Button>
+          <Span>or use your account</Span>
+          <SocialContainer>
+            <Link href="#" className="social">
+              <FacebookIcon />
+            </Link>
+            <Link href="#" className="social">
+              <GoogleIcon />
+            </Link>
+            <Link href="#" className="social">
+              <LinkedInIcon />
+            </Link>
+          </SocialContainer>
+        </Form>
+      </FormContainerLogin>
 
       <OverlayContainer
         style={
@@ -423,51 +461,27 @@ export default function LoginCard() {
               id="login"
               onClick={() => setLoginRegis(true)}
             >
-                <Form >
-                    <H1>Login here.</H1>
-                    <Input 
-                        required
-                        type="email" 
-                        name="email"
-                        placeholder="Email" 
-                        value={loginForm.email} 
-                        onChange={handleLoginChange}  
-                    />
-                    <Input 
-                        required
-                        type="password" 
-                        name="password"
-                        placeholder="Password" 
-                        value={loginForm.password}
-                        onChange={handleLoginChange}
-                    />
-                    <Content>
-                        <Box className="checkbox">
-                            <Input type="checkbox" name="checkbox" id="checkbox"/>
-                            <label style={{ color: 'black' }}>Remember me</label>
-                        </Box>
-                        <Box className="pass-link">
-                            <Link href="#">Forgot password?</Link>
-                        </Box>
-                    </Content>
-                    <Button type='submit' onClick={(e) => {
-                        e.preventDefault();
-                        dispatch(loginUser(loginForm))
-                    }}>Login</Button>
-                    <Span>or use your account</Span>
-                    <SocialContainer>
-                        <Link href="#" className="social"><FacebookIcon/></Link>
-                        <Link href="#" className="social"><GoogleIcon /></Link>
-                        <Link href="#" className="social"><LinkedInIcon /></Link>
-                    </SocialContainer>
-                </Form>
-            </FormContainerLogin>
-
-            <OverlayContainer 
-                style={ !loginRegis ? {
-                    backgroundColor: 'black',
-                    transform: 'translateX(-100%)',
-                }: null} 
+              Login
+              <i className="lni lni-arrow-left login"></i>
+            </Button>
+          </OverlayPanelLeft>
+          <OverlayPanelRight
+            style={
+              !loginRegis
+                ? {
+                    transform: "translateX(20%)",
+                  }
+                : null
+            }
+          >
+            <Title>Start your journey now</Title>
+            <Paragraph>
+              if you dont have an account yet, join us and start your journey.
+            </Paragraph>
+            <Button
+              className="ghost"
+              id="register"
+              onClick={() => setLoginRegis(false)}
             >
               Register
               <i className="lni lni-arrow-right register"></i>
