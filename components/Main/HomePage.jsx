@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import Imagefond from "../../public/images/sii.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./si.css";
+import { signIn } from "next-auth/react";
 
 const Home = styled("section")(({ theme }) => ({
   padding: "160px 10% 90px",
@@ -78,7 +79,7 @@ export default function HomePage() {
           Ha<Span>mim</Span>
         </Somos>
         <H3>Front-End Developer</H3>
-        <GetStarted href="#" type="button">
+        <GetStarted href="#" type="button" onClick={() => signIn()}>
           Get Started
         </GetStarted>
       </div>
