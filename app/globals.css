@@ -11,7 +11,7 @@
 }
 
 body {
-  background-color: hsl(96, 75%, 89%);
+  background-color: #fff;
 }
 
 body::-webkit-scrollbar {

@@ -19,6 +19,7 @@ const Container = styled("div")({
   },
   ".icon": {
     fontSize: "1.25rem",
+    cursor: "pointer",
   },
   img: {
     width: "100%",
