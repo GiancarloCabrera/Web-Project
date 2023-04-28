@@ -101,7 +101,7 @@ const ContactForm = styled("div")({
       fontWeight: "600",
       marginBottom: "0.5rem",
       borderRadius: "0.5rem",
-      fontFamily: "Quicksand, san-serif"
+      fontFamily: "Quicksand, san-serif",
     },
   },
   textarea: {
@@ -129,10 +129,8 @@ export default function ConctacPage() {
         <h2>Contact</h2>
         <h4>Give us a Review</h4>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga ipsum,
-          nostrum consequuntur praesentium soluta eos in earum aliquam aliquid.
-          Saepe, atque ad? Omnis, alias dolores! Deleniti magni quod
-          perspiciatis eaque?
+          Tell us what do you think about this aplicacion, and if you have a
+          question do not have afreid to writing us.
         </p>
         <ContactList>
           <Li>
@@ -171,7 +169,7 @@ export default function ConctacPage() {
         <form action="">
           <input type="" placeholder="Enter Your Name" required />
           <input type="email" placeholder="Enter Your Email" required />
-          <input type="" placeholder="Enter " required />
+          <input type="" placeholder="Asutation " required />
           <textarea
             name=""
             id=""

@@ -71,7 +71,6 @@ export default function HomePage() {
   return (
     <Home className="home" id="home">
       <div>
-        <Title>Hellow</Title>
         <Somos>
           Soy Hamlet <br />
           Ha<Span>mim</Span>

@@ -4,7 +4,7 @@ import SideBar from "@/components/DashboardMain/SideBar/SideBar";
 
 const Container = styled("div")({
   position: "relative",
-  width: "100%",
+  width: "95vw",
   height: "95vh",
   display: "flex",
   alignItems: "center",

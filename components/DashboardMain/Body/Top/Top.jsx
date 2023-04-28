@@ -1,12 +1,13 @@
 import React from "react";
 import imagen from "../../../../public/images/porfile.png";
+import imagePlant from "../../../../public/images/Plant.png";
 import styled from "@emotion/styled";
 import SearchIcon from "@mui/icons-material/Search";
 import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import Image from "next/image";
 import Video from "../../../../public//images/Gif.gif";
-
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 const HeaderSection = styled("div")({
   justifyContent: "space-between",
 });
@@ -144,11 +145,75 @@ const VideoDiv = styled("div")({
   },
 });
 
-const LeftSection = styled("div")({});
+const LeftCard = styled("div")({
+  flexBasis: "50%",
+});
 
-const Main = styled("div")({});
+const Main = styled("div")({
+  position: "relative",
+  padding: "1rem",
+  height: "200px",
+  borderRadius: "1rem",
+  justifyContent: "space-between",
 
-const TextDiv = styled("div")({});
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    height: "100%",
+    width: "75%",
+    background: "hsl(96, 75%, 89%)",
+    left: "0",
+    bottom: "0",
+    borderRadius: "1rem",
+  },
+});
+
+const TextDiv = styled("div")({
+  zIndex: "100",
+
+  h1: {
+    fontSize: "1.5rem",
+    paddingBottom: "1rem",
+    color: "hsl(0, 0%, 18%)",
+  },
+
+  ".flex": {
+    gap: "1.5rem",
+    fontWeight: "500",
+    color: "hsl(0, 0%, 18%)",
+  },
+
+  small: {
+    fontSize: ".938rem",
+    display: "block",
+    color: "hsl(94, 59%, 35%)",
+    fontWeight: "500",
+    padding: ".5rem 0",
+  },
+  ".link": {
+    marginTop: "2rem",
+    cursor: "pointer",
+
+    "&:hover": {
+      color: "hsl(94, 59%, 35%)",
+      ".icon": {
+        transform: "translateX(10px)",
+        transition: ".3s ease",
+      },
+    },
+  },
+});
+
+const ImgDiv = styled("div")({
+  transform: "translateY(-20px)",
+
+  ".ImagePlant": {
+    width: "200px",
+    paddingBottom: "1.7rem",
+  },
+});
+
+const DivFlex = styled("div")({});
 
 const Top = () => {
   return (
@@ -193,24 +258,47 @@ const Top = () => {
           </VideoDiv>
         </RightCard>
 
-        <LeftSection className="flex">
+        <LeftCard className="flex" style={{ lineHeight: "1" }}>
           <Main className="flex">
             <TextDiv>
               <h1>My Stats</h1>
 
-              <div className="flex">
+              <DivFlex className="flex">
                 <span>
                   Today <br /> <small>4 Orders</small>
                 </span>
-              </div>
-              <div className="flex">
                 <span>
                   This Month <br /> <small>127 Orders</small>
                 </span>
-              </div>
+              </DivFlex>
+
+              <span className="flex link">
+                Go to my orders <ArrowForwardIcon className="icon" />
+              </span>
             </TextDiv>
+
+            <ImgDiv>
+              <Image
+                src={imagePlant}
+                alt="Image Name"
+                priority
+                className="ImagePlant"
+              />
+            </ImgDiv>
+
+            {/* <SideBarCard className="sideBarCard">
+              <HelpOutlineIcon className="icon" />
+              <CardContent className="cardContent">
+                <Circle1></Circle1>
+                <Circle2></Circle2>
+
+                <h3>Help Center</h3>
+                <p>Having Problems or need a question, please contact us</p>
+                <button className="btn">Go to help center</button>
+              </CardContent>
+            </SideBarCard> */}
           </Main>
-        </LeftSection>
+        </LeftCard>
       </CardSection>
     </div>
   );

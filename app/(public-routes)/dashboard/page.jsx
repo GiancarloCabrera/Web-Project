@@ -23,7 +23,7 @@ const Container = styled("div")({
   },
   img: {
     width: "100%",
-    height: "100%",
+    height: "auto",
   },
   ".flex": {
     display: "flex",
