@@ -10,11 +10,16 @@ const MainContent = styled("div")({
   overflow: "auto",
 });
 
-const Bottom = styled("div")({
+const Bottom = styled("div")(({ theme }) => ({
+  display: "inline-block",
   marginTop: "2rem",
   gap: "2rem",
   alignItems: "flex-start",
-});
+
+  [theme.breakpoints.down("uy")]: {
+    flexDirection: "column",
+  },
+}));
 
 export default function Body() {
   return (

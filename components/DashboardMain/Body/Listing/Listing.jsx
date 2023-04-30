@@ -8,7 +8,7 @@ const ListingSection = styled("div")({
   flexBasis: "70%",
 });
 
-const Heading = styled("div")({
+const Heading = styled("div")(({ theme }) => ({
   width: "100%",
   justifyContent: "space-between",
 
@@ -25,7 +25,19 @@ const Heading = styled("div")({
   ".btn:hover": {
     border: "1px solid hsl(94, 59%, 35%)",
   },
-});
+
+  [theme.breakpoints.down("ml")]: {
+    flexDirection: "column",
+    alignItems: "flex-start",
+    gap: "1rem",
+  },
+
+  [theme.breakpoints.down("ht")]: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    gap: "1rem",
+  },
+}));
 
 const SecContainer = styled("div")({
   width: "100%",
@@ -34,7 +46,7 @@ const SecContainer = styled("div")({
   flexWrap: "wrap",
 });
 
-const SigleItem = styled("div")({
+const SigleItem = styled("div")(({ theme }) => ({
   position: "relative",
   width: "150px",
   height: "170px",
@@ -64,14 +76,21 @@ const SigleItem = styled("div")({
     color: "hsl(0, 0%, 18%)",
     padding: "1rem 0",
   },
-});
 
-const Sellers = styled("div")({
+  [theme.breakpoints.down("ml")]: {
+    width: "200px !important",
+  },
+}));
+
+const Sellers = styled("div")(({ theme }) => ({
   width: "100%",
   justifyContent: "space-between",
   gap: "1rem",
   alignItems: "flex-start",
-});
+  [theme.breakpoints.down("lm")]: {
+    flexDirection: "column",
+  },
+}));
 
 const TopSellers = styled("div")({});
 
@@ -83,13 +102,19 @@ const HeadingLower = styled("div")({
   },
 });
 
-const Card = styled("div")({
+const Card = styled("div")(({ theme }) => ({
   padding: "1rem 1.5rem",
   borderRadius: "1rem",
   background: "hsl(0, 0%, 100%)",
   gap: "1rem",
   boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
-});
+  [theme.breakpoints.down("ml")]: {
+    flexDirection: "column",
+  },
+  [theme.breakpoints.down("lm")]: {
+    flexDirection: "row",
+  },
+}));
 
 const Users = styled("div")({
   // paddingLeft: "0.5rem",

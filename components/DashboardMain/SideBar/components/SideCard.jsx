@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-const SideBarCard = styled("div")({
+const SideBarCard = styled("div")(({ theme }) => ({
   width: "100%",
   padding: "1rem",
   textAlign: "center",
@@ -19,7 +19,10 @@ const SideBarCard = styled("div")({
     transform: "translate(50%)",
     zIndex: "100",
   },
-});
+  [theme.breakpoints.down("mj")]: {
+    display: "none !important",
+  },
+}));
 
 const CardContent = styled("div")({
   position: "relative",

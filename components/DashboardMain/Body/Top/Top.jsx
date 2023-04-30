@@ -8,11 +8,24 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import Image from "next/image";
 import Video from "../../../../public//images/Gif.gif";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-const HeaderSection = styled("div")({
-  justifyContent: "space-between",
-});
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-const Title = styled("div")({
+const HeaderSection = styled("div")(({ theme }) => ({
+  justifyContent: "space-between",
+
+  [theme.breakpoints.down("dm")]: {
+    ".hola": {
+      display: "none",
+    },
+  },
+  [theme.breakpoints.down("lm")]: {
+    ".oc": {
+      display: "none",
+    },
+  },
+}));
+
+const Title = styled("div")(({ theme }) => ({
   h1: {
     fontSize: "1.5rem",
     color: "hsl(0, 0%, 18%)",
@@ -24,9 +37,13 @@ const Title = styled("div")({
     color: "hsl(240, 1%, 48%)",
     fontWeight: "500",
   },
-});
+  [theme.breakpoints.down("lm")]: {
+    textAlign: "center",
+    margin: "auto",
+  },
+}));
 
-const SearchBar = styled("div")({
+const SearchBar = styled("div")(({ theme }) => ({
   padding: "1rem 2rem",
   background: "hsl(0, 0%, 100%)",
   borderRadius: "5px",
@@ -45,9 +62,9 @@ const SearchBar = styled("div")({
       color: "hsl(94, 59%, 35%)",
     },
   },
-});
+}));
 
-const AdminDiv = styled("div")({
+const AdminDiv = styled("div")(({ theme }) => ({
   gap: "1rem",
 
   ".icon": {
@@ -58,7 +75,7 @@ const AdminDiv = styled("div")({
     boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
     color: "hsl(240, 1%, 48%)",
   },
-});
+}));
 
 const ImageUser = styled("div")({
   border: "3px solid hsl(0, 0%, 100%)",
@@ -74,12 +91,16 @@ const ImageUser = styled("div")({
   },
 });
 
-const CardSection = styled("div")({
+const CardSection = styled("div")(({ theme }) => ({
   marginTop: "3rem",
   gap: "1rem",
-});
 
-const RightCard = styled("div")({
+  [theme.breakpoints.down("ml")]: {
+    flexDirection: "column",
+  },
+}));
+
+const RightCard = styled("div")(({ theme }) => ({
   position: "relative",
   flexBasis: "70%",
   height: "200px",
@@ -106,10 +127,34 @@ const RightCard = styled("div")({
   ".btn": {
     zIndex: "100",
   },
-});
 
-const Buttons = styled("div")({
+  [theme.breakpoints.down("ml")]: {
+    width: "100%",
+    flexBasis: "100%",
+  },
+
+  [theme.breakpoints.down("lm")]: {
+    textAlign: "center",
+  },
+  [theme.breakpoints.down("ty")]: {
+    textAlign: "center",
+    padding: "2rem 1rem",
+    h1: {
+      fontSize: "1.25rem",
+    },
+  },
+}));
+
+const Buttons = styled("div")(({ theme }) => ({
   gap: "1rem",
+
+  [theme.breakpoints.down("lm")]: {
+    margin: "auto",
+    flexDirection: "column",
+    ".btn": {
+      width: "100%",
+    },
+  },
 
   ".btn": {
     boxShadow: "none",
@@ -127,7 +172,7 @@ const Buttons = styled("div")({
       color: "hsl(94, 59%, 35%)",
     },
   },
-});
+}));
 
 const VideoDiv = styled("div")({
   position: "absolute",
@@ -145,11 +190,16 @@ const VideoDiv = styled("div")({
   },
 });
 
-const LeftCard = styled("div")({
+const LeftCard = styled("div")(({ theme }) => ({
   flexBasis: "50%",
-});
+  [theme.breakpoints.down("ml")]: {
+    marginTop: "2rem",
+    alignSelf: "flex-start",
+    height: "10px !important",
+  },
+}));
 
-const Main = styled("div")({
+const Main = styled("div")(({ theme }) => ({
   position: "relative",
   padding: "1rem",
   height: "200px",
@@ -166,9 +216,27 @@ const Main = styled("div")({
     bottom: "0",
     borderRadius: "1rem",
   },
-});
 
-const TextDiv = styled("div")({
+  [theme.breakpoints.down("ml")]: {
+    "&::before": {
+      width: "50%",
+    },
+  },
+  [theme.breakpoints.down("kh")]: {
+    width: "100%",
+  },
+  [theme.breakpoints.down("lm")]: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+
+    "&::before": {
+      width: "100% !important",
+    },
+  },
+}));
+
+const TextDiv = styled("div")(({ theme }) => ({
   zIndex: "100",
 
   h1: {
@@ -202,18 +270,102 @@ const TextDiv = styled("div")({
       },
     },
   },
-});
+  [theme.breakpoints.down("lm")]: {
+    margin: "auto",
+  },
+}));
 
-const ImgDiv = styled("div")({
+const ImgDiv = styled("div")(({ theme }) => ({
   transform: "translateY(-20px)",
 
   ".ImagePlant": {
     width: "200px",
     paddingBottom: "1.7rem",
   },
-});
+
+  [theme.breakpoints.down("lm")]: {
+    display: "none",
+  },
+}));
 
 const DivFlex = styled("div")({});
+
+const SideBarCard = styled("div")(({ theme }) => ({
+  display: "none",
+  width: "100%",
+  padding: "1rem",
+  textAlign: "center",
+  position: "relative",
+
+  ".icon": {
+    position: "absolute",
+    background: "#bdf094",
+    border: "10px solid hsl(0, 0%, 100%)",
+    fontSize: "3rem",
+    borderRadius: "50%",
+    top: "-8px",
+    right: "50%",
+    transform: "translate(50%)",
+    zIndex: "100",
+  },
+
+  [theme.breakpoints.down("ml")]: {
+    display: "block !important",
+  },
+  [theme.breakpoints.down("kh")]: {
+    display: "none !important",
+  },
+}));
+
+const CardContent = styled("div")({
+  position: "relative",
+  padding: "1rem",
+  background: "#bdf094",
+  borderRadius: "10px",
+  overflow: "hidden",
+
+  h3: {
+    fontSize: "1rem",
+    marginTop: "1rem",
+    padding: "1rem 0 ",
+    fontWeight: "800",
+    color: "hsl(0, 0%, 18%)",
+  },
+  p: {
+    fontSize: ".938rem",
+    color: "hsl(240,1%, 48%)",
+    paddingBottom: "1rem",
+    fontWeight: "500",
+  },
+
+  btn: {
+    position: "relative",
+    color: "hsl(240,1%, 48%)",
+    zIndex: "1000",
+  },
+});
+
+const Circle1 = styled("div")({
+  position: "absolute",
+  background: "hsl(96, 75%, 89%)",
+  borderRadius: "50%",
+  opacity: ".7",
+  height: "100px",
+  width: "100px",
+  top: "-50px",
+  left: "-50px",
+});
+const Circle2 = styled("div")({
+  position: "absolute",
+  background: "hsl(96, 75%, 89%)",
+  borderRadius: "50%",
+  opacity: ".7",
+  height: "150px",
+  width: "150px",
+  bottom: "-80px",
+  right: "-70px",
+  zIndex: "1",
+});
 
 const Top = () => {
   return (
@@ -224,12 +376,12 @@ const Top = () => {
           <p>Hellow Hamlet, Welcome Back</p>
         </Title>
 
-        <SearchBar className="flex">
+        <SearchBar className="hola flex">
           <input type="text" placeholder="Search DashBoard" />
           <SearchIcon className="icon" />
         </SearchBar>
 
-        <AdminDiv className="flex">
+        <AdminDiv className="oc flex">
           <MessageOutlinedIcon className="icon" />
           <NotificationsOutlinedIcon className="icon" />
           <ImageUser className="imageUser">
@@ -286,7 +438,7 @@ const Top = () => {
               />
             </ImgDiv>
 
-            {/* <SideBarCard className="sideBarCard">
+            <SideBarCard className="sideBarCard">
               <HelpOutlineIcon className="icon" />
               <CardContent className="cardContent">
                 <Circle1></Circle1>
@@ -296,7 +448,7 @@ const Top = () => {
                 <p>Having Problems or need a question, please contact us</p>
                 <button className="btn">Go to help center</button>
               </CardContent>
-            </SideBarCard> */}
+            </SideBarCard>
           </Main>
         </LeftCard>
       </CardSection>

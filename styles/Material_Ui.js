@@ -215,13 +215,23 @@ const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
+      mc: 390,
       sm: 650,
       md: 1024,
       lg: 1900,
       xl: 2400,
       h: 1325,
       ms: 970,
+      ml: 990,
       mx: 830,
+      mj: 820,
+      dm: 966,
+      kh: 725,
+      lm: 490,
+      ty: 390,
+      uy: 918,
+      ht: 500,
+      io: 745,
     },
   },
   palette: {

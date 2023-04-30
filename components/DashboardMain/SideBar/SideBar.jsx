@@ -14,7 +14,7 @@ import InfoIcon from "@mui/icons-material/Info";
 
 import SideCard from "./components/SideCard";
 
-const SideBarMain = styled("div")({
+const SideBarMain = styled("div")(({ theme }) => ({
   background: "hsl(0,0%, 100%)",
   boxShadow: "1px 0px 4px rgb(190, 190, 190)",
   width: "18%",
@@ -25,28 +25,49 @@ const SideBarMain = styled("div")({
     fontSize: "1.25rem",
     color: "hsl(94, 59%, 35%)",
   },
-});
 
-const LogoDiv = styled("div")({
+  [theme.breakpoints.down("mj")]: {
+    paddingBottom: "2rem",
+  },
+}));
+
+const LogoDiv = styled("div")(({ theme }) => ({
   padding: "1.5rem 1.5rem 0",
   cursor: "pointer",
   ".image": {
     maxWidth: "20px",
     marginRight: ".5rem",
 
-    background: "hsl(330, 12%, 97%)",
+    // background: "hsl(330, 12%, 97%)",
     borderRadius: "2px",
     padding: ".2rem",
   },
-});
+  [theme.breakpoints.down("io")]: {
+    textAlign: "center",
+    margin: "auto",
+    padding: "1.5rem .5rem 0",
+    ".image": {
+      maxWidth: "50px",
+      margin: "0",
+      borderRadius: "10px",
+      padding: ".5rem",
+    },
+    h2: {
+      display: "none",
+    },
+  },
+}));
 
-const DivTitle = styled("h3")({
+const DivTitle = styled("h3")(({ theme }) => ({
   fontSize: "1rem",
   color: "hsl(0,0%,18%)",
   padding: "0 1.5rem 1.5rem",
-});
+  [theme.breakpoints.down("io")]: {
+    display: "none",
+  },
+}));
 
-const MenuLink = styled("a")({
+const MenuLink = styled("a")(({ theme }) => ({
   color: "rgb(190, 190, 190)",
   fontWeight: "500",
   ".icon": {
@@ -56,9 +77,24 @@ const MenuLink = styled("a")({
     color: "hsl(94, 59%, 35%)",
     transition: 0,
   },
-});
+  [theme.breakpoints.down("io")]: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    ".icon": {
+      fontSize: "1.5rem",
+    },
+  },
 
-const ListItem = styled("li")({
+  [theme.breakpoints.down("mc")]: {
+    justifyContent: "center",
+    ".icon": {
+      fontSize: "1.25rem",
+    },
+  },
+}));
+
+const ListItem = styled("li")(({ theme }) => ({
   padding: ".2rem 1.5rem",
   width: "100%",
   position: "relative",
@@ -81,7 +117,15 @@ const ListItem = styled("li")({
     height: "100%",
     transform: ".3s ease",
   },
-});
+  [theme.breakpoints.down("io")]: {
+    span: {
+      display: "none",
+    },
+  },
+  [theme.breakpoints.down("mc")]: {
+    padding: ".2rem .5rem",
+  },
+}));
 
 export default function SideBar() {
   return (

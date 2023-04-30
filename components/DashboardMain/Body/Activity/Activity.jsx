@@ -4,11 +4,15 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Image from "next/image";
 import image from "../../../../public/images/Example.png";
 
-const ActivitySection = styled("div")({
+const ActivitySection = styled("div")(({ theme }) => ({
   flexBasis: "50%",
-});
 
-const Heading = styled("div")({
+  [theme.breakpoints.down("uy")]: {
+    width: "100%",
+  },
+}));
+
+const Heading = styled("div")(({ theme }) => ({
   width: "100%",
   justifyContent: "space-between",
   h1: {
@@ -22,7 +26,23 @@ const Heading = styled("div")({
   ".btn:hover": {
     border: "1px solid hsl(94, 59%, 35%)",
   },
-});
+
+  [theme.breakpoints.down("ml")]: {
+    flexDirection: "column",
+    alignItems: "flex-start",
+    gap: "1rem",
+  },
+  [theme.breakpoints.down("uy")]: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: "1rem",
+  },
+  [theme.breakpoints.down("ht")]: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    gap: "1rem",
+  },
+}));
 
 const SecContainer = styled("div")({
   marginTop: "1rem",
@@ -74,7 +94,7 @@ const Activity = () => {
 
       <SecContainer className="grid">
         <SingleCustomer className="flex">
-          <Image src={image} alt="Lastes" className="lastes" />
+          <Image src={image} alt="Lastes" className="lastes" priority />
           <CustomerDetails>
             <span className="name">House</span>
             <span>Created at</span>
