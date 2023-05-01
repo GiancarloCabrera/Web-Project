@@ -160,7 +160,7 @@ const Listing = () => {
       <SecContainer className="flex">
         <SigleItem>
           <FavoriteBorderIcon className="icon" />
-          <Image src={image} alt="image Example" priority className="image" />
+          <Image src={image} alt="image  Example" priority className="image" />
           <h3>Annual Vince</h3>
         </SigleItem>
         <SigleItem>
@@ -186,7 +186,7 @@ const Listing = () => {
 
           <Card className="card flex">
             <Users>
-              <Image className="imageTop" src={image} alt="User" />
+              <Image className="imageTop" src={image} alt="User" priority />
             </Users>
             <CardText>
               <span>
@@ -209,10 +209,10 @@ const Listing = () => {
 
           <Card className="card flex">
             <Users>
-              <Image className="imageTop" src={image} alt="User" />
-              <Image className="imageTop" src={image} alt="User" />
+              <Image className="imageTop" src={image} alt="User" priority />
+              <Image className="imageTop" src={image} alt="User" priority />
 
-              <Image className="imageTop" src={image} alt="User" />
+              <Image className="imageTop" src={image} alt="User" priority />
             </Users>
             <CardText>
               <span>

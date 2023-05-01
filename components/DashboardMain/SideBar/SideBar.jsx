@@ -17,7 +17,7 @@ import SideCard from "./components/SideCard";
 const SideBarMain = styled("div")(({ theme }) => ({
   background: "hsl(0,0%, 100%)",
   boxShadow: "1px 0px 4px rgb(190, 190, 190)",
-  width: "18%",
+  width: "100%",
   height: "100%",
   gap: "3rem",
   overflow: "auto",

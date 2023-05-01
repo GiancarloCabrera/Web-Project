@@ -2,6 +2,7 @@
 
 import styled from "@emotion/styled";
 import MainDashboard from "@/components/DashboardMain/MainDashboard";
+import Body from "@/components/DashboardMain/Body/Body";
 
 const Container = styled("div")({
   display: "flex",
@@ -9,8 +10,8 @@ const Container = styled("div")({
   justifyContent: "center",
   margin: "auto",
   padding: "1rem",
-
   fontFamily: "Montserrat, sans-serif",
+  background: "green",
   "a ": {
     textDecoration: "none",
   },
@@ -53,8 +54,8 @@ const Container = styled("div")({
 });
 export default function dashboard() {
   return (
-    <Container>
+    <>
       <MainDashboard />
-    </Container>
+    </>
   );
 }

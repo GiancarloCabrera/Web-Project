@@ -63,6 +63,7 @@ const SingleCustomer = styled("div")({
 
 const CustomerDetails = styled("div")({
   flex: 1,
+  marginRight: "10px",
 
   ".name": {
     fontSize: "1rem",

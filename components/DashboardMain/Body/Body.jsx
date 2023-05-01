@@ -8,6 +8,45 @@ const MainContent = styled("div")({
   height: "100%",
   padding: "2rem",
   overflow: "auto",
+  "a ": {
+    textDecoration: "none",
+  },
+  li: {
+    listStyle: "none",
+  },
+  ".icon": {
+    fontSize: "1.25rem",
+    cursor: "pointer",
+  },
+  img: {
+    width: "100%",
+    height: "auto",
+  },
+  ".flex": {
+    display: "flex",
+    alignItems: "center",
+  },
+  ".grid": {
+    display: "grid",
+    alignItems: "center",
+    gap: "1.5rem",
+  },
+  ".btn": {
+    border: "none",
+    outline: "none",
+    cursor: "pointer",
+    borderRadius: "8px",
+    boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
+    padding: ".8rem .1rem",
+    color: "hsl(240, 1%, 48%)",
+  },
+  ".btn .icon": {
+    marginLeft: ".5rem",
+  },
+  ".btn:hover": {
+    background: "hsl(96,75%,89%)",
+    color: "hsl(94,59%,35%)",
+  },
 });
 
 const Bottom = styled("div")(({ theme }) => ({

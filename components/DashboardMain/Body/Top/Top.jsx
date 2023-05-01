@@ -9,6 +9,7 @@ import Image from "next/image";
 import Video from "../../../../public//images/Gif.gif";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import Header from "./components/Header";
 
 const HeaderSection = styled("div")(({ theme }) => ({
   justifyContent: "space-between",
@@ -367,33 +368,52 @@ const Circle2 = styled("div")({
   zIndex: "1",
 });
 
+const TopSection = styled("div")({
+  "a ": {
+    textDecoration: "none",
+  },
+  li: {
+    listStyle: "none",
+  },
+  ".icon": {
+    fontSize: "1.25rem",
+    cursor: "pointer",
+  },
+  img: {
+    width: "100%",
+    height: "auto",
+  },
+  ".flex": {
+    display: "flex",
+    alignItems: "center",
+  },
+  ".grid": {
+    display: "grid",
+    alignItems: "center",
+    gap: "1.5rem",
+  },
+  ".btn": {
+    border: "none",
+    outline: "none",
+    cursor: "pointer",
+    borderRadius: "8px",
+    boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
+    padding: ".8rem .1rem",
+    color: "hsl(240, 1%, 48%)",
+  },
+  ".btn .icon": {
+    marginLeft: ".5rem",
+  },
+  ".btn:hover": {
+    background: "hsl(96,75%,89%)",
+    color: "hsl(94,59%,35%)",
+  },
+});
+
 const Top = () => {
   return (
-    <div className="topSection">
-      <HeaderSection className="headerSection flex">
-        <Title className="titile">
-          <h1>Welcome to River Bird</h1>
-          <p>Hellow Hamlet, Welcome Back</p>
-        </Title>
-
-        <SearchBar className="hola flex">
-          <input type="text" placeholder="Search DashBoard" />
-          <SearchIcon className="icon" />
-        </SearchBar>
-
-        <AdminDiv className="oc flex">
-          <MessageOutlinedIcon className="icon" />
-          <NotificationsOutlinedIcon className="icon" />
-          <ImageUser className="imageUser">
-            <Image
-              src={imagen}
-              alt="User Image"
-              className="imagenUser"
-              priority
-            />
-          </ImageUser>
-        </AdminDiv>
-      </HeaderSection>
+    <TopSection className="topSection">
+      <Header />
 
       <CardSection className="flex">
         <RightCard style={{ alignItems: "flex-start" }} className="flex">
@@ -452,7 +472,7 @@ const Top = () => {
           </Main>
         </LeftCard>
       </CardSection>
-    </div>
+    </TopSection>
   );
 };
 
