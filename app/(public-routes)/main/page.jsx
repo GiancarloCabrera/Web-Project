@@ -8,7 +8,7 @@ const Main = styled("div")`
   height: 100%;
 `;
 
-export default function Home() {
+export default function MainPage() {
   return (
     <Main>
       <PageMain />

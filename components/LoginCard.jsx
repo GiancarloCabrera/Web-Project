@@ -8,7 +8,9 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { useDispatch } from "react-redux";
-import { signIn } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 const H1 = styled("h1")({
   fontWeight: 700,
@@ -270,6 +272,8 @@ const SocialContainer = styled("div")({
 
 export default function LoginCard() {
   const [loginRegis, setLoginRegis] = useState(true);
+  const router = useRouter();
+  const session = useSession();
     const dispatch = useDispatch();
    // Login Form
    const [ loginForm, setLoginForm ] = useState(
@@ -291,8 +295,8 @@ export default function LoginCard() {
     }, [loginForm]);
 
     useEffect(() => {
-        console.log(registerForm);
-    }, [registerForm])
+      console.log(session);
+    }, [session])
     
     const handleLoginChange = ({target}) => {
         setLoginForm((val) => ({ ...val, [target.name]: target.value }))
@@ -302,11 +306,23 @@ export default function LoginCard() {
         setRegisterForm((val) => ({ ...val, [target.name]: target.value }))
     }
 
-    const handleLogin = async () => {
-        await signIn('credentials', {
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        const user = await signIn("credentials", {
           email: 'khkgkkjh@gmail.com', 
-          password: 'jhfgjfjgf'
+          password: 'jhfgjfjgf',
+          redirect: false
         })
+        console.log('user: ',user);
+        if (!user.ok) {
+          Swal.fire({
+            title: 'Error!',
+            text: 'User not found...',
+            icon: 'error',
+          })
+        }else {
+          router.push('/home')
+        }
     }
 
   return (
@@ -403,11 +419,7 @@ export default function LoginCard() {
               <Link href="#">Forgot password?</Link>
             </Box>
           </Content>
-          <Button type='submit' onClick={(e) => {
-                e.preventDefault();
-                handleLogin();
-                // dispatch(loginUser(loginForm))
-            }}>Login</Button>
+            <Button type='submit' onClick={handleLogin}>Login</Button>
           <Span>or use your account</Span>
           <SocialContainer>
             <Link href="#" className="social">
