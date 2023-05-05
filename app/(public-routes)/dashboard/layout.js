@@ -8,11 +8,11 @@ const Container = styled("div")(({ theme }) => ({
   //   justifyContent: "center",
   //   margin: "auto",
   //   padding: "1rem",
-  //   fontFamily: "Montserrat, sans-serif",
+  fontFamily: "Montserrat, sans-serif",
 
   display: "grid",
   gridTemplateColumns: "15rem 1fr",
-  background: "green",
+  // background: "green",
   height: "100vh",
 
   a: {

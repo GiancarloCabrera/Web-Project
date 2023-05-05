@@ -21,6 +21,7 @@ const SideBarMain = styled("div")(({ theme }) => ({
   height: "100%",
   gap: "3rem",
   overflow: "auto",
+
   h2: {
     fontSize: "1.25rem",
     color: "hsl(94, 59%, 35%)",
@@ -139,14 +140,14 @@ export default function SideBar() {
         <DivTitle className="divTitle">QUICK MENU</DivTitle>
         <ul className="menuList grid">
           <ListItem className="listItem">
-            <MenuLink href="#" className="menuLink">
+            <MenuLink href="/dashboard" className="menuLink">
               <ShutterSpeedIcon className="icon" />
               <span className="smallText">Dashboard</span>
             </MenuLink>
           </ListItem>
 
           <ListItem className="listItem">
-            <MenuLink href="#" className="menuLink">
+            <MenuLink href="/dashboard/form" className="menuLink">
               <ListAltIcon className="icon" />
               <span className="smallText">Form</span>
             </MenuLink>

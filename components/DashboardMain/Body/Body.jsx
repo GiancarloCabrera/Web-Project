@@ -4,9 +4,10 @@ import Top from "./Top/Top";
 import styled from "@emotion/styled";
 
 const MainContent = styled("div")({
-  width: "82%",
+  width: "90%",
   height: "100%",
-  padding: "2rem",
+  paddingBottom: "2rem",
+  paddingTop: "2rem",
   overflow: "auto",
   "a ": {
     textDecoration: "none",
