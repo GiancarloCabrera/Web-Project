@@ -1,13 +1,15 @@
 import './globals.css'
 import AppProviders from './AppProviders';
 
-export default function RootLayout( { children } ) {
+export default function RootLayout( { children, session } ) {
   return (
     <html lang="en">
       <head />
-      <AppProviders>
-          <body>{children}</body>
-      </AppProviders>
+          <body>
+            <AppProviders session={session}>
+              {children}
+            </AppProviders>
+          </body>
     </html>
   )
 }

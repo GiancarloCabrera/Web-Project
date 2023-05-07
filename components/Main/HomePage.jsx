@@ -79,7 +79,7 @@ export default function HomePage() {
           Ha<Span>mim</Span>
         </Somos>
         <H3>Front-End Developer</H3>
-        <GetStarted href="#" type="button" onClick={() => signIn()}>
+        <GetStarted href="/login" type="button">
           Get Started
         </GetStarted>
       </div>

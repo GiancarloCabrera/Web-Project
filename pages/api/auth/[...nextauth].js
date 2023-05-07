@@ -9,35 +9,38 @@ export const authOptions = {
           password: { placeholder: "Password", type: "password" }
         },
         async authorize(credentials, req) {
-          const { email, password } = credentials;
-          console.log(email, password);
-          const res = await fetch('http://localhost:8000/api/auth/login', 
-              {
-                method: "POST",
-                body: JSON.stringify({
-                  email,
-                  password
-                }),
-                  headers: {
-                      'Content-Type': 'application/json'
-                  }
+          try {
+            
+            const { email, password } = credentials;
+            console.log(email, password);
+            const res = await fetch('http://localhost:8000/api/auth/login', 
+            {
+              method: "POST",
+              body: JSON.stringify({
+                email,
+                password
+              }),
+              headers: {
+                'Content-Type': 'application/json'
               }
-          );
-          const user = await res.json();
-          console.log(user);
-
-          // THE ONLY PROBLEM LEFT IS THAT IM JUS GETTING THE NAME OF THE USER.....
-          
-          // if( user.ok ) return { uid: user.uid, name: user.name, token: user.token}
-          if( user.ok ) return user
-          else return null;
-        }
+            }
+            );
+            const user = await res.json();
+            console.log(user);
+            
+            // THE ONLY PROBLEM LEFT IS THAT IM JUS GETTING THE NAME OF THE USER.....
+            // AND THE REGISTER WONT RETURN A JSW TOKEN, THE USER WILL BE REDIRECTED TO LOGIN...
+            if( user.ok ) return user; else return null;
+          } catch (error) {
+            throw new error
+          }
+          }
     })
   ],
 //   Session strategy
-  // session: {
-  //   strategy: "jwt"
-  // },
+  session: {
+    strategy: "database"
+  },
   pages: {
     signIn: "/login",
     // PENDING TO ADD ERROR PAGE
