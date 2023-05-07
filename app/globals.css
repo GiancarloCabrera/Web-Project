@@ -1,6 +1,12 @@
 /* @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons"); */
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Poppins:wght@600;700;900&family=Quicksand:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Poppins:wght@600;700;900&family=Quicksand:wght@700&family=Source+Sans+Pro:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@600;700;900&family=Quicksand:wght@700&display=swap");
+
+:root {
+  --hola: hsl(96, 75%, 89%);
+}
 
 * {
   margin: 0;
@@ -9,9 +15,13 @@
   /* font-family: "Quicksand", "san-serif"; */
 }
 
+body {
+  background-color: black;
+}
+
 body::-webkit-scrollbar {
   width: 8px;
-  background-color: blue;
+  background-color: rgb(28, 28, 31);
 }
 
 body::-webkit-scrollbar-thumb {
@@ -21,4 +31,8 @@ body::-webkit-scrollbar-thumb {
 
 body::-webkit-scrollbar-thumb:hover {
   background-color: #a3a3a3;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

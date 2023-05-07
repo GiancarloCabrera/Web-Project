@@ -1,13 +1,13 @@
-import './globals.css'
-import AppProviders from './AppProviders';
+import "./globals.css";
+import AppProviders from "./AppProviders";
 
-export default function RootLayout( { children } ) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head />
       <AppProviders>
-          <body>{children}</body>
+        <body>{children}</body>
       </AppProviders>
     </html>
-  )
+  );
 }

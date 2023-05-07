@@ -104,7 +104,8 @@ export default function ServicesPage() {
           <p>
             Our team of energy efficiency experts works with you to identify
             areas for improvement and develop customized solutions to optimize
-            energy consumption in your business. And dat way help your pocket
+            energy consumption in your business. And dat way help your pocket in
+            your day a day.
           </p>
         </Box>
 

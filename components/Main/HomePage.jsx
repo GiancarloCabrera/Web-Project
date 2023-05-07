@@ -2,7 +2,6 @@
 
 import styled from "@emotion/styled";
 import Imagefond from "../../public/images/sii.jpg";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./si.css";
 import { signIn } from "next-auth/react";
 
@@ -73,7 +72,6 @@ export default function HomePage() {
   return (
     <Home className="home" id="home">
       <div>
-        <Title>Hellow</Title>
         <Somos>
           Soy Hamlet <br />
           Ha<Span>mim</Span>

@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "@emotion/styled";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import HomePage from "./HomePage";
 import AboutPage from "./AboutPage";
 import HeaderPage from "./HeaderPage";
