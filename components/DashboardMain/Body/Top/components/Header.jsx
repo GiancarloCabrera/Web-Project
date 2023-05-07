@@ -114,6 +114,7 @@ const DropDownMenu = styled("div")({
   padding: "10px, 20px",
   width: "200px",
   zIndex: "1000",
+
   "::before": {
     content: '""',
     position: "absolute",
@@ -168,12 +169,7 @@ const Header = () => {
             setOpen(!open);
           }}
         >
-          <Image
-            src={imagen}
-            alt="User Image"
-            className="imagenUser"
-            priority
-          />
+          <Image src={imagen} alt="UserImage" className="imagenUser" priority />
         </ImageUser>
 
         <DropDownMenu

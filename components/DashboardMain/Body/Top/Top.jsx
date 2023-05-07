@@ -426,7 +426,7 @@ const Top = () => {
           </Buttons>
 
           <VideoDiv>
-            <Image className="ImagenGif" src={Video} priority />
+            <Image className="ImagenGif" alt="gifImg" src={Video} priority />
           </VideoDiv>
         </RightCard>
 

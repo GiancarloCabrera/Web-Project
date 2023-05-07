@@ -7,6 +7,7 @@ import Gif from "../assets/login_image.gif";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import Image from "next/image";
 
 const H1 = styled("h1")({
   fontWeight: 700,
@@ -364,6 +365,7 @@ export default function LoginCard() {
               : null
           }
         >
+          <Image src={Gif} />
           <OverlayPanelLeft
             style={
               !loginRegis

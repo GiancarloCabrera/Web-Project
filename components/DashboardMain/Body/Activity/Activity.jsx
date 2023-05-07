@@ -103,7 +103,7 @@ const Activity = () => {
           <Duration>12/05/2004</Duration>
         </SingleCustomer>
         <SingleCustomer className="flex">
-          <Image src={image} alt="Lastes" className="lastes" />
+          <Image src={image} alt="Lastes" className="lastes" priority />
           <CustomerDetails>
             <span className="name">House</span>
             <span>Created at</span>
@@ -111,7 +111,7 @@ const Activity = () => {
           <Duration>12/05/2004</Duration>
         </SingleCustomer>
         <SingleCustomer className="flex">
-          <Image src={image} alt="Lastes" className="lastes" />
+          <Image src={image} alt="Lastes" className="lastes" priority />
           <CustomerDetails>
             <span className="name">House</span>
             <span>Created at</span>
@@ -119,7 +119,7 @@ const Activity = () => {
           <Duration>3 minutos ago</Duration>
         </SingleCustomer>
         <SingleCustomer className="flex">
-          <Image src={image} alt="Lastes" className="lastes" />
+          <Image src={image} alt="Lastes" className="lastes" priority />
           <CustomerDetails>
             <span className="name">House</span>
             <span>Created at</span>
