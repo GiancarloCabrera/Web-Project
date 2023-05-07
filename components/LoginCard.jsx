@@ -387,13 +387,6 @@ export default function LoginCard() {
     }
   }
 
-  const handleLogin = async () => {
-    await signIn("credentials", {
-      email: "khkgkkjh@gmail.com",
-      password: "jhfgjfjgf",
-    });
-  };
-
   return (
     <Container>
       <FormContainerRegister style={ !loginRegis ? { transform: "translateX(100%)", opacity: 1, zIndex: 5, animation: "show 0.6s" } : null }>
