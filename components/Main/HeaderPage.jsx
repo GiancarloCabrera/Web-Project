@@ -1,11 +1,12 @@
+import Link from "next/link";
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
 import styled from "@emotion/styled";
 import imagen from "../../public/images/image.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./si.css";
 
-const Header = styled("header")(({ theme }) => ({
+const Encabezado = styled("header")(({ theme }) => ({
   position: "fixed",
   right: 0,
   top: 0,
@@ -100,10 +101,15 @@ export default function HeaderPage() {
       setFix(false);
     }
   };
-  window.addEventListener("scroll", setFixed);
+  useEffect(() => {
+    window.addEventListener("scroll", setFixed);
+  
+  }, [])
+  
+  
 
   return (
-    <Header className={fix ? "header fixed" : "header"}>
+    <Encabezado className={fix ? "header fixed" : "header"}>
       <Logo>
         <Image alt="logoImg" className="img" src={imagen} priority={true} />
       </Logo>
@@ -116,6 +122,7 @@ export default function HeaderPage() {
 
       <Navbar className={`xd ${active && "active"}`}>
         <Li>
+          
           <A href="#home">Home</A>
         </Li>
         <Li>
@@ -134,6 +141,6 @@ export default function HeaderPage() {
         {/* Arreglar boton */}
         {/* <Li><A href="">Login</A></Li> */}
       </Navbar>
-    </Header>
+    </Encabezado>
   );
 }

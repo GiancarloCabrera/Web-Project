@@ -7,6 +7,9 @@ import Gif from "../assets/login_image.gif";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+
+import Image from "next/image";
+
 import { useDispatch } from "react-redux";
 import { getSession, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -384,6 +387,13 @@ export default function LoginCard() {
     }
   }
 
+  const handleLogin = async () => {
+    await signIn("credentials", {
+      email: "khkgkkjh@gmail.com",
+      password: "jhfgjfjgf",
+    });
+  };
+
   return (
     <Container>
       <FormContainerRegister style={ !loginRegis ? { transform: "translateX(100%)", opacity: 1, zIndex: 5, animation: "show 0.6s" } : null }>
@@ -491,6 +501,7 @@ export default function LoginCard() {
               : null
           }
         >
+          <Image src={Gif} />
           <OverlayPanelLeft
             style={
               !loginRegis

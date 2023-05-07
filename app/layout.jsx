@@ -1,15 +1,13 @@
-import './globals.css'
-import AppProviders from './AppProviders';
+import "./globals.css";
+import AppProviders from "./AppProviders";
 
-export default function RootLayout( { children, session } ) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head />
-          <body>
-            <AppProviders session={session}>
-              {children}
-            </AppProviders>
-          </body>
+      <AppProviders>
+        <body>{children}</body>
+      </AppProviders>
     </html>
-  )
+  );
 }
