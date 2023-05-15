@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import Link from "next/link";
 
 const SideBarCard = styled("div")(({ theme }) => ({
   width: "100%",
@@ -10,8 +11,8 @@ const SideBarCard = styled("div")(({ theme }) => ({
 
   ".icon": {
     position: "absolute",
-    background: "#bdf094",
-    border: "10px solid hsl(0, 0%, 100%)",
+    background: "#6fb98f",
+    border: "10px solid #6fb98f",
     fontSize: "3rem",
     borderRadius: "50%",
     top: "-8px",
@@ -27,7 +28,7 @@ const SideBarCard = styled("div")(({ theme }) => ({
 const CardContent = styled("div")({
   position: "relative",
   padding: "1rem",
-  background: "#bdf094",
+  background: "#2c7873",
   borderRadius: "10px",
   overflow: "hidden",
 
@@ -36,25 +37,28 @@ const CardContent = styled("div")({
     marginTop: "1rem",
     padding: "1rem 0 ",
     fontWeight: "800",
-    color: "hsl(0, 0%, 18%)",
+    color: "#6fb98f",
   },
   p: {
     fontSize: ".938rem",
-    color: "hsl(240,1%, 48%)",
+    color: "#6fb98f",
     paddingBottom: "1rem",
     fontWeight: "500",
   },
 
-  btn: {
+  ".btn": {
     position: "relative",
-    color: "hsl(240,1%, 48%)",
+    color: "#021c1e",
     zIndex: "1000",
+    ":hover": {
+      color: "#004445",
+    },
   },
 });
 
 const Circle1 = styled("div")({
   position: "absolute",
-  background: "hsl(96, 75%, 89%)",
+  background: "#6fb98f",
   borderRadius: "50%",
   opacity: ".7",
   height: "100px",
@@ -64,7 +68,7 @@ const Circle1 = styled("div")({
 });
 const Circle2 = styled("div")({
   position: "absolute",
-  background: "hsl(96, 75%, 89%)",
+  background: "#6fb98f",
   borderRadius: "50%",
   opacity: ".7",
   height: "150px",
@@ -84,7 +88,9 @@ const SideCard = () => {
 
         <h3>Help Center</h3>
         <p>Having Problems or need a question, please contact us</p>
-        <button className="btn">Go to help center</button>
+        <Link href={`dashboard/info`}>
+          <button className="btn">Go to help center</button>
+        </Link>
       </CardContent>
     </SideBarCard>
   );
