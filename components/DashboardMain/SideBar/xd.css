@@ -1,3 +1,4 @@
-.card:hover .content .details {
-  transform: "translateY(0px)";
+.sii {
+  /* Estilos CSS personalizados para el icono */
+  color: rgb(219, 4, 4); /* Cambiar el color a azul */
 }

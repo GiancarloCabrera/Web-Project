@@ -1,240 +1,188 @@
-import styled from "@emotion/styled";
-import Image from "next/image";
-import Link from "next/link";
-import foto from "../../../../assets/Icons/fotoPrueba.webp";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  Grid,
+  Box,
+  useMediaQuery,
+} from "@mui/material";
 import "../../SideBar/xd.css";
+
+import Swal from "sweetalert2";
+// import { styled } from "@mui/system";
+import { styled, useTheme } from "@mui/material/styles";
+import { useState } from "react";
+import Link from "next/link";
+
 const Container = styled("div")({
+  position: "relative",
   width: "100%",
-  maxHeight: "100vh",
+  minHeight: "100vh",
   display: "flex",
-  alignItems: "flex-start",
-  textAlign: "left",
-  flexDirection: "column",
-  justifyContent: "center",
   alignItems: "center",
-  background: "hsl(220, 10%, 94%)",
-  fontFamily: "Montserrat, sans-serif",
-  color: "black",
-  paddingTop: "2rem",
-  paddingBottom: "2rem",
-  paddingLeft: "3.5rem",
-  paddingRight: "3.5rem",
+  justifyContent: "center",
+  background: "#052f33",
   overflow: "hidden",
+  fontFamily: "Montserrat, sans-serif",
+});
 
+const RegisterContainer = styled("div")({
+  width: "90%",
+  height: "100%",
+  paddingBottom: "2rem",
+  paddingTop: "2rem",
+  overflow: "auto",
+  ".girdC": {
+    marginTop: "20px",
+  },
+});
+
+const Title = styled("div")(({ theme }) => ({
   h1: {
-    padding: "1rem ",
-
-    width: "100%",
-    textAlign: "left",
     fontSize: "1.5rem",
-    color: "hsl(0, 0%, 18%)",
+    color: "#6fb98f",
     fontWeight: "700",
   },
-});
 
-const CardRegister = styled("div")({
-  position: "relative",
-  width: "350px",
-  height: "190px",
-  background: "#fff",
-  borderRadius: "20px",
-  boxShadow: "0 35px 80px hsl(220, 10%, 94%)",
-  paddingTop: "2rem",
-  transition: "0.5s",
-
-  // border: "1px solid gray",
-  ":hover": {
-    height: "450px",
+  p: {
+    fontSize: ".938rem",
+    color: "hsl(240, 1%, 48%)",
+    fontWeight: "500",
   },
-
-  ":hover .imgbox": {
-    width: "250px",
-    height: "250px",
+  [theme.breakpoints.down("lm")]: {
+    textAlign: "center",
+    margin: "auto",
   },
-});
-
-const CardsContainer = styled("div")(({ theme }) => ({
-  display: "flex",
-  paddingTop: "4rem",
-  // display: "grid",
-  // gridTemplateColumns: "repeat(3, 1fr)",
-  // gap: "1rem",
-  // maxHeight: "100vh",
-  overflow: "auto",
-  // flexWrap: "wrap",
-  width: "100%",
-  height: "100%",
-
-  boxSizing: "border-box",
-
-  //   [theme.breakpoints.down()]
 }));
 
-const ImgBox = styled("div")({
-  position: "absolute",
-  left: "50%",
-  top: "-50px",
-  transform: "translateX(-50%)",
-  width: "150px",
-  height: "150px",
-  background: "#fff",
-  borderRadius: "20px",
-  boxShadow: "0 15px 50px hsl(220, 10%, 94%)",
-  overflow: "hidden",
-  transition: "0.5s",
-
-  ".image": {
-    position: "absolute",
-    top: "0",
-    left: "0",
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-  },
-});
-
-const Content = styled("div")({
-  position: "absolute",
-  width: "100%",
-  height: "100%",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "flex-end",
-  // overflow: "hidden",
-});
-
-const Details = styled("div")({
-  textAlign: "center",
-  width: "100%",
-  transition: "0.5s",
-  // transform: "translateY(150px)",
-  h2: {
-    fontSize: "1.25em",
-    fontWeight: "600",
-    color: "#555",
-    lineHeight: "1.2em",
-  },
-  ".card:hover .content .details": {
-    transform: "translateY(0px)",
-  },
-});
-
-const SpanDetails = styled("span")({
-  fontSize: "0.75em",
-  fontWeight: "500",
-  opacity: "0.5",
-});
-
-const Data = styled("div")({
-  display: "flex",
-  justifyContent: "space-between",
-  margin: "20px 0",
-
-  h3: {
-    fontSize: "1em",
-    color: "#555",
-    lineHeight: "1.2em",
-    fontWeight: "600",
-  },
-  span: {
-    fontSize: ".0.85em",
-    fontWeight: "400",
-    opacity: "0.5",
-  },
-});
-
-const ActionBtn = styled("div")({
-  display: "flex",
-  justifyContent: "space-between",
-  gap: "20px",
-  button: {
-    padding: "10px 30px",
-    borderRadius: "5px",
-    border: "none",
-    outline: "none",
-    fontSize: "1em",
-    fontWeight: "500",
-    background: "#ff5f95",
-    color: "#fff",
-    fontFamily: "Montserrat, sans-serif",
-    cursor: "pointer",
-  },
-  "button:nth-child(2)": {
-    border: "1px solid #999",
-    color: "#999",
-    background: "#fff",
-  },
-});
-
-const fakeData = [
-  {
-    name: "Prueba1",
-    nombre: "Estban",
-    numero: 234,
-    id: 1,
-  },
-];
-
 export default function Register() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [fakeData, setFakeData] = useState([
+    // Datos iniciales
+    {
+      name: "Prueba1",
+      nombre: "Estban",
+      numero: 234,
+      id: 1,
+    },
+    {
+      name: "Prueba2",
+      nombre: "Maria",
+      numero: 233,
+      id: 2,
+    },
+  ]);
+
+  const deleteItem = (id) => {
+    const updatedData = fakeData.filter((item) => item.id !== id);
+    setFakeData(updatedData);
+  };
+
+  const showAlert = (item) => {
+    const formattedItem = `<span style="color: red">${item}</span>`;
+
+    Swal.fire({
+      title: "Eliminar",
+      html: `¿Estás seguro de querer eliminar el registro? : ${formattedItem}`,
+      icon: "warning",
+      iconColor: "red",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirmar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const itemToDelete = fakeData.find((data) => data.nombre === item);
+        if (itemToDelete) {
+          deleteItem(itemToDelete.id);
+          Swal.fire({
+            title: "Eliminado",
+            text: "El registro se ha eliminado correctamente",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Aceptar",
+          });
+        }
+      }
+    });
+  };
   return (
     <Container>
-      <h1>Welcome to your Registers</h1>
-      <CardsContainer>
-        {fakeData.length !== 0
-          ? fakeData.map((c, i) => (
-              <CardRegister className="card" key={i}>
-                {/* <h1>{c.name}</h1> */}
-                <ImgBox className="imgbox">
-                  <Image className="image" src={foto} />
-                </ImgBox>
+      <RegisterContainer>
+        <Title>
+          <h1>Your Registers</h1>
+          <p>See all your register and see details</p>
+        </Title>
 
-                <Content className="content">
-                  <Details className="details">
-                    <div style={{ paddingBottom: "20px" }}>
-                      <h2>
-                        {c.name}
-                        <br />
-                        <SpanDetails>{c.nombre}</SpanDetails>
-                      </h2>
-                    </div>
-
-                    <div style={{ paddingBottom: "20px" }}>
-                      <Data>
-                        <h3>
-                          {c.numero}
-                          <br />
-                          <span>Hola</span>
-                        </h3>
-                        <h3>
-                          {c.numero}
-                          <br />
-                          <span>Hola</span>
-                        </h3>
-                        <h3>
-                          {c.numero}
-                          <br />
-                          <span>Hola</span>
-                        </h3>
-                      </Data>
-                      <ActionBtn>
+        <Grid container spacing={2} sx={{ marginTop: 0 }}>
+          {fakeData.length !== 0 ? (
+            fakeData.map((c, i) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
+                <Card
+                  sx={{
+                    // marginBottom: 2,
+                    backgroundColor: "#021c1e",
+                    borderRadius: "10px",
+                    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+                    transition: "transform 0.3s ease-in-out",
+                    "&:hover": {
+                      transform: "scale(1.05)",
+                    },
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h5" component="div" gutterBottom>
+                      {c.name}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Contenido de la carta
+                    </Typography>
+                    <Grid
+                      container
+                      gap={isMobile ? 1 : 0}
+                      sx={{ marginTop: 2 }}
+                      className={isMobile ? "mobile-buttons-container" : ""}
+                    >
+                      <Box
+                        sx={{
+                          marginRight: isMobile ? 0 : 1,
+                        }}
+                      >
                         <Link
                           href={`dashboard/registers/register-detail/${c.id}`}
                         >
-                          <button>See More</button>
+                          <Button
+                            variant="outlined"
+                            size="small"
+                            color="primary"
+                          >
+                            See More
+                          </Button>
                         </Link>
-
-                        <button>Delete</button>
-                      </ActionBtn>
-                    </div>
-                  </Details>
-                </Content>
-                {/* <Link href={`dashboard/registers/register-detail/${c.id}`}>
-                  <button>View full register</button>
-                </Link> */}
-              </CardRegister>
+                      </Box>
+                      <Button
+                        onClick={() => showAlert(c.nombre)}
+                        variant="contained"
+                        size="small"
+                        color="error"
+                      >
+                        Delete
+                      </Button>
+                    </Grid>
+                  </CardContent>
+                </Card>
+              </Grid>
             ))
-          : null}
-      </CardsContainer>
+          ) : (
+            <Typography variant="body1">
+              No hay registros disponibles.
+            </Typography>
+          )}
+        </Grid>
+      </RegisterContainer>
     </Container>
   );
 }
