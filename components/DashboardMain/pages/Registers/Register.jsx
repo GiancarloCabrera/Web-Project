@@ -56,6 +56,10 @@ const Title = styled("div")(({ theme }) => ({
   },
 }));
 
+const NoDataMessage = styled(Typography)({
+  overflow: "auto",
+});
+
 export default function Register() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -113,7 +117,7 @@ export default function Register() {
     <Container>
       <RegisterContainer>
         <Title>
-          <h1>Your Registers</h1>
+          <h1>See all your forms</h1>
           <p>See all your register and see details</p>
         </Title>
 
@@ -125,12 +129,14 @@ export default function Register() {
                   sx={{
                     // marginBottom: 2,
                     backgroundColor: "#021c1e",
-                    borderRadius: "10px",
+
+                    borderRadius: "10px ",
                     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
                     transition: "transform 0.3s ease-in-out",
                     "&:hover": {
                       transform: "scale(1.05)",
                     },
+                    // border: "1px solid white",
                   }}
                 >
                   <CardContent>
@@ -152,7 +158,7 @@ export default function Register() {
                         }}
                       >
                         <Link
-                          href={`dashboard/registers/register-detail/${c.id}`}
+                          href={`/dashboard/registers/register-detail/${c.id}`}
                         >
                           <Button
                             variant="outlined"
@@ -177,9 +183,13 @@ export default function Register() {
               </Grid>
             ))
           ) : (
-            <Typography variant="body1">
-              No hay registros disponibles.
-            </Typography>
+            <Grid item xs={12}>
+              <div>
+                <NoDataMessage variant="body1">
+                  No hay registros disponibles.
+                </NoDataMessage>
+              </div>
+            </Grid>
           )}
         </Grid>
       </RegisterContainer>

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import { styled } from "@mui/system";
+import Swal from "sweetalert2";
 
 const Title = styled("div")(({ theme }) => ({
   h1: {
@@ -48,7 +49,7 @@ const FormContainer = styled("div")(({ theme }) => ({
 const initialValues = {
   name: "",
   email: "",
-  anotherValue: "",
+  anotherEmail: "",
 };
 
 const validationSchema = Yup.object({
@@ -56,81 +57,86 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .email("Formato de correo inválido")
     .required("El correo es requerido"),
+  anotherEmail: Yup.string()
+    .email("Formato de correo inválido")
+    .required("Otro registro es requerido"),
 });
 
+const handleSubmit = (values, { resetForm }) => {
+  Swal.fire({
+    icon: "success",
+    title: "¡Datos enviados!",
+    text: "Los datos se han enviado correctamente.",
+  });
+  // Realiza las acciones necesarias con los datos enviados
+
+  resetForm();
+};
+
 const SimpleForm = () => {
-  const handleSubmit = (values) => {
-    console.log(values);
-    // Aquí puedes realizar acciones adicionales, como enviar los datos a un servidor
-  };
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [anotherValue, setAnotherValue] = useState("");
-
-  useEffect(() => {
-    console.log(name, "Constante actual");
-  }, [name]);
-
   return (
     <ContainerGlobal>
       <Title>
         <h1>Your Registers</h1>
         <p>See all your register and see details</p>
       </Title>
-
       <Formik
-        validate={validationSchema}
+        validationSchema={validationSchema}
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <FormContainer style={{ width: "100%" }}>
-            <div>
-              <TextField
-                label="Nombre"
-                name="name"
+        {({ touched, errors, isValid, dirty, values, resetForm }) => (
+          <Form style={{ paddingTop: "20px" }}>
+            <FormContainer style={{ width: "100%" }}>
+              <div>
+                <Field
+                  as={TextField}
+                  label="Nombre"
+                  name="name"
+                  variant="outlined"
+                  fullWidth
+                  error={touched.name && errors.name}
+                  helperText={touched.name && errors.name}
+                />
+              </div>
+              <div>
+                <Field
+                  as={TextField}
+                  label="Register"
+                  name="email"
+                  variant="outlined"
+                  fullWidth
+                  error={touched.email && errors.email}
+                  helperText={<ErrorMessage name="email" />}
+                />
+              </div>
+            </FormContainer>
+            <div style={{ marginBottom: "1rem" }}>
+              <Field
+                as={TextField}
+                label="Otro registro"
+                name="anotherEmail"
                 variant="outlined"
                 fullWidth
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                error={Boolean(
-                  name && !validationSchema.fields.name.validate(name)
-                )}
-                helperText={<ErrorMessage name="name" />}
+                error={touched.anotherEmail && errors.anotherEmail}
+                helperText={<ErrorMessage name="anotherEmail" />}
               />
             </div>
-            <div>
-              <TextField
-                label="Register"
-                name="email"
-                variant="outlined"
+            {dirty && isValid && (
+              <Button
+                variant="contained"
+                style={{ backgroundColor: "red", color: "white" }}
+                type="submit"
                 fullWidth
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                error={Boolean(
-                  name && !validationSchema.fields.email.validate(email)
-                )}
-                helperText={<ErrorMessage name="email" />}
-              />
-            </div>
-          </FormContainer>
-          <div style={{ marginBottom: "1rem" }}>
-            <TextField
-              label="Otro registro"
-              name="anotherEmail"
-              variant="outlined"
-              fullWidth
-              value={anotherValue}
-              onChange={(e) => setAnotherValue(e.target.value)}
-              error={Boolean(
-                anotherValue &&
-                  !validationSchema.fields.email.validate(anotherValue)
-              )}
-              helperText={<ErrorMessage name="anotherEmail" />}
-            />
-          </div>
-        </Form>
+                onClick={() => {
+                  handleSubmit(values, { resetForm });
+                }}
+              >
+                Submit
+              </Button>
+            )}
+          </Form>
+        )}
       </Formik>
     </ContainerGlobal>
   );
