@@ -54,20 +54,126 @@ const Status = styled("span")(({ status }) => {
   }
 
   return {
-    fontSize: "1rem",
-    fontWeight: "500",
+    fontSize: "1.2rem",
+    fontWeight: "bold",
     color: color,
   };
 });
 
-const ContainerDe = styled("div")({
-  width: "100%",
+const CardContainer = styled("div")(({ theme }) => ({
+  display: "flex",
+  marginTop: "2rem",
+  [theme.breakpoints.down("sm")]: {
+    flexDirection: "column",
+  },
+}));
 
-  marginTop: "3rem",
-});
+const Card = styled.div`
+  flex-grow: 1;
+
+  max-width: 100%;
+  background-color: lightblue;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+`;
+const SmallCard = styled("div")(({ theme }) => ({
+  flex: "0 0 auto",
+  backgroundColor: "lightpink",
+  borderRadius: "8px",
+  marginLeft: "1rem",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  padding: "1rem",
+  overflow: "hidden",
+  height: "100%",
+  maxHeight: "100%",
+
+  [theme.breakpoints.down("sm")]: {
+    marginLeft: "0",
+  },
+}));
+
+// const Mejorar = styled("h1")(({ theme }) => ({
+//   fontSize: "1.5rem",
+//   fontWeight: "700",
+//   color: "#6fb98f",
+//   [theme.breakpoints.down("sm")]: {
+//     textAlign: "center",
+//     margin: "auto",
+//   },
+// }));
+
+const Mejorar = styled("h2")(({ theme }) => ({
+  fontSize: "1.2rem",
+  fontWeight: "bold",
+  marginBottom: "1rem",
+  [theme.breakpoints.down("sm")]: {
+    textAlign: "center",
+    margin: "auto",
+  },
+}));
+
+const MejorasList = styled("ul")(({ theme }) => ({
+  listStyleType: "disc",
+  paddingLeft: "0.5rem",
+}));
+
+const MejoraItem = styled("li")(({ theme }) => ({
+  fontSize: "1rem",
+  marginBottom: "0.5rem",
+  "&::before": {
+    content: "'\u2022'",
+    marginRight: "0.5rem",
+  },
+}));
+const CircularProgressBarContainer = styled("div")(({ theme }) => ({
+  width: "50%",
+  height: "80%",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+}));
+
+const CircularProgressBar = styled(CircularProgressbar)(({ theme }) => ({
+  width: "90%",
+  height: "90%",
+}));
+
+const ButtonLink = styled.a`
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #6fb98f;
+  color: #ffffff;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #589c77;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+  }
+`;
+
+const ContainerButton = styled("div")(({ theme }) => ({
+  [theme.breakpoints.down("sm")]: {
+    paddingTop: "1rem",
+  },
+}));
 
 const RegisterDetails = ({ params }) => {
-  const [registerDetail, setRegisterDetail] = useState();
+  const [registerDetail, setRegisterDetail] = useState({});
   const [progress, setProgress] = useState(0);
 
   let estadoActual = "";
@@ -91,9 +197,18 @@ const RegisterDetails = ({ params }) => {
       estado: {
         porcentaje: 100,
       },
+      mejoras: ["Mas Productivo", "Mejor"],
     };
     setRegisterDetail(data);
   }, []);
+
+  useEffect(() => {
+    if (registerDetail) {
+      console.log(registerDetail.mejoras);
+    }
+
+    console.log(Object.keys(registerDetail));
+  }, [registerDetail]);
 
   useEffect(() => {
     const targetProgress = registerDetail?.estado?.porcentaje || 0;
@@ -135,43 +250,50 @@ const RegisterDetails = ({ params }) => {
           <h1>Detalles</h1>
           <p>Detalles acerca de {registerDetail?.name}</p>
         </Title>
-        <ContainerDe>
-          <div>
-            <p>
-              Tu estado actual es{" "}
-              <Status status={registerDetail?.estado?.porcentaje}>
-                {estadoActual}
-              </Status>
-              {", "}
-              {mensajeAdicional}
-            </p>
-          </div>
-          <div style={{ width: 200, height: 200 }}>
-            <CircularProgressbar
-              value={progress}
-              text={`${progress}%`}
-              styles={{
-                path: { stroke: getColor() },
-                trail: { stroke: "yellow" },
-                text: { fill: "#6fb98f", fontSize: "16px" },
-              }}
-            />
-          </div>
-        </ContainerDe>
-        <div style={{ marginTop: "70px" }}>
-          <div style={{ width: 200, height: 200 }}>
-            <CircularProgressbar
-              value={progress}
-              text={`${progress}%`}
-              styles={{
-                path: { stroke: getColor() },
-                trail: { stroke: "yellow" },
-                text: { fill: "#6fb98f", fontSize: "16px" },
-              }}
-            />
-          </div>
-        </div>
-        <Link href="dashboard/registers">Go back</Link>
+        <CardContainer>
+          <Card>
+            <div style={{ paddingBottom: "1.5rem" }}>
+              <Mejorar>
+                Tu estado actual es{" "}
+                <Status status={registerDetail?.estado?.porcentaje}>
+                  {estadoActual}
+                </Status>
+                {", "}
+                {mensajeAdicional}
+              </Mejorar>
+            </div>
+            <CircularProgressBarContainer>
+              <CircularProgressBar
+                value={progress}
+                text={`${progress}%`}
+                styles={{
+                  path: { stroke: getColor() },
+                  trail: { stroke: "yellow" },
+                  text: { fill: "#6fb98f", fontSize: "16px" },
+                }}
+              />
+            </CircularProgressBarContainer>
+          </Card>
+
+          <SmallCard>
+            <Mejorar>Cosas a mejorar</Mejorar>
+
+            {Object.keys(registerDetail).length !== 0 ? (
+              <MejorasList>
+                {registerDetail.mejoras.map((mejora, index) => (
+                  <MejoraItem key={index}>{mejora}</MejoraItem>
+                ))}
+              </MejorasList>
+            ) : (
+              <h1>No debes mejorar en nada</h1>
+            )}
+          </SmallCard>
+        </CardContainer>
+        <ContainerButton>
+          <Link href="dashboard/registers" passHref>
+            <ButtonLink>Go back</ButtonLink>
+          </Link>
+        </ContainerButton>
       </DetailsContainer>
     </Container>
   );
