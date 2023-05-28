@@ -247,7 +247,7 @@ const RegisterDetails = ({ params }) => {
     <Container>
       <DetailsContainer>
         <Title>
-          <h1>Detalles</h1>
+          <h1>Detalles </h1>
           <p>Detalles acerca de {registerDetail?.name}</p>
         </Title>
         <CardContainer>
