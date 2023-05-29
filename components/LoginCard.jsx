@@ -282,8 +282,8 @@ export default function LoginCard() {
   // Login Form
   const [loginForm, setLoginForm] = useState(
     {
-      email: 'admin2@themesbrand.com',
-      password: 'NoMetesCabra000'
+      email: '',
+      password: ''
     })
 
   // Login Register
@@ -356,7 +356,7 @@ export default function LoginCard() {
         icon: 'success',
         showConfirmButton: false,
       })
-      router.push('/home')
+      setLoginRegis(true)
     }
   }
 
@@ -372,8 +372,8 @@ export default function LoginCard() {
     const user = await signIn("credentials", {
       email: loginForm.email,
       password: loginForm.password,
-      redirect: true,
-      callbackUrl: '/home'
+      redirect: false,
+      // callbackUrl: '/dashboard'
     })
     console.log('user: ', user);
     if (!user.ok) {
@@ -383,7 +383,7 @@ export default function LoginCard() {
         icon: 'error',
       })
     } else {
-      // router.push('/home')
+      router.push('/dashboard')
     }
   }
 

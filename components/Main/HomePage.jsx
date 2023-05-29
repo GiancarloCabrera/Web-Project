@@ -77,7 +77,7 @@ export default function HomePage() {
           Ha<Span>mim</Span>
         </Somos>
         <H3>Front-End Developer</H3>
-        <GetStarted href="/login" type="button">
+        <GetStarted href="/auth" type="button">
           Get Started
         </GetStarted>
       </div>
