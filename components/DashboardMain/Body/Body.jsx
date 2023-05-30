@@ -1,7 +1,9 @@
+import { useSelector } from "react-redux";
 import Activity from "./Activity/Activity";
 import Listing from "./Listing/Listing";
 import Top from "./Top/Top";
 import styled from "@emotion/styled";
+import { useEffect } from "react";
 
 const MainContent = styled("div")({
   width: "90%",
@@ -62,6 +64,12 @@ const Bottom = styled("div")(({ theme }) => ({
 }));
 
 export default function Body() {
+  const { email } = useSelector((state) => state.login.loginUserCredentials);
+  const state = useSelector((state) => state);
+  useEffect(() => {
+    console.log(email);
+    console.log(state);
+  }, [email, state]);
   return (
     <MainContent className="MainContent">
       <Top />

@@ -17,14 +17,20 @@ const Heading = styled("div")(({ theme }) => ({
   justifyContent: "space-between",
   h1: {
     fontSize: "1.25rem",
-    color: "hsl(0, 0%, 18%)",
+    color: "#6fb98f",
     fontWeight: "700",
   },
   ".btn": {
-    border: "1px solid transparent",
+    border: "1px solid #052f33",
+    fontWeight: "500",
+    background: "#052f33",
+    boxShadow: "0 2px 4px #052f33",
   },
   ".btn:hover": {
-    border: "1px solid hsl(94, 59%, 35%)",
+    border: "1px solid #021c1e",
+    background: "#08454b",
+    boxShadow: "0 2px 4px #021c1e",
+    color: "white",
   },
 
   [theme.breakpoints.down("ml")]: {
@@ -68,13 +74,16 @@ const CustomerDetails = styled("div")({
   ".name": {
     fontSize: "1rem",
     fontWeight: "600",
-    color: "hsl(0, 0%, 18%)",
+    color: "#6fb98f",
     display: "block",
   },
   small: {
     fontWeight: "500",
     color: "hsl(0, 0%, 18%)",
     fontSize: ".813rem",
+  },
+  span: {
+    color: "white",
   },
 });
 
@@ -89,7 +98,7 @@ const Activity = () => {
       <Heading className="flex">
         <h1>Resent Activity</h1>
         <button className="btn flex">
-          See all <ArrowForwardIcon className="icon" />
+          See All <ArrowForwardIcon className="icon" />
         </button>
       </Heading>
 

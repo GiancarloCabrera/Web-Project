@@ -35,11 +35,13 @@
     "next-auth": "^4.21.0",
     "next-redux-wrapper": "^8.1.0",
     "react": "18.2.0",
+    "react-circular-progressbar": "^2.1.0",
     "react-dom": "18.2.0",
     "react-pro-sidebar": "^0.7.1",
     "react-redux": "^8.0.5",
     "react-reveal": "^1.2.2",
-    "sweetalert2": "^11.7.3"
+    "sweetalert2": "^11.7.3",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^2.1.1",

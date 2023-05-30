@@ -14,16 +14,21 @@ const Heading = styled("div")(({ theme }) => ({
 
   h1: {
     fontSize: "1.25rem",
-    color: "hsl(0, 0%, 18%)",
+    color: "#6fb98f",
     fontWeight: "700",
   },
 
   ".btn": {
-    border: "1px solid transparent",
+    border: "1px solid #052f33",
     fontWeight: "500",
+    background: "#052f33",
+    boxShadow: "0 2px 4px #052f33",
   },
   ".btn:hover": {
-    border: "1px solid hsl(94, 59%, 35%)",
+    border: "1px solid #021c1e",
+    background: "#08454b",
+    boxShadow: "0 2px 4px #021c1e",
+    color: "white",
   },
 
   [theme.breakpoints.down("ml")]: {
@@ -55,11 +60,11 @@ const SigleItem = styled("div")(({ theme }) => ({
   flexDirection: "column",
   padding: "1rem",
   borderRadius: "10px",
-  background: "hsl(120, 5%, 88%)",
+  background: "#021c1e",
 
   "&:hover": {
-    background: "hsl(120, 27%, 87%)",
-    boxShadow: "0 2px 2px hsl(330, 12%, 97%)",
+    background: "#004445",
+    boxShadow: "0 2px 2px #004445",
   },
 
   ".image": {
@@ -73,7 +78,7 @@ const SigleItem = styled("div")(({ theme }) => ({
   },
   h3: {
     fontSize: "1rem",
-    color: "hsl(0, 0%, 18%)",
+    color: "#6fb98f",
     padding: "1rem 0",
   },
 
@@ -96,6 +101,9 @@ const TopSellers = styled("div")({});
 
 const HeadingLower = styled("div")({
   padding: "1rem 0",
+  h3: {
+    color: "#6fb98f",
+  },
 
   ".btn": {
     padding: ".5rem 1rem",
@@ -105,9 +113,9 @@ const HeadingLower = styled("div")({
 const Card = styled("div")(({ theme }) => ({
   padding: "1rem 1.5rem",
   borderRadius: "1rem",
-  background: "hsl(0, 0%, 100%)",
+  background: "#021c1e",
   gap: "1rem",
-  boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
+  boxShadow: "0 2px 4px #021c1e",
   [theme.breakpoints.down("ml")]: {
     flexDirection: "column",
   },
@@ -124,7 +132,7 @@ const Users = styled("div")({
     height: "30px",
     borderRadius: "50%",
     objectFit: "cover",
-    border: "2px solid hsl(330, 12%, 97%)",
+    border: "2px solid #021c1e",
     transition: ".5s ease",
 
     "&:hover": {
@@ -135,7 +143,7 @@ const Users = styled("div")({
 
 const CardText = styled("div")({
   span: {
-    color: "hsl(0, 0%, 18%)",
+    color: "white",
     fontWeight: "500",
   },
 

@@ -10,7 +10,7 @@ const Container = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  background: "hsl(220, 10%, 94%)",
+  background: "#052f33",
   overflow: "hidden",
   fontFamily: "Montserrat, sans-serif",
   // borderRadius: "1rem",

@@ -212,7 +212,7 @@ const Main = styled("div")(({ theme }) => ({
     position: "absolute",
     height: "100%",
     width: "75%",
-    background: "hsl(96, 75%, 89%)",
+    background: "#6fb98f",
     left: "0",
     bottom: "0",
     borderRadius: "1rem",
