@@ -12,7 +12,7 @@ import "../../SideBar/xd.css";
 import Swal from "sweetalert2";
 // import { styled } from "@mui/system";
 import { styled, useTheme } from "@mui/material/styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const Container = styled("div")({
@@ -61,6 +61,31 @@ const NoDataMessage = styled(Typography)({
 });
 
 export default function Register() {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const email = "ksoencec@gmail.com";
+        const response = await fetch(
+          `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
+            email
+          )}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        console.log("Hola", data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [fakeData, setFakeData] = useState([

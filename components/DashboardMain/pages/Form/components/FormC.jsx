@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import { styled } from "@mui/system";
 import Swal from "sweetalert2";
+import { useSession } from "next-auth/react";
 
 const Title = styled("div")(({ theme }) => ({
   h1: {
@@ -47,22 +48,24 @@ const FormContainer = styled("div")(({ theme }) => ({
 }));
 
 const initialValues = {
-  cantidadElectronicos: "",
-  cantidadComputadoresEscritorio: "",
-  horasComputadorEncendido: "",
-  añosUsoPromedio: "",
-  cantidadServidores: "",
-  horasServidorEncendido: "",
-  añosUsoPromedioServidor: "",
-  cantidadPortatil: "",
-  horasPortatilEncendido: "",
-  añosUsoPromedioPortatil: "",
+  allDevicesNum1: "",
+  deskCompNum2: "",
+  hoursPerDayDeskComp3: "",
+  avgYearsUsageDekComp4: "",
 
-  energiaWatt: "",
+  numberServers5: "",
+  avgHoursPerDayUsageServ6: "",
+  avgYearsUsageServ7: "",
+
+  numberLaptops8: "",
+  avgHoursPerDayUsageLaptop9: "",
+  avgYearsUsageLaptop10: "",
+
+  energyConsumedByBranchW11: "",
 };
 
 const validationSchema = Yup.object({
-  cantidadElectronicos: Yup.number()
+  allDevicesNum1: Yup.number()
     .typeError("La cantidad de dispositivos electronicos debe ser un numero")
     .integer("La cantidad debe ser un numero entero")
     .positive("La cantidad debe ser un numero positivo")
@@ -70,59 +73,59 @@ const validationSchema = Yup.object({
       "La cantidad de dispositivos electronicos que maneja es requerida"
     ),
 
-  energiaWatt: Yup.number()
+  energyConsumedByBranchW11: Yup.number()
     .typeError("La cantidad de cuanto consumio la sede debe ser un numero")
     .positive("La cantidad debe ser un numero positivo")
     .required("La cantidad de cuanto se consumio la sede es requerido"),
 });
 
 const validationSchemaComputer = Yup.object({
-  cantidadComputadoresEscritorio: Yup.number()
+  deskCompNum2: Yup.number()
     .typeError("La cantidad de computadores de escritorio debe ser un numero")
     .integer("La cantidad escrita debe ser un numero entero")
     .positive("La cantidad debe ser un numero positivo")
     .required(
       "La cantidad de computadores de escritorio que maneja es requerida"
     ),
-  horasComputadorEncendido: Yup.number()
+  hoursPerDayDeskComp3: Yup.number()
     .typeError(
       "La cantidad de horas del computador encendido debe ser un numero"
     )
     .positive("La cantidad registrada debe ser un numero positivo")
     .required("La cantidad de horas del computador encendido es requerido"),
-  añosUsoPromedio: Yup.number()
+  avgYearsUsageDekComp4: Yup.number()
     .typeError("Los años de uso promedio deben ser un numero")
     .positive("La cantidad debe ser un numero positivo")
     .required("Los años de uso de promedio debe ser requerido"),
 });
 
 const validationShemaServers = Yup.object({
-  cantidadServidores: Yup.number()
+  numberServers5: Yup.number()
     .typeError("La cantidad de servidores debe ser un numero")
     .integer("La cantidad escrita debe ser un numero entero")
     .positive("La cantidad debe ser un numero positivo")
     .required("La cantidad de los servidores es requerida"),
-  horasServidorEncendido: Yup.number()
+  avgHoursPerDayUsageServ6: Yup.number()
     .typeError("La cantidad de horas del servidor encendido debe ser un numero")
     .positive("La cantidad registrada debe ser un numero positivo")
     .required("La cantidad de horas es requerido"),
-  añosUsoPromedioServidor: Yup.number()
+  avgYearsUsageServ7: Yup.number()
     .typeError("Los años de uso promedio deben ser un numero")
     .positive("La cantidad debe ser un numero positivo")
     .required("Los años de uso promedio debe ser requerido"),
 });
 
 const validationSchemaPortatil = Yup.object({
-  cantidadPortatil: Yup.number()
+  numberLaptops8: Yup.number()
     .typeError("La cantidad de computadores debe ser un numero")
     .integer("La cantdiad escrita debe ser un numero entero")
     .positive("La cantidad debe ser un numero positivo")
     .required("La cantidad de los portatiles es requerida"),
-  horasPortatilEncendido: Yup.number()
+  avgHoursPerDayUsageLaptop9: Yup.number()
     .typeError("La cantidad de horas del portatil encedido debe ser un numero ")
     .positive("La cantidad registrada debe ser un numero positivo")
     .required("La cantidad de horas es requerido"),
-  añosUsoPromedioPortatil: Yup.number()
+  avgYearsUsageLaptop10: Yup.number()
     .typeError("Los años de uso promedio debe ser un numero")
     .positive("La cantidad debe ser un numero positivo")
     .required("Los ñoas de uso promedio debe ser requerido"),
@@ -144,21 +147,72 @@ const isCombinedFormValid = (touched, errors) => {
   return isCombinedValid;
 };
 
-const handleSubmit = (values, { resetForm }) => {
-  // Realizar las acciones necesarias con los datos enviados
-  // ...
-
-  // Mostrar la alerta SweetAlert
-  Swal.fire({
-    icon: "success",
-    title: "¡Datos enviados!",
-    text: "Los datos se han enviado correctamente.",
-  });
-
-  resetForm();
-};
-
 const SimpleForm = () => {
+  const { data: session, status: loading } = useSession();
+  const fetchData = async (formData) => {
+    try {
+      const response = await fetch("http://localhost:3001/api/form/info", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+        Swal.fire({
+          icon: "success",
+          title: "¡Datos enviados!",
+          text: "Los datos se han enviado correctamente.",
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "¡Error!",
+          text: "Se produjo un error al enviar los datos.",
+        });
+      }
+
+      // Mostrar la alerta de éxito si la petición fue exitosa
+    } catch (error) {
+      console.error("Error:", error);
+      console.log("HOLAAAAAA");
+
+      // Mostrar la alerta de error utilizando SweetAlert
+      Swal.fire({
+        icon: "error",
+        title: "¡Error!",
+        text: "Se produjo un error al enviar los datos.",
+      });
+    }
+  };
+
+  const handleSubmit = (values, { resetForm }) => {
+    // Realizar las acciones necesarias con los datos enviados
+    // ...
+    const userEmail = session?.data?.user?.name;
+
+    const formData = {
+      ...values,
+      emailUser: userEmail,
+    };
+
+    fetchData(formData);
+
+    // Mostrar la alerta SweetAlert
+
+    resetForm();
+  };
+
+  useEffect(() => {
+    const userEmail = session?.data?.user?.name;
+    console.log(userEmail);
+    console.log(session);
+  }, []);
+
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   useEffect(() => {
     setIsButtonDisabled(true);
@@ -187,17 +241,11 @@ const SimpleForm = () => {
                   <Field
                     as={TextField}
                     label="Cantidad de dispositivos electronicos"
-                    name="cantidadElectronicos"
+                    name="allDevicesNum1"
                     variant="outlined"
                     fullWidth
-                    error={
-                      touched.cantidadElectronicos &&
-                      errors.cantidadElectronicos
-                    }
-                    helperText={
-                      touched.cantidadElectronicos &&
-                      errors.cantidadElectronicos
-                    }
+                    error={touched.allDevicesNum1 && errors.allDevicesNum1}
+                    helperText={touched.allDevicesNum1 && errors.allDevicesNum1}
                   />
                 </div>
 
@@ -205,16 +253,11 @@ const SimpleForm = () => {
                   <Field
                     as={TextField}
                     label="Cantidad computadores de Escritorio"
-                    name="cantidadComputadoresEscritorio"
+                    name="deskCompNum2"
                     variant="outlined"
                     fullWidth
-                    error={
-                      touched.cantidadComputadoresEscritorio &&
-                      errors.cantidadComputadoresEscritorio
-                    }
-                    helperText={
-                      <ErrorMessage name="cantidadComputadoresEscritorio" />
-                    }
+                    error={touched.deskCompNum2 && errors.deskCompNum2}
+                    helperText={<ErrorMessage name="deskCompNum2" />}
                   />
                 </div>
 
@@ -222,16 +265,14 @@ const SimpleForm = () => {
                   <Field
                     as={TextField}
                     label="Horas de encendido de los computadores de escritorio"
-                    name="horasComputadorEncendido"
+                    name="hoursPerDayDeskComp3"
                     variant="outlined"
                     fullWidth
                     error={
-                      touched.horasComputadorEncendido &&
-                      errors.horasComputadorEncendido
+                      touched.hoursPerDayDeskComp3 &&
+                      errors.hoursPerDayDeskComp3
                     }
-                    helperText={
-                      <ErrorMessage name="horasComputadorEncendido" />
-                    }
+                    helperText={<ErrorMessage name="hoursPerDayDeskComp3" />}
                   />
                 </div>
 
@@ -239,11 +280,14 @@ const SimpleForm = () => {
                   <Field
                     as={TextField}
                     label="Años de uso de promedio de las computadoras de escritorio"
-                    name="añosUsoPromedio"
+                    name="avgYearsUsageDekComp4"
                     variant="outlined"
                     fullWidth
-                    error={touched.añosUsoPromedio && errors.añosUsoPromedio}
-                    helperText={<ErrorMessage name="añosUsoPromedio" />}
+                    error={
+                      touched.avgYearsUsageDekComp4 &&
+                      errors.avgYearsUsageDekComp4
+                    }
+                    helperText={<ErrorMessage name="avgYearsUsageDekComp4" />}
                   />
                 </div>
 
@@ -251,13 +295,11 @@ const SimpleForm = () => {
                   <Field
                     as={TextField}
                     label="Cantidad de servidores"
-                    name="cantidadServidores"
+                    name="numberServers5"
                     variant="outlined"
                     fullWidth
-                    error={
-                      touched.cantidadServidores && errors.cantidadServidores
-                    }
-                    helperText={<ErrorMessage name="cantidadServidores" />}
+                    error={touched.numberServers5 && errors.numberServers5}
+                    helperText={<ErrorMessage name="numberServers5" />}
                   />
                 </div>
 
@@ -265,14 +307,16 @@ const SimpleForm = () => {
                   <Field
                     as={TextField}
                     label="Horas de encendido de los servidores"
-                    name="horasServidorEncendido"
+                    name="avgHoursPerDayUsageServ6"
                     variant="outlined"
                     fullWidth
                     error={
-                      touched.horasServidorEncendido &&
-                      errors.horasServidorEncendido
+                      touched.avgHoursPerDayUsageServ6 &&
+                      errors.avgHoursPerDayUsageServ6
                     }
-                    helperText={<ErrorMessage name="horasServidorEncendido" />}
+                    helperText={
+                      <ErrorMessage name="avgHoursPerDayUsageServ6" />
+                    }
                   />
                 </div>
 
@@ -280,14 +324,13 @@ const SimpleForm = () => {
                   <Field
                     as={TextField}
                     label="Años de uso de promedio de los servidores"
-                    name="añosUsoPromedioServidor"
+                    name="avgYearsUsageServ7"
                     variant="outlined"
                     fullWidth
                     error={
-                      touched.añosUsoPromedioServidor &&
-                      errors.añosUsoPromedioServidor
+                      touched.avgYearsUsageServ7 && errors.avgYearsUsageServ7
                     }
-                    helperText={<ErrorMessage name="añosUsoPromedioServidor" />}
+                    helperText={<ErrorMessage name="avgYearsUsageServ7" />}
                   />
                 </div>
 
@@ -295,11 +338,11 @@ const SimpleForm = () => {
                   <Field
                     as={TextField}
                     label="Cantidad de portatiles"
-                    name="cantidadPortatil"
+                    name="numberLaptops8"
                     variant="outlined"
                     fullWidth
-                    error={touched.cantidadPortatil && errors.cantidadPortatil}
-                    helperText={<ErrorMessage name="cantidadPortatil" />}
+                    error={touched.numberLaptops8 && errors.numberLaptops8}
+                    helperText={<ErrorMessage name="numberLaptops8" />}
                   />
                 </div>
 
@@ -307,14 +350,16 @@ const SimpleForm = () => {
                   <Field
                     as={TextField}
                     label="Horas de encendido de los portatiles"
-                    name="horasPortatilEncendido"
+                    name="avgHoursPerDayUsageLaptop9"
                     variant="outlined"
                     fullWidth
                     error={
-                      touched.horasPortatilEncendido &&
-                      errors.horasPortatilEncendido
+                      touched.avgHoursPerDayUsageLaptop9 &&
+                      errors.avgHoursPerDayUsageLaptop9
                     }
-                    helperText={<ErrorMessage name="horasPortatilEncendido" />}
+                    helperText={
+                      <ErrorMessage name="avgHoursPerDayUsageLaptop9" />
+                    }
                   />
                 </div>
 
@@ -322,14 +367,14 @@ const SimpleForm = () => {
                   <Field
                     as={TextField}
                     label="Años de uso de promedio de los portatiles"
-                    name="añosUsoPromedioPortatil"
+                    name="avgYearsUsageLaptop10"
                     variant="outlined"
                     fullWidth
                     error={
-                      touched.añosUsoPromedioPortatil &&
-                      errors.añosUsoPromedioPortatil
+                      touched.avgYearsUsageLaptop10 &&
+                      errors.avgYearsUsageLaptop10
                     }
-                    helperText={<ErrorMessage name="añosUsoPromedioPortatil" />}
+                    helperText={<ErrorMessage name="avgYearsUsageLaptop10" />}
                   />
                 </div>
               </FormContainer>
@@ -337,11 +382,14 @@ const SimpleForm = () => {
                 <Field
                   as={TextField}
                   label="Cuanta energia consumio la sede en W (Watt)"
-                  name="energiaWatt"
+                  name="energyConsumedByBranchW11"
                   variant="outlined"
                   fullWidth
-                  error={touched.energiaWatt && errors.energiaWatt}
-                  helperText={<ErrorMessage name="energiaWatt" />}
+                  error={
+                    touched.energyConsumedByBranchW11 &&
+                    errors.energyConsumedByBranchW11
+                  }
+                  helperText={<ErrorMessage name="energyConsumedByBranchW11" />}
                 />
               </div>
               <Button
