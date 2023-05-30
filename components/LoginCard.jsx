@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { getSession, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import { loginUser } from "@/redux/actions/login";
 
 const H1 = styled("h1")({
   fontWeight: 700,
@@ -330,6 +331,7 @@ export default function LoginCard() {
         icon: "error",
       });
     }
+
     const res = await fetch("http://localhost:3001/api/auth/newUser", {
       method: "POST",
       body: JSON.stringify({
@@ -384,6 +386,7 @@ export default function LoginCard() {
         icon: "error",
       });
     } else {
+      dispatch(loginUser({ email: loginForm.email }));
       router.push("/dashboard");
     }
   };
