@@ -22,6 +22,7 @@ export const loginUser = (user) => {
 };
 
 export const loginSuccess = (email, name) => {
+  console.log("LOGIN SUCCESS:", email);
   return {
     type: types.loginSuccess,
     payload: {

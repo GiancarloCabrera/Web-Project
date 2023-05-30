@@ -5,6 +5,7 @@ import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import { styled } from "@mui/system";
 import Swal from "sweetalert2";
 import { useSession } from "next-auth/react";
+import { useSelector } from "react-redux";
 
 const Title = styled("div")(({ theme }) => ({
   h1: {
@@ -207,11 +208,12 @@ const SimpleForm = () => {
     resetForm();
   };
 
+  const { email } = useSelector((state) => state.login.loginUserCredentials);
+  const state = useSelector((state) => state);
   useEffect(() => {
-    const userEmail = session?.data?.user?.name;
-    console.log(userEmail);
-    console.log(session);
-  }, []);
+    console.log(email);
+    console.log(state);
+  }, [email, state]);
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   useEffect(() => {
