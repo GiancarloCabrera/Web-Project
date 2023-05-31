@@ -1,5 +1,5 @@
 "use client";
-import PageMain from "@/components/Main/PageMain";
+import PageMain from "../../../components/Main/PageMain";
 import styled from "@emotion/styled";
 
 const Main = styled("div")`

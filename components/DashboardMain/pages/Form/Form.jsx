@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import FormC from "./components/FormC";
+import { useSelector } from "react-redux";
 
 const Container = styled("div")({
   position: "relative",
@@ -15,6 +16,11 @@ const Container = styled("div")({
 });
 
 const Form = () => {
+  const state = useSelector(state => state);
+  useEffect(() => {
+    console.log('FORMMMM: ',state);
+  }, [state])
+
   return (
     <Container>
       <FormC />

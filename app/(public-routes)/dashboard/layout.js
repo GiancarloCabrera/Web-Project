@@ -1,5 +1,5 @@
 "use client";
-import SideBar from "@/components/DashboardMain/SideBar/SideBar";
+import SideBar from "../../../components/DashboardMain/SideBar/SideBar";
 import styled from "@emotion/styled";
 
 const Container = styled("div")(({ theme }) => ({

@@ -40,11 +40,18 @@
     "react-pro-sidebar": "^0.7.1",
     "react-redux": "^8.0.5",
     "react-reveal": "^1.2.2",
+<<<<<<< HEAD
     "sweetalert2": "^11.7.3",
     "yup": "^1.2.0"
+=======
+    "redux-persist": "^6.0.0",
+    "sweetalert2": "^11.7.3"
+>>>>>>> ba8196ba425452a11fbc2a2b4d9921e7efabebd9
   },
   "devDependencies": {
+    "@types/node": "20.2.5",
     "babel-plugin-styled-components": "^2.1.1",
-    "redux-devtools-extension": "^2.13.9"
+    "redux-devtools-extension": "^2.13.9",
+    "typescript": "5.0.4"
   }
 }

@@ -39,7 +39,7 @@ const MainContent = styled("div")({
     outline: "none",
     cursor: "pointer",
     borderRadius: "8px",
-    boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
+        boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
     padding: ".8rem .1rem",
     color: "hsl(240, 1%, 48%)",
   },
@@ -64,12 +64,11 @@ const Bottom = styled("div")(({ theme }) => ({
 }));
 
 export default function Body() {
-  const { email } = useSelector((state) => state.login.loginUserCredentials);
-  const state = useSelector((state) => state);
+  const state = useSelector(state => state);
   useEffect(() => {
-    console.log(email);
-    console.log(state);
-  }, [email, state]);
+    console.log('FORMMMM: ',state);
+  }, [state])
+
   return (
     <MainContent className="MainContent">
       <Top />

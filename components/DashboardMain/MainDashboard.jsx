@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import Body from "@/components/DashboardMain/Body/Body";
-import SideBar from "@/components/DashboardMain/SideBar/SideBar";
-import Header from "./Body/Top/components/Header";
+import Body from "../../components/DashboardMain/Body/Body";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Container = styled("div")({
   position: "relative",
@@ -58,6 +58,7 @@ const Container = styled("div")({
 });
 
 export default function MainDashboard() {
+  
   return (
     <Container>
       {/* <SideBar /> */}
