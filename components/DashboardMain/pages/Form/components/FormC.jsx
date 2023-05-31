@@ -120,10 +120,10 @@ const Button = styled("button")({
 const BtnText = styled("span")({});
 
 const FormC = () => {
-  const { email } = useSelector(state => state.login.loginUserCredentials);
+  const state = useSelector(state => state);
   useEffect(() => {
-    console.log('FORM CCC: ',email);
-  }, [email])
+    console.log('FORMMMM: ',state);
+  }, [state])
   return (
     <Container>
       <Registracion className="header">Registracion</Registracion>

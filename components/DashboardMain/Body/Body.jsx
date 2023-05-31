@@ -64,10 +64,10 @@ const Bottom = styled("div")(({ theme }) => ({
 }));
 
 export default function Body() {
-  const { email } = useSelector(state => state.login.loginUserCredentials);
+  const state = useSelector(state => state);
   useEffect(() => {
-    console.log(email);
-  }, [email])
+    console.log('FORMMMM: ',state);
+  }, [state])
   return (
     <MainContent className="MainContent">
       <Top />
