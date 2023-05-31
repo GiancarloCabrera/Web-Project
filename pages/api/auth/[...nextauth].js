@@ -38,15 +38,15 @@ export const authOptions = {
           }
     })
   ],
-//   Session strategy
+  //   Session strategy
   session: {
-    strategy: "jwt"
+    strategy: "jwt",
   },
   pages: {
     signIn: "/login",
     // PENDING TO ADD ERROR PAGE
     // error: "/login/error.jsx"
-  }
-}
+  },
+};
 
-export default NextAuth(authOptions)
+export default NextAuth(authOptions);
