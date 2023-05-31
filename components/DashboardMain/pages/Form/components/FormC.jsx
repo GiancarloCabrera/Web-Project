@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import SendIcon from "@mui/icons-material/Send";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Container = styled("div")({
   position: "relative",
@@ -118,6 +120,10 @@ const Button = styled("button")({
 const BtnText = styled("span")({});
 
 const FormC = () => {
+  const { email } = useSelector(state => state.login.loginUserCredentials);
+  useEffect(() => {
+    console.log('FORM CCC: ',email);
+  }, [email])
   return (
     <Container>
       <Registracion className="header">Registracion</Registracion>

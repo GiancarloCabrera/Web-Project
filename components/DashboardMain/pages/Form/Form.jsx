@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import FormC from "./components/FormC";
+import { useSelector } from "react-redux";
 
 const Container = styled("div")({
   minHeight: "100vh",
@@ -12,6 +13,11 @@ const Container = styled("div")({
 });
 
 const Form = () => {
+  const { email } = useSelector(state => state.login.loginUserCredentials);
+  useEffect(() => {
+    console.log('FORMMMM: ',email);
+  }, [email])
+
   return (
     <Container>
       <FormC />

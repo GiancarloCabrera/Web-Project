@@ -10,10 +10,11 @@ export const authOptions = {
         },
         async authorize(credentials, req) {
           try {
+
+            console.log('pasooooooo');
             
             const { email, password } = credentials;
-            console.log(email, password);
-            const res = await fetch('http://localhost:8000/api/auth/login', 
+            const res = await fetch('http://localhost:3001/api/auth/login', 
             {
               method: "POST",
               body: JSON.stringify({
@@ -27,7 +28,7 @@ export const authOptions = {
             );
             const user = await res.json();
             console.log(user);
-            
+            console.log(email, password);
             // THE ONLY PROBLEM LEFT IS THAT IM JUS GETTING THE NAME OF THE USER.....
             // AND THE REGISTER WONT RETURN A JSW TOKEN, THE USER WILL BE REDIRECTED TO LOGIN...
             if( user.ok ) return user; else return null;
