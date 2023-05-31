@@ -187,7 +187,7 @@ const SimpleForm = () => {
     // Realizar las acciones necesarias con los datos enviados
     // ...
 
-<<<<<<< HEAD
+
     const allDevices = parseInt(values.allDevicesNum1);
     const deskCompNum2 = parseInt(values.deskCompNum2);
     const numberServers5 = parseInt(values.numberServers5);
@@ -241,13 +241,7 @@ const SimpleForm = () => {
   useEffect(() => {
     setIsButtonDisabled(true);
   }, []);
-=======
-const FormC = () => {
-  const state = useSelector(state => state);
-  useEffect(() => {
-    console.log('FORMMMM: ',state);
-  }, [state])
->>>>>>> ba8196ba425452a11fbc2a2b4d9921e7efabebd9
+
   return (
     <ContainerGlobal>
       <Title>
