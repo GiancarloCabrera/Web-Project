@@ -6,6 +6,7 @@ import { styled } from "@mui/system";
 import Swal from "sweetalert2";
 import { useSession } from "next-auth/react";
 import { useSelector } from "react-redux";
+import Input from "@material-ui/core/Input";
 
 const Title = styled("div")(({ theme }) => ({
   h1: {
@@ -137,19 +138,8 @@ const combinedSchema = Yup.object().shape({
   ...validationShemaServers.fields,
   ...validationSchemaPortatil.fields,
 });
-const isCombinedFormValid = (touched, errors) => {
-  const combinedFields = Object.keys(combinedSchema.fields);
-
-  // Verificar si todos los campos del formulario combinado son válidos
-  const isCombinedValid = combinedFields.every((field) => {
-    return !errors[field];
-  });
-
-  return isCombinedValid;
-};
 
 const SimpleForm = () => {
-  const { data: session, status: loading } = useSession();
   const fetchData = async (formData) => {
     try {
       const response = await fetch("http://localhost:3001/api/form/info", {
@@ -194,26 +184,55 @@ const SimpleForm = () => {
   const handleSubmit = (values, { resetForm }) => {
     // Realizar las acciones necesarias con los datos enviados
     // ...
-    const userEmail = session?.data?.user?.name;
+
+    const allDevices = parseInt(values.allDevicesNum1);
+    const deskCompNum2 = parseInt(values.deskCompNum2);
+    const numberServers5 = parseInt(values.numberServers5);
+    const numberLaptops8 = parseInt(values.numberLaptops8);
+
+    const hoursPerDayDeskComp3 = parseFloat(values.hoursPerDayDeskComp3);
+    const avgHoursPerDayUsageServ6 = parseFloat(
+      values.avgHoursPerDayUsageServ6
+    );
+    const avgHoursPerDayUsageLaptop9 = parseFloat(
+      values.avgHoursPerDayUsageLaptop9
+    );
+
+    const avgYearsUsageDekComp4 = parseFloat(values.avgYearsUsageDekComp4);
+    const avgYearsUsageServ7 = parseFloat(values.avgYearsUsageServ7);
+    const avgYearsUsageLaptop10 = parseFloat(values.avgYearsUsageLaptop10);
+
+    const energyConsumedByBranchW11 = parseFloat(
+      values.energyConsumedByBranchW11
+    );
+
+    const userEmail = "hamletcruzpirazan@gmail.com";
 
     const formData = {
-      ...values,
+      allDevicesNum1: allDevices,
+      deskCompNum2: deskCompNum2,
+      numberServers5: numberServers5,
+      numberLaptops8: numberLaptops8,
+      hoursPerDayDeskComp3: hoursPerDayDeskComp3,
+      avgHoursPerDayUsageServ6: avgHoursPerDayUsageServ6,
+      avgHoursPerDayUsageLaptop9: avgHoursPerDayUsageLaptop9,
+      avgYearsUsageDekComp4: avgYearsUsageDekComp4,
+      avgYearsUsageServ7: avgYearsUsageServ7,
+      avgYearsUsageLaptop10: avgYearsUsageLaptop10,
+      energyConsumedByBranchW11: energyConsumedByBranchW11,
       emailUser: userEmail,
     };
 
+    console.log(formData, "Holaaaa");
     fetchData(formData);
 
     // Mostrar la alerta SweetAlert
 
     resetForm();
+    useEffect(() => {
+      console.log(formData);
+    }, [formData]);
   };
-
-  const { email } = useSelector((state) => state.login.loginUserCredentials);
-  const state = useSelector((state) => state);
-  useEffect(() => {
-    console.log(email);
-    console.log(state);
-  }, [email, state]);
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   useEffect(() => {

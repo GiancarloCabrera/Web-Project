@@ -7,6 +7,9 @@ import {
   Box,
   useMediaQuery,
 } from "@mui/material";
+import { Modal } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import Backdrop from "@material-ui/core/Backdrop";
 
 import Swal from "sweetalert2";
 // import { styled } from "@mui/system";
@@ -60,17 +63,35 @@ const NoDataMessage = styled(Typography)({
   overflow: "auto",
 });
 
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    color: "black",
+    backgroundColor: "#fff", // Color de fondo semi-transparente
+    // Resto de estilos del modal
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "400px",
+    height: "300px",
+    borderRadius: "8px",
+    padding: "16px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+}));
+
 export default function Register() {
-  const { email } = useSelector((state) => state.login.loginUserCredentials);
-  const state = useSelector((state) => state);
-  useEffect(() => {
-    console.log(email);
-    console.log(state);
-  }, [email, state]);
+  const classes = useStyles();
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [dataCard, setDataCard] = useState();
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const email = "ksoencec@gmail.com";
+        const email = "hamletcruzpirazan@gmail.com";
         const response = await fetch(
           `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
             email
@@ -83,7 +104,9 @@ export default function Register() {
           }
         );
         const data = await response.json();
-        console.log("Hola", data);
+        setDataCard(data);
+
+        setIsLoading(false);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -92,8 +115,22 @@ export default function Register() {
     fetchData();
   }, []);
 
+  // useEffect(() => {
+  //   console.log(dataCard);
+
+  //   if (dataCard) {
+  //     const cartaSelectionada = dataCard.userForms.find(
+  //       (carta) => carta._id === id
+  //     );
+  //     setPruebaState(cartaSelectionada);
+  //     console.log(pruebaState, "PruebaSate");
+  //   }
+  // }, [id, dataCard]);
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedForm, setSelectedForm] = useState(null);
   const [fakeData, setFakeData] = useState([
     // Datos iniciales
     {
@@ -110,9 +147,17 @@ export default function Register() {
     },
   ]);
 
-  const deleteItem = (id) => {
-    const updatedData = fakeData.filter((item) => item.id !== id);
-    setFakeData(updatedData);
+  const handleShow = (id) => {
+    const cartaSeleccionada = dataCard.userForms.find(
+      (carta) => carta._id === id
+    );
+    setSelectedForm(cartaSeleccionada);
+    setIsModalOpen(true);
+  };
+
+  const handleClose = () => {
+    setSelectedForm(null);
+    setIsModalOpen(false);
   };
 
   const showAlert = (item) => {
@@ -152,77 +197,119 @@ export default function Register() {
           <p>See all your register and see details</p>
         </Title>
 
-        <Grid container spacing={2} sx={{ marginTop: 0 }}>
-          {fakeData.length !== 0 ? (
-            fakeData.map((c, i) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
-                <Card
-                  sx={{
-                    // marginBottom: 2,
-                    backgroundColor: "#021c1e",
+        {isLoading ? (
+          <h1>Cargando perro</h1>
+        ) : (
+          <Grid container spacing={2} sx={{ marginTop: 0 }}>
+            {dataCard.userForms.length !== 0 ? (
+              dataCard.userForms.map((c, i) => (
+                <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
+                  <Card
+                    sx={{
+                      // marginBottom: 2,
+                      backgroundColor: "#021c1e",
 
-                    borderRadius: "10px ",
-                    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
-                    transition: "transform 0.3s ease-in-out",
-                    "&:hover": {
-                      transform: "scale(1.05)",
-                    },
-                    // border: "1px solid white",
-                  }}
-                >
-                  <CardContent>
-                    <Typography variant="h5" component="div" gutterBottom>
-                      {c.name}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Contenido de la carta
-                    </Typography>
-                    <Grid
-                      container
-                      gap={isMobile ? 1 : 0}
-                      sx={{ marginTop: 2 }}
-                      className={isMobile ? "mobile-buttons-container" : ""}
-                    >
-                      <Box
-                        sx={{
-                          marginRight: isMobile ? 0 : 1,
-                        }}
+                      borderRadius: "10px ",
+                      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+                      transition: "transform 0.3s ease-in-out",
+                      "&:hover": {
+                        transform: "scale(1.05)",
+                      },
+                      // border: "1px solid white",
+                    }}
+                  >
+                    <CardContent>
+                      <Typography variant="h5" component="div" gutterBottom>
+                        Dispositivos {c.allDevicesNum1}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Consumo energetico {c.percResult}
+                      </Typography>
+                      <Grid
+                        container
+                        gap={isMobile ? 1 : 0}
+                        sx={{ marginTop: 2 }}
+                        className={isMobile ? "mobile-buttons-container" : ""}
                       >
-                        <Link
-                          href={`/dashboard/registers/register-detail/${c.id}`}
+                        <Box
+                          sx={{
+                            marginRight: isMobile ? 0 : 1,
+                          }}
                         >
-                          <Button
-                            variant="outlined"
-                            size="small"
-                            color="primary"
+                          <Link
+                            href={`/dashboard/registers/register-detail/${c._id}`}
                           >
-                            See More
-                          </Button>
-                        </Link>
-                      </Box>
-                      <Button
-                        onClick={() => showAlert(c.nombre)}
-                        variant="contained"
-                        size="small"
-                        color="error"
-                      >
-                        Delete
-                      </Button>
-                    </Grid>
-                  </CardContent>
-                </Card>
+                            <Button
+                              onClick={() => handleShow(c)}
+                              variant="outlined"
+                              size="small"
+                              color="primary"
+                            >
+                              See More
+                            </Button>
+                          </Link>
+                        </Box>
+                        <Button
+                          onClick={() => handleShow(c._id)}
+                          variant="contained"
+                          size="small"
+                          color="error"
+                        >
+                          Show
+                        </Button>
+                        {selectedForm && (
+                          <Modal
+                            open={isModalOpen}
+                            onClose={handleClose}
+                            BackdropProps={{
+                              style: {
+                                backgroundColor: "rgba(0, 0, 0, 0.5)", // Fondo semi-transparente
+                              },
+                            }}
+                          >
+                            <div className={classes.modal}>
+                              <h2>Modal Escojido</h2>
+                              <p>ID: {selectedForm._id}</p>
+                              <p>Email: {selectedForm.emailUser}</p>
+                              <p>
+                                All Devices Number:{" "}
+                                {selectedForm.allDevicesNum1}
+                              </p>
+                              <p>
+                                Desk Computer Number:{" "}
+                                {selectedForm.deskCompNum2}
+                              </p>
+                              <p>
+                                Hours per Day Desk Computer:{" "}
+                                {selectedForm.hoursPerDayDeskComp3}
+                              </p>
+                              {/* Resto del contenido del modal */}
+                              <Button
+                                variant="contained"
+                                color="secondary"
+                                onClick={handleClose}
+                              >
+                                Close Modal
+                              </Button>
+                            </div>
+                          </Modal>
+                        )}
+                      </Grid>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))
+            ) : (
+              <Grid item xs={12}>
+                <div>
+                  <NoDataMessage variant="body1">
+                    No hay registros disponibles.
+                  </NoDataMessage>
+                </div>
               </Grid>
-            ))
-          ) : (
-            <Grid item xs={12}>
-              <div>
-                <NoDataMessage variant="body1">
-                  No hay registros disponibles.
-                </NoDataMessage>
-              </div>
-            </Grid>
-          )}
-        </Grid>
+            )}
+          </Grid>
+        )}
       </RegisterContainer>
     </Container>
   );

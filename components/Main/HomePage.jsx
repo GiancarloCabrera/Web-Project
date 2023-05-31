@@ -73,10 +73,10 @@ export default function HomePage() {
     <Home className="home" id="home">
       <div>
         <Somos>
-          Soy Hamlet <br />
-          Ha<Span>mim</Span>
+          We are programers <br />
+          Ha <Span> Gin</Span>
         </Somos>
-        <H3>Front-End Developer</H3>
+        <H3>Front-End Developers</H3>
         <GetStarted href="/auth" type="button">
           Get Started
         </GetStarted>

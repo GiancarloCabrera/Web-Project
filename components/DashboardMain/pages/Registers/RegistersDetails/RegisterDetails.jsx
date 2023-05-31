@@ -178,18 +178,72 @@ const RegisterDetails = ({ params }) => {
   const [registerDetail, setRegisterDetail] = useState({});
   const [progress, setProgress] = useState(0);
 
+  const [dataCard, setDataCard] = useState();
+
+  const [pruebaState, setPruebaState] = useState({});
+
+  const { id } = params;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const email = "hamletcruzpirazan@gmail.com";
+        const response = await fetch(
+          `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
+            email
+          )}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        setDataCard(data);
+
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    console.log(dataCard);
+
+    if (dataCard) {
+      const cartaSelectionada = dataCard.userForms.find(
+        (carta) => carta._id === id
+      );
+      setPruebaState(cartaSelectionada);
+      console.log(pruebaState, "PruebaSate");
+    }
+  }, [id, dataCard]);
+
   let estadoActual = "";
   let mensajeAdicional = "";
+  let areasMejorar = [];
 
-  if (registerDetail?.estado?.porcentaje >= 80) {
+  if (pruebaState?.percResult >= 80) {
     estadoActual = "Excelente";
     mensajeAdicional = "No debes mejorar en nada";
-  } else if (registerDetail?.estado?.porcentaje >= 50) {
+  } else if (pruebaState?.percResult >= 50) {
     estadoActual = "Bueno";
     mensajeAdicional = "Debes mejorar en estas cosas puntuales";
+    areasMejorar = [
+      "Energia de los computadores",
+      "Uso responable de la energia",
+    ];
   } else {
     estadoActual = "Malo";
     mensajeAdicional = "Debes mejorar mucho, en estas cosas en especifico";
+    areasMejorar = [
+      "Energia de los sevidores",
+      "Enrgia de los computadores",
+      "Energia en lso compuadores de mesa",
+    ];
   }
 
   useEffect(() => {
@@ -213,7 +267,7 @@ const RegisterDetails = ({ params }) => {
   }, [registerDetail]);
 
   useEffect(() => {
-    const targetProgress = registerDetail?.estado?.porcentaje || 0;
+    const targetProgress = pruebaState?.percResult || 0;
     const increment = 1;
     const duration = 1000; // Duración en milisegundos
 
@@ -231,10 +285,10 @@ const RegisterDetails = ({ params }) => {
     return () => {
       clearInterval(interval);
     };
-  }, [registerDetail?.estado?.porcentaje]);
+  }, [pruebaState?.percResult]);
 
   const getColor = () => {
-    const porcentaje = registerDetail?.estado?.porcentaje;
+    const porcentaje = pruebaState?.percResult;
 
     if (porcentaje >= 80) {
       return "green"; // Excelente
@@ -250,16 +304,17 @@ const RegisterDetails = ({ params }) => {
       <DetailsContainer>
         <Title>
           <h1>Detalles </h1>
-          <p>Detalles acerca de {registerDetail?.name}</p>
+          <p>
+            Detalles acerca de el registro escojido:{" "}
+            <span style={{ color: "#6fb98f" }}>{pruebaState?.percResult}</span>
+          </p>
         </Title>
         <CardContainer>
           <Card>
             <div style={{ paddingBottom: "1.5rem" }}>
               <Mejorar>
                 Tu estado actual es{" "}
-                <Status status={registerDetail?.estado?.porcentaje}>
-                  {estadoActual}
-                </Status>
+                <Status status={pruebaState?.percResult}>{estadoActual}</Status>
                 {", "}
                 {mensajeAdicional}
               </Mejorar>
@@ -270,7 +325,7 @@ const RegisterDetails = ({ params }) => {
                 text={`${progress}%`}
                 styles={{
                   path: { stroke: getColor() },
-                  trail: { stroke: "yellow" },
+                  trail: { stroke: "#052f33" },
                   text: { fill: "#6fb98f", fontSize: "16px" },
                 }}
               />
@@ -278,16 +333,19 @@ const RegisterDetails = ({ params }) => {
           </Card>
 
           <SmallCard>
-            <Mejorar>Cosas a mejorar</Mejorar>
+            {areasMejorar.length !== 0 && (
+              <>
+                <Mejorar>Cosas a mejorar</Mejorar>
+                <MejorasList>
+                  {areasMejorar.map((mejora, i) => (
+                    <MejoraItem key={i}>{mejora}</MejoraItem>
+                  ))}
+                </MejorasList>
+              </>
+            )}
 
-            {Object.keys(registerDetail).length !== 0 ? (
-              <MejorasList>
-                {registerDetail.mejoras.map((mejora, index) => (
-                  <MejoraItem key={index}>{mejora}</MejoraItem>
-                ))}
-              </MejorasList>
-            ) : (
-              <h1>No debes mejorar en nada</h1>
+            {areasMejorar.length === 0 && (
+              <Mejorar>No debes mejorar en nada</Mejorar>
             )}
           </SmallCard>
         </CardContainer>
