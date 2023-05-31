@@ -14,7 +14,7 @@ import { useDispatch } from "react-redux";
 import { getSession, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
-import { loginUser } from "@/redux/actions/login";
+import { loginUserAction } from "../app/GlobalRedux/Features/login/login";
 
 const H1 = styled("h1")({
   fontWeight: 700,
@@ -374,7 +374,6 @@ export default function LoginCard() {
       email: loginForm.email,
       password: loginForm.password,
       redirect: false,
-      // callbackUrl: '/dashboard'
     })
     console.log('user: ', user);
     if (!user.ok) {
@@ -384,7 +383,7 @@ export default function LoginCard() {
         icon: 'error',
       })
     } else {
-      dispatch(loginUser({ email: loginForm.email }))
+      dispatch(loginUserAction({ email: loginForm.email }))
       router.push('/dashboard')
     }
   }

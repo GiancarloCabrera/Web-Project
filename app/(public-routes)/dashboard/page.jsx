@@ -1,8 +1,9 @@
 "use client";
 
 import styled from "@emotion/styled";
-import MainDashboard from "@/components/DashboardMain/MainDashboard";
-import Body from "@/components/DashboardMain/Body/Body";
+import MainDashboard from "../../../components/DashboardMain/MainDashboard";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Container = styled("div")({
   display: "flex",
@@ -52,7 +53,12 @@ const Container = styled("div")({
     color: "hsl(94,59%,35%)",
   },
 });
-export default function dashboard() {
+export default function Dashboard() {
+  // const { email } = useSelector(state => state.login.loginUserCredentials);
+  const { email } = useSelector(state => state.persistedReducer.login.loginUserCredentials);
+  useEffect(() => {
+    console.log('MAIN DASHBOARD: ',email);
+  }, [email])
   return (
     <>
       <MainDashboard />

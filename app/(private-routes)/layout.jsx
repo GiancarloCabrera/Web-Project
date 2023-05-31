@@ -1,5 +1,5 @@
-'use-client'
-import ResponsiveDrawer from "@/components/Drawer";
+// 'use-client'
+import ResponsiveDrawer from "../../components/Drawer";
 import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 

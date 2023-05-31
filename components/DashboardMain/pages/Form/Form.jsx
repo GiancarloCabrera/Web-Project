@@ -13,10 +13,10 @@ const Container = styled("div")({
 });
 
 const Form = () => {
-  const { email } = useSelector(state => state.login.loginUserCredentials);
+  const state = useSelector(state => state);
   useEffect(() => {
-    console.log('FORMMMM: ',email);
-  }, [email])
+    console.log('FORMMMM: ',state);
+  }, [state])
 
   return (
     <Container>

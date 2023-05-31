@@ -1,6 +1,6 @@
 import React from 'react';
-import LoginCard from '@/components/LoginCard';
-import theme from '@/styles/Material_Ui';
+import LoginCard from '../../../components/LoginCard';
+import theme from '../../../styles/Material_Ui';
 
 export default function Home() {
 
