@@ -1,14 +1,11 @@
-
 import React, { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { TextField, Button, Grid, Typography, Container } from "@mui/material";
 import { styled } from "@mui/system";
 import Swal from "sweetalert2";
-import { useSession } from "next-auth/react";
-import { useSelector } from "react-redux";
-import Input from "@material-ui/core/Input";
 
+import { useSelector } from "react-redux";
 
 const Title = styled("div")(({ theme }) => ({
   h1: {
@@ -183,10 +180,16 @@ const SimpleForm = () => {
     }
   };
 
+  const { email } = useSelector(
+    (state) => state.persistedReducer.login.loginUserCredentials
+  );
+  useEffect(() => {
+    console.log("MAIN DASHBOARD: ", email);
+  }, [email]);
+
   const handleSubmit = (values, { resetForm }) => {
     // Realizar las acciones necesarias con los datos enviados
     // ...
-
 
     const allDevices = parseInt(values.allDevicesNum1);
     const deskCompNum2 = parseInt(values.deskCompNum2);
@@ -209,7 +212,7 @@ const SimpleForm = () => {
       values.energyConsumedByBranchW11
     );
 
-    const userEmail = "hamletcruzpirazan@gmail.com";
+    // const userEmail = "hamletcruzpirazan@gmail.com";
 
     const formData = {
       allDevicesNum1: allDevices,
@@ -223,7 +226,7 @@ const SimpleForm = () => {
       avgYearsUsageServ7: avgYearsUsageServ7,
       avgYearsUsageLaptop10: avgYearsUsageLaptop10,
       energyConsumedByBranchW11: energyConsumedByBranchW11,
-      emailUser: userEmail,
+      emailUser: email,
     };
 
     console.log(formData, "Holaaaa");

@@ -6,6 +6,9 @@ import image from "../../../../public/images/Example.png";
 
 const ActivitySection = styled("div")(({ theme }) => ({
   flexBasis: "50%",
+  background: "#021c1e",
+  padding: "10px",
+  borderRadius: "10px",
 
   [theme.breakpoints.down("uy")]: {
     width: "100%",

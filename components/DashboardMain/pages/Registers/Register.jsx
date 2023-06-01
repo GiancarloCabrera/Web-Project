@@ -86,12 +86,15 @@ const useStyles = makeStyles((theme) => ({
 export default function Register() {
   const classes = useStyles();
 
+  const { email } = useSelector(
+    (state) => state.persistedReducer.login.loginUserCredentials
+  );
+
   const [isLoading, setIsLoading] = useState(true);
   const [dataCard, setDataCard] = useState();
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const email = "hamletcruzpirazan@gmail.com";
         const response = await fetch(
           `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
             email
@@ -105,7 +108,7 @@ export default function Register() {
         );
         const data = await response.json();
         setDataCard(data);
-
+        console.log(data);
         setIsLoading(false);
       } catch (error) {
         console.error("Error:", error);
@@ -220,7 +223,7 @@ export default function Register() {
                   >
                     <CardContent>
                       <Typography variant="h5" component="div" gutterBottom>
-                        Dispositivos {c.allDevicesNum1}
+                        Registro {i + 1}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
                         Consumo energetico {c.percResult}
@@ -268,12 +271,15 @@ export default function Register() {
                             }}
                           >
                             <div className={classes.modal}>
-                              <h2>Modal Escojido</h2>
-                              <p>ID: {selectedForm._id}</p>
-                              <p>Email: {selectedForm.emailUser}</p>
+                              <h2>Registro {i + 1}</h2>
+                              <p>allDevices: {selectedForm.allDevicesNum1}</p>
                               <p>
-                                All Devices Number:{" "}
-                                {selectedForm.allDevicesNum1}
+                                avgHoursPerDayUsageLaptop:{" "}
+                                {selectedForm.avgHoursPerDayUsageLaptop9}
+                              </p>
+                              <p>
+                                avgHoursPerDayUsageServer:{" "}
+                                {selectedForm.avgHoursPerDayUsageServ6}
                               </p>
                               <p>
                                 Desk Computer Number:{" "}

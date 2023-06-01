@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useSelector } from "react-redux";
 
 const Container = styled("div")({
   position: "relative",
@@ -63,7 +64,7 @@ const Status = styled("span")(({ status }) => {
 const CardContainer = styled("div")(({ theme }) => ({
   display: "flex",
   marginTop: "2rem",
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down("mx")]: {
     flexDirection: "column",
   },
 }));
@@ -94,7 +95,7 @@ const SmallCard = styled("div")(({ theme }) => ({
   height: "100%",
   maxHeight: "100%",
 
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down("mx")]: {
     marginLeft: "0",
   },
 }));
@@ -113,7 +114,7 @@ const Mejorar = styled("h2")(({ theme }) => ({
   fontSize: "1.2rem",
   fontWeight: "bold",
   marginBottom: "1rem",
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down("mx")]: {
     textAlign: "center",
     margin: "auto",
   },
@@ -151,30 +152,34 @@ const ButtonLink = styled.button`
   padding: 0.5rem 1rem;
   background-color: #6fb98f;
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 1.2rem;
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
   border: none;
   cursor: pointer;
+  font-family: "Montserrat, sans-serif";
 
   &:hover {
     background-color: #589c77;
   }
 
-  @media (max-width: 768px) {
-    font-size: 0.875rem;
-    padding: 0.375rem 0.75rem;
+  @media (max-width: 830px) {
+    font-size: 1.2rem;
+    padding: 0.5rem 0.75rem;
   }
 `;
 
 const ContainerButton = styled("div")(({ theme }) => ({
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down("mx")]: {
     paddingTop: "1rem",
   },
 }));
 
 const RegisterDetails = ({ params }) => {
+  const { email } = useSelector(
+    (state) => state.persistedReducer.login.loginUserCredentials
+  );
   const [registerDetail, setRegisterDetail] = useState({});
   const [progress, setProgress] = useState(0);
 
@@ -186,7 +191,6 @@ const RegisterDetails = ({ params }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const email = "hamletcruzpirazan@gmail.com";
         const response = await fetch(
           `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
             email

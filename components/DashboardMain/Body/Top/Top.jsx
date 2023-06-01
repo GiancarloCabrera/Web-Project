@@ -10,6 +10,9 @@ import Video from "../../../../public//images/Gif.gif";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Header from "./components/Header";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const HeaderSection = styled("div")(({ theme }) => ({
   justifyContent: "space-between",
@@ -411,6 +414,73 @@ const TopSection = styled("div")({
 });
 
 const Top = () => {
+  const [dataCard, setDataCard] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const { email } = useSelector(
+    (state) => state.persistedReducer.login.loginUserCredentials
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
+            email
+          )}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        setDataCard(data);
+
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const sumEnergyConsumedByBranch = () => {
+    let total = 0;
+    if (dataCard?.userForms) {
+      dataCard.userForms.forEach((item) => {
+        total += item.energyConsumedByBranchW11;
+      });
+    }
+    return total;
+  };
+
+  const totalEnergyConsumedByBranch = sumEnergyConsumedByBranch();
+
+  const sumaPerHours = () => {
+    let total = 0;
+    let avgHoursPerDayUsageLaptop9 = 0;
+    let avgHoursPerDayUsageServ6 = 0;
+    let hoursPerDayDeskComp3 = 0;
+
+    if (dataCard?.userForms) {
+      dataCard.userForms.forEach((item) => {
+        avgHoursPerDayUsageLaptop9 += item.avgHoursPerDayUsageLaptop9;
+        avgHoursPerDayUsageServ6 += item.avgHoursPerDayUsageServ6;
+        hoursPerDayDeskComp3 += item.hoursPerDayDeskComp3;
+      });
+      total =
+        avgHoursPerDayUsageLaptop9 +
+        avgHoursPerDayUsageServ6 +
+        hoursPerDayDeskComp3;
+      console.log(total);
+    }
+    return total;
+  };
+
+  const totalPerHours = sumaPerHours();
+
   return (
     <TopSection className="topSection">
       <Header />
@@ -436,12 +506,22 @@ const Top = () => {
               <h1>My Stats</h1>
 
               <DivFlex className="flex">
-                <span>
-                  Today <br /> <small>4 Orders</small>
-                </span>
-                <span>
-                  This Month <br /> <small>127 Orders</small>
-                </span>
+                {isLoading ? (
+                  <h1>Loading...</h1>
+                ) : dataCard.userForms.length > 0 ? (
+                  <>
+                    <span>
+                      All energy <br />{" "}
+                      <small>{totalEnergyConsumedByBranch}</small>
+                    </span>
+                    <span>
+                      All Hours Per Day <br />
+                      <small>{totalPerHours}</small>
+                    </span>
+                  </>
+                ) : (
+                  <></>
+                )}
               </DivFlex>
 
               <span className="flex link">
