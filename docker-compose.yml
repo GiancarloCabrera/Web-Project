@@ -1,13 +1,12 @@
-version: '3'
+version: "3"
 services:
   app:
-    container_name: front-proj-ham-gian
+    container_name: componentmanager-front
     build:
       context: ./
       dockerfile: Dockerfile
     ports:
       - 3000:3000
-
 # version: "3"
 # services:
 #   frontend:
