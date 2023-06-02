@@ -46,6 +46,7 @@ const Title = styled("div")(({ theme }) => ({
 
 const SearchBar = styled("div")(({ theme }) => ({
   padding: "1rem 2rem",
+  width: "50%",
   background: "#021c1e",
   borderRadius: "5px",
   gap: "1rem",
@@ -156,13 +157,13 @@ const Header = () => {
       </Title>
 
       <SearchBar className="hola flex">
-        <input type="text" placeholder="Search DashBoard" />
-        <SearchIcon className="icon" />
+        {/* <input type="text" placeholder="Search DashBoard" />
+        <SearchIcon className="icon" /> */}
       </SearchBar>
 
       <AdminDiv className="oc flex">
-        <MessageOutlinedIcon className="icon" />
-        <NotificationsOutlinedIcon className="icon" />
+        {/* <MessageOutlinedIcon className="icon" />
+        <NotificationsOutlinedIcon className="icon" /> */}
         <ImageUser
           className="imageUser"
           onClick={() => {

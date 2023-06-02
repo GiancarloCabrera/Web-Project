@@ -263,7 +263,7 @@ const Listing = () => {
       <Heading className="flex">
         <h1>My Registers</h1>
         {isLoading ? (
-          <h1>Cargando...</h1>
+          <></>
         ) : dataCard.userForms.length > 0 ? (
           <Link href="/dashboard/registers">
             <button className="btn flex">

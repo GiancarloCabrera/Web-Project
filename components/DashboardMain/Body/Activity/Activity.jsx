@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Image from "next/image";
 import image from "../../../../public/images/Example.png";
+import { useSelector } from "react-redux";
+import Link from "next/link";
 
 const ActivitySection = styled("div")(({ theme }) => ({
   flexBasis: "50%",
-  background: "#021c1e",
-  padding: "10px",
+  // background: "#021c1e",
+  // padding: "10px",
   borderRadius: "10px",
 
   [theme.breakpoints.down("uy")]: {
@@ -68,6 +70,20 @@ const SingleCustomer = styled("div")({
     boxShadow: "0 2px 4px hsl(120, 5%, 88%)",
     marginRight: "1rem",
   },
+  ".imageTop": {
+    width: "30px",
+    height: "30px",
+    borderRadius: "50%",
+    objectFit: "cover",
+    marginRight: "1rem",
+
+    transition: ".5s ease",
+    color: "#6fb98f",
+
+    "&:hover": {
+      transform: "translateY(-10px)",
+    },
+  },
 });
 
 const CustomerDetails = styled("div")({
@@ -95,21 +111,116 @@ const Duration = styled("div")({
   fontWeight: "500",
   fontSize: ".813rem",
 });
+
 const Activity = () => {
+  const [dataCard, setDataCard] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const { email } = useSelector(
+    (state) => state.persistedReducer.login.loginUserCredentials
+  );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
+            email
+          )}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        setDataCard(data);
+
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const añosDeUso = () => {
+    let totales = [];
+    if (dataCard?.userForms) {
+      dataCard.userForms.forEach((item) => {
+        let total =
+          item.avgYearsUsageServ7 +
+          item.avgYearsUsageServ7 +
+          item.avgYearsUsageDekComp4;
+        let totalFormateado = total.toLocaleString();
+        totales.push(totalFormateado);
+      });
+    }
+    return totales;
+  };
+
+  const totalAñosUso = añosDeUso();
+
+  console.log(añosDeUso());
   return (
     <ActivitySection>
       <Heading className="flex">
-        <h1>Resent Activity</h1>
-        <button className="btn flex">
-          See All <ArrowForwardIcon className="icon" />
-        </button>
+        <h1>Total Años</h1>
+        {isLoading ? (
+          <></>
+        ) : dataCard.userForms.length > 0 ? (
+          <Link href="/dashboard/registers">
+            <button className="btn flex">
+              See All <ArrowForwardIcon className="icon" />
+            </button>
+          </Link>
+        ) : (
+          <></>
+        )}
       </Heading>
 
       <SecContainer className="grid">
-        <SingleCustomer className="flex">
+        {isLoading ? (
+          <h1>Loading...</h1>
+        ) : dataCard.userForms.length > 0 ? (
+          <>
+            {totalAñosUso.slice(0, 4).map((item, index) => (
+              <SingleCustomer className="flex">
+                <div
+                  key={index}
+                  className="imageTop"
+                  style={{
+                    borderRight: "2px solid rgb(190, 190, 190)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "1",
+                  }}
+                >
+                  <span
+                    style={{
+                      margin: "0 9px", // Ajusta el margen vertical según tus necesidades
+                      padding: "0", // Ajusta el relleno según tus necesidades
+                    }}
+                    key={index}
+                  >
+                    {index + 1}
+                  </span>
+                </div>{" "}
+                <CustomerDetails>
+                  <span className="name">Registro {index + 1}</span>
+                  <span>Años dispositivos</span>
+                </CustomerDetails>
+                <Duration>Uso: {item}</Duration>
+              </SingleCustomer>
+            ))}
+          </>
+        ) : (
+          <></>
+        )}
+        {/* <SingleCustomer className="flex">
           <Image src={image} alt="Lastes" className="lastes" priority />
           <CustomerDetails>
-            <span className="name">House</span>
+            <span className="name">Registro</span>
             <span>Created at</span>
           </CustomerDetails>
           <Duration>12/05/2004</Duration>
@@ -137,7 +248,7 @@ const Activity = () => {
             <span>Created at</span>
           </CustomerDetails>
           <Duration>12/05/2004</Duration>
-        </SingleCustomer>
+        </SingleCustomer> */}
       </SecContainer>
     </ActivitySection>
   );

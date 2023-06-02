@@ -13,6 +13,7 @@ import Header from "./components/Header";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 
 const HeaderSection = styled("div")(({ theme }) => ({
   justifyContent: "space-between",
@@ -151,6 +152,7 @@ const RightCard = styled("div")(({ theme }) => ({
 
 const Buttons = styled("div")(({ theme }) => ({
   gap: "1rem",
+  zIndex: "100",
 
   [theme.breakpoints.down("lm")]: {
     margin: "auto",
@@ -191,6 +193,7 @@ const VideoDiv = styled("div")({
     width: "100%",
     height: "100%",
     objectFit: "cover",
+    zIndex: 0,
   },
 });
 
@@ -413,6 +416,16 @@ const TopSection = styled("div")({
   },
 });
 
+const ButtonRegister = styled("button")(({ theme }) => ({
+  [theme.breakpoints.down("lm")]: {
+    boxShadow: "none",
+    padding: ".8rem 1.5rem",
+    color: "hsl(94, 59%, 35%)",
+    border: "2px solid transparent",
+    width: "100%",
+  },
+}));
+
 const Top = () => {
   const [dataCard, setDataCard] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -491,8 +504,12 @@ const Top = () => {
           <p>Help your pocket and the word</p>
 
           <Buttons className="buttons flex">
-            <button className="btn">Register</button>
-            <button className="btn transparent">See Your Plants</button>
+            <Link href="/dashboard/form">
+              <ButtonRegister className="btn">Register</ButtonRegister>
+            </Link>
+            <Link href="/dashboard/registers">
+              <button className="btn transparent">See Your Plants</button>
+            </Link>
           </Buttons>
 
           <VideoDiv>
@@ -512,7 +529,7 @@ const Top = () => {
                   <>
                     <span>
                       All energy <br />{" "}
-                      <small>{totalEnergyConsumedByBranch}</small>
+                      <small>{totalEnergyConsumedByBranch} W</small>
                     </span>
                     <span>
                       All Hours Per Day <br />

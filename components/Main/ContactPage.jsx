@@ -166,12 +166,20 @@ export default function ConctacPage() {
       </ContactText>
 
       <ContactForm>
-        <form action="">
-          <input type="" placeholder="Enter Your Name" required />
-          <input type="email" placeholder="Enter Your Email" required />
-          <input type="" placeholder="Asutation " required />
+        <form
+          action="https://formsubmit.co/hamletcruzpirazan@gmail.com"
+          method="POST"
+        >
+          <input type="" placeholder="Enter Your Name" required name="name" />
+          <input
+            type="email"
+            placeholder="Enter Your Email"
+            required
+            name="email"
+          />
+          <input type="" placeholder="Asutation " required name="asunto" />
           <textarea
-            name=""
+            name="mensaje"
             id=""
             cols="40"
             rows="10"
@@ -179,6 +187,13 @@ export default function ConctacPage() {
             required
           ></textarea>
           <input type="submit" value="Submit" className="send" />
+
+          <input
+            type="hidden"
+            name="_next"
+            value="http://localhost:3000"
+          ></input>
+          <input type="hidden" name="_captcha" value="false"></input>
         </form>
       </ContactForm>
     </Contact>

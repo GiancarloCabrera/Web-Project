@@ -28,6 +28,7 @@
     "@nivo/line": "^0.80.0",
     "@nivo/pie": "^0.80.0",
     "@reduxjs/toolkit": "^1.9.3",
+    "axios": "^1.4.0",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
     "formik": "^2.2.9",
@@ -40,11 +41,9 @@
     "react-pro-sidebar": "^0.7.1",
     "react-redux": "^8.0.5",
     "react-reveal": "^1.2.2",
+    "redux-persist": "^6.0.0",
     "sweetalert2": "^11.7.3",
-    "yup": "^1.2.0",
-    "redux-persist": "^6.0.0"
-    
-
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@types/node": "20.2.5",
