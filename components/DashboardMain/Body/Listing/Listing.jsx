@@ -282,11 +282,11 @@ const Listing = () => {
           <>
             {dataCard.userForms.slice(0, 3).map((item, index) => (
               <SigleItem key={index}>
-                <h1>Registro: {index + 1}</h1>
+                <h1>Register: {index + 1}</h1>
                 <h2>
-                  Energia Gastada: <span>{item.energyConsumedByBranchW11}</span>
+                  Spent energy: <span>{item.energyConsumedByBranchW11}</span>
                 </h2>
-                <h3>Calculo: {item.percResult}</h3>
+                <h3>Result: {item.percResult}</h3>
               </SigleItem>
             ))}
           </>
@@ -303,7 +303,7 @@ const Listing = () => {
       <Sellers className="flex">
         <TopSellers>
           <HeadingLower className="flex">
-            <h3>Mayor cantidad de dispositivos</h3>
+            <h3>Most devices amount</h3>
             {/* <button className="btn flex">
               See All <ArrowForwardIcon className="icon" />
             </button> */}
@@ -359,7 +359,7 @@ const Listing = () => {
 
         <TopSellers>
           <HeadingLower className="flex">
-            <h3>Menor cantidad de dispositivos</h3>
+            <h3>Least amount of devices</h3>
             {/* <button className="btn flex">
               See All <ArrowForwardIcon className="icon" />
             </button> */}

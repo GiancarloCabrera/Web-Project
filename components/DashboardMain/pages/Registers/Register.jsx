@@ -9,10 +9,7 @@ import {
 } from "@mui/material";
 import { Modal } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Backdrop from "@material-ui/core/Backdrop";
-
 import Swal from "sweetalert2";
-// import { styled } from "@mui/system";
 import { styled, useTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -72,8 +69,8 @@ const useStyles = makeStyles((theme) => ({
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "400px",
-    height: "300px",
+    width: "600px",
+    height: "700px",
     borderRadius: "8px",
     padding: "16px",
     display: "flex",
@@ -118,18 +115,6 @@ export default function Register() {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(dataCard);
-
-  //   if (dataCard) {
-  //     const cartaSelectionada = dataCard.userForms.find(
-  //       (carta) => carta._id === id
-  //     );
-  //     setPruebaState(cartaSelectionada);
-  //     console.log(pruebaState, "PruebaSate");
-  //   }
-  // }, [id, dataCard]);
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -163,35 +148,6 @@ export default function Register() {
     setIsModalOpen(false);
   };
 
-  const showAlert = (item) => {
-    const formattedItem = `<span style="color: red">${item}</span>`;
-
-    Swal.fire({
-      title: "Eliminar",
-      html: `¿Estás seguro de querer eliminar el registro? : ${formattedItem}`,
-      icon: "warning",
-      iconColor: "red",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Confirmar",
-      cancelButtonText: "Cancelar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const itemToDelete = fakeData.find((data) => data.nombre === item);
-        if (itemToDelete) {
-          deleteItem(itemToDelete.id);
-          Swal.fire({
-            title: "Eliminado",
-            text: "El registro se ha eliminado correctamente",
-            icon: "success",
-            confirmButtonColor: "#3085d6",
-            confirmButtonText: "Aceptar",
-          });
-        }
-      }
-    });
-  };
   return (
     <Container>
       <RegisterContainer>
@@ -223,10 +179,10 @@ export default function Register() {
                   >
                     <CardContent>
                       <Typography variant="h5" component="div" gutterBottom>
-                        Registro {i + 1}
+                        Register {i + 1}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        Consumo energetico {c.percResult}
+                        Energy consumption {c.percResult}
                       </Typography>
                       <Grid
                         container
@@ -271,24 +227,47 @@ export default function Register() {
                             }}
                           >
                             <div className={classes.modal}>
-                              <h2>Registro {i + 1}</h2>
-                              <p>allDevices: {selectedForm.allDevicesNum1}</p>
+                              <h2>Register: {i + 1}</h2>
+                              <p>All Devices: {selectedForm.allDevicesNum1}</p>
                               <p>
-                                avgHoursPerDayUsageLaptop:{" "}
-                                {selectedForm.avgHoursPerDayUsageLaptop9}
-                              </p>
-                              <p>
-                                avgHoursPerDayUsageServer:{" "}
-                                {selectedForm.avgHoursPerDayUsageServ6}
-                              </p>
-                              <p>
-                                Desk Computer Number:{" "}
+                                Numbers of desktop computers:{" "}
                                 {selectedForm.deskCompNum2}
                               </p>
                               <p>
-                                Hours per Day Desk Computer:{" "}
+                                Desktop computer power-on hours:{" "}
                                 {selectedForm.hoursPerDayDeskComp3}
                               </p>
+                              <p>
+                                Average years of use for desktop computers:{" "}
+                                {selectedForm.avgYearsUsageDekComp4}
+                              </p>
+                              <p>
+                                Number of servers: {selectedForm.numberServers5}
+                              </p>
+                              <p>
+                                Server power-on hours:{" "}
+                                {selectedForm.avgHoursPerDayUsageServ6}
+                              </p>
+                              <p>
+                                Average years of use of servers:{" "}
+                                {selectedForm.avgYearsUsageServ7}
+                              </p>
+                              <p>
+                                Number of laptops: {selectedForm.numberLaptops8}
+                              </p>
+                              <p>
+                                Laptop power-on hours:{" "}
+                                {selectedForm.avgHoursPerDayUsageLaptop9}
+                              </p>
+                              <p>
+                                Average years of use of laptops:{" "}
+                                {selectedForm.avgYearsUsageLaptop10}
+                              </p>
+                              <p>
+                                Enerrgy consumed by branch:{" "}
+                                {selectedForm.energyConsumedByBranchW11}
+                              </p>
+
                               {/* Resto del contenido del modal */}
                               <Button
                                 variant="contained"

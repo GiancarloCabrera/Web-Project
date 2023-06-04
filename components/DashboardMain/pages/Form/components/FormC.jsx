@@ -67,69 +67,65 @@ const initialValues = {
 
 const validationSchema = Yup.object({
   allDevicesNum1: Yup.number()
-    .typeError("La cantidad de dispositivos electronicos debe ser un numero")
-    .integer("La cantidad debe ser un numero entero")
-    .positive("La cantidad debe ser un numero positivo")
-    .required(
-      "La cantidad de dispositivos electronicos que maneja es requerida"
-    ),
+    .typeError("The quantity of electronic devices must be a number")
+    .integer("Quantity must be an integer")
+    .positive("Quantity must be a positive number")
+    .required("The amount of electronic devices you handle is required"),
 
   energyConsumedByBranchW11: Yup.number()
-    .typeError("La cantidad de cuanto consumio la sede debe ser un numero")
-    .positive("La cantidad debe ser un numero positivo")
-    .required("La cantidad de cuanto se consumio la sede es requerido"),
+    .typeError(
+      "The amount of how much the headquarters consumed must be a number"
+    )
+    .positive("Quantity must be a positive number")
+    .required("The amount of how much the seat was consumed is required"),
 });
 
 const validationSchemaComputer = Yup.object({
   deskCompNum2: Yup.number()
-    .typeError("La cantidad de computadores de escritorio debe ser un numero")
-    .integer("La cantidad escrita debe ser un numero entero")
-    .positive("La cantidad debe ser un numero positivo")
-    .required(
-      "La cantidad de computadores de escritorio que maneja es requerida"
-    ),
+    .typeError("The number of desktop computers must be a number")
+    .integer("The amount written must be an integer")
+    .positive("Quantity must be a positive number")
+    .required("The number of desktop computers you manage is required"),
   hoursPerDayDeskComp3: Yup.number()
-    .typeError(
-      "La cantidad de horas del computador encendido debe ser un numero"
-    )
-    .positive("La cantidad registrada debe ser un numero positivo")
-    .required("La cantidad de horas del computador encendido es requerido"),
+    .typeError("The number of hours the computer is on must be a number")
+    .positive("The registered quantity must be a positive number")
+    .required("The number of hours the computer is on is required"),
   avgYearsUsageDekComp4: Yup.number()
-    .typeError("Los años de uso promedio deben ser un numero")
-    .positive("La cantidad debe ser un numero positivo")
-    .required("Los años de uso de promedio debe ser requerido"),
+    .typeError("The years of average use must be a number")
+    .positive("Quantity must be a positive number")
+    .required("Average years of use should be required"),
 });
 
 const validationShemaServers = Yup.object({
   numberServers5: Yup.number()
-    .typeError("La cantidad de servidores debe ser un numero")
-    .integer("La cantidad escrita debe ser un numero entero")
-    .positive("La cantidad debe ser un numero positivo")
-    .required("La cantidad de los servidores es requerida"),
+    .typeError("The number of servers must be a number")
+    .integer("The amount written must be a whole number")
+    .positive("Quantity must be a positive number")
+    .required("The number of servers is required"),
   avgHoursPerDayUsageServ6: Yup.number()
-    .typeError("La cantidad de horas del servidor encendido debe ser un numero")
-    .positive("La cantidad registrada debe ser un numero positivo")
-    .required("La cantidad de horas es requerido"),
+    .typeError("The number of hours the server is on must be a number")
+    .positive("Registered quantity must be a positive number")
+    .required("The number of hours is required"),
   avgYearsUsageServ7: Yup.number()
-    .typeError("Los años de uso promedio deben ser un numero")
-    .positive("La cantidad debe ser un numero positivo")
-    .required("Los años de uso promedio debe ser requerido"),
+    .typeError("The years of average use must be a number")
+    .positive("Quantity must be a positive number")
+    .required("The years of average use should be required"),
 });
 
 const validationSchemaPortatil = Yup.object({
   numberLaptops8: Yup.number()
-    .typeError("La cantidad de computadores debe ser un numero")
-    .integer("La cantdiad escrita debe ser un numero entero")
-    .positive("La cantidad debe ser un numero positivo")
-    .required("La cantidad de los portatiles es requerida"),
+    .typeError("The number of computers must be a number")
+    .integer("The amount written must be an integer")
+    .positive("Quantity must be a positive number")
+    .required("The amount of laptops is required"),
   avgHoursPerDayUsageLaptop9: Yup.number()
-    .typeError("La cantidad de horas del portatil encedido debe ser un numero ")
-    .positive("La cantidad registrada debe ser un numero positivo")
-    .required("La cantidad de horas es requerido"),
+    .typeError("The number of hours the laptop is on must be a number")
+    .positive("The registered quantity must be a positive number")
+    .required("The amount of hours is required"),
   avgYearsUsageLaptop10: Yup.number()
-    .typeError("Los años de uso promedio debe ser un numero")
-    .positive("La cantidad debe ser un numero positivo")
-    .required("Los ñoas de uso promedio debe ser requerido"),
+    .typeError("The years of average use must be a number")
+    .positive("Quantity must be a positive number")
+    .required("The years of average use should be required"),
 });
 const combinedSchema = Yup.object().shape({
   ...validationSchema.fields,
@@ -155,14 +151,14 @@ const SimpleForm = () => {
       if (response.ok) {
         Swal.fire({
           icon: "success",
-          title: "¡Datos enviados!",
-          text: "Los datos se han enviado correctamente.",
+          title: "¡Data Send!",
+          text: "The data has been sent successfully.",
         });
       } else {
         Swal.fire({
           icon: "error",
           title: "¡Error!",
-          text: "Se produjo un error al enviar los datos.",
+          text: "An error occurred while sending the data.",
         });
       }
 
@@ -175,7 +171,7 @@ const SimpleForm = () => {
       Swal.fire({
         icon: "error",
         title: "¡Error!",
-        text: "Se produjo un error al enviar los datos.",
+        text: "An error occurred while sending the data.",
       });
     }
   };
@@ -268,7 +264,7 @@ const SimpleForm = () => {
                 <div>
                   <Field
                     as={TextField}
-                    label="Cantidad de dispositivos electronicos"
+                    label="Number of electronic devices"
                     name="allDevicesNum1"
                     variant="outlined"
                     fullWidth
@@ -280,7 +276,7 @@ const SimpleForm = () => {
                 <div>
                   <Field
                     as={TextField}
-                    label="Cantidad computadores de Escritorio"
+                    label="Number of desktop computers"
                     name="deskCompNum2"
                     variant="outlined"
                     fullWidth
@@ -292,7 +288,7 @@ const SimpleForm = () => {
                 <div>
                   <Field
                     as={TextField}
-                    label="Horas de encendido de los computadores de escritorio"
+                    label="Desktop computer power-on hours"
                     name="hoursPerDayDeskComp3"
                     variant="outlined"
                     fullWidth
@@ -307,7 +303,7 @@ const SimpleForm = () => {
                 <div>
                   <Field
                     as={TextField}
-                    label="Años de uso de promedio de las computadoras de escritorio"
+                    label="Average years of use for desktop computers"
                     name="avgYearsUsageDekComp4"
                     variant="outlined"
                     fullWidth
@@ -322,7 +318,7 @@ const SimpleForm = () => {
                 <div>
                   <Field
                     as={TextField}
-                    label="Cantidad de servidores"
+                    label="Number of servers"
                     name="numberServers5"
                     variant="outlined"
                     fullWidth
@@ -334,7 +330,7 @@ const SimpleForm = () => {
                 <div>
                   <Field
                     as={TextField}
-                    label="Horas de encendido de los servidores"
+                    label="Server power-on hours"
                     name="avgHoursPerDayUsageServ6"
                     variant="outlined"
                     fullWidth
@@ -351,7 +347,7 @@ const SimpleForm = () => {
                 <div>
                   <Field
                     as={TextField}
-                    label="Años de uso de promedio de los servidores"
+                    label="Average years of use of servers"
                     name="avgYearsUsageServ7"
                     variant="outlined"
                     fullWidth
@@ -365,7 +361,7 @@ const SimpleForm = () => {
                 <div>
                   <Field
                     as={TextField}
-                    label="Cantidad de portatiles"
+                    label="Number of laptops"
                     name="numberLaptops8"
                     variant="outlined"
                     fullWidth
@@ -377,7 +373,7 @@ const SimpleForm = () => {
                 <div>
                   <Field
                     as={TextField}
-                    label="Horas de encendido de los portatiles"
+                    label="Laptop power-on hours"
                     name="avgHoursPerDayUsageLaptop9"
                     variant="outlined"
                     fullWidth
@@ -394,7 +390,7 @@ const SimpleForm = () => {
                 <div>
                   <Field
                     as={TextField}
-                    label="Años de uso de promedio de los portatiles"
+                    label="Average years of use of laptops"
                     name="avgYearsUsageLaptop10"
                     variant="outlined"
                     fullWidth
@@ -409,7 +405,7 @@ const SimpleForm = () => {
               <div style={{ marginBottom: "1rem" }}>
                 <Field
                   as={TextField}
-                  label="Cuanta energia consumio la sede en W (Watt)"
+                  label="How much energy does the headquarters consume in W (Watt)"
                   name="energyConsumedByBranchW11"
                   variant="outlined"
                   fullWidth
@@ -426,7 +422,7 @@ const SimpleForm = () => {
                 color="primary"
                 disabled={isButtonDisabled}
               >
-                Calcular
+                Send
               </Button>
             </Form>
           );

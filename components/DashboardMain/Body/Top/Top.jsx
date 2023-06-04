@@ -1,12 +1,11 @@
 import React from "react";
-import imagen from "../../../../public/images/porfile.png";
-import imagePlant from "../../../../public/images/Plant.png";
+import imagePlant from "../../../../public/images/Ligth.png";
 import styled from "@emotion/styled";
 import SearchIcon from "@mui/icons-material/Search";
 import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import Image from "next/image";
-import Video from "../../../../public//images/strom.gif";
+import Video from "../../../../public//images/Gif.gif";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Header from "./components/Header";
@@ -14,39 +13,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
-
-const HeaderSection = styled("div")(({ theme }) => ({
-  justifyContent: "space-between",
-
-  [theme.breakpoints.down("dm")]: {
-    ".hola": {
-      display: "none",
-    },
-  },
-  [theme.breakpoints.down("lm")]: {
-    ".oc": {
-      display: "none",
-    },
-  },
-}));
-
-const Title = styled("div")(({ theme }) => ({
-  h1: {
-    fontSize: "1.5rem",
-    color: "hsl(0, 0%, 18%)",
-    fontWeight: "700",
-  },
-
-  p: {
-    fontSize: ".938rem",
-    color: "hsl(240, 1%, 48%)",
-    fontWeight: "500",
-  },
-  [theme.breakpoints.down("lm")]: {
-    textAlign: "center",
-    margin: "auto",
-  },
-}));
 
 const SearchBar = styled("div")(({ theme }) => ({
   padding: "1rem 2rem",
@@ -68,33 +34,6 @@ const SearchBar = styled("div")(({ theme }) => ({
     },
   },
 }));
-
-const AdminDiv = styled("div")(({ theme }) => ({
-  gap: "1rem",
-
-  ".icon": {
-    fontSize: "2.5rem",
-    background: "hsl(0, 0%, 100%)",
-    borderRadius: "5px",
-    padding: "5px",
-    boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
-    color: "hsl(240, 1%, 48%)",
-  },
-}));
-
-const ImageUser = styled("div")({
-  border: "3px solid hsl(0, 0%, 100%)",
-  borderRadius: "10px",
-  width: "2.5rem",
-  overflow: "hidden",
-  boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
-
-  ".imagenUser": {
-    width: "100%",
-    height: "100%",
-    borderRadius: "10px",
-  },
-});
 
 const CardSection = styled("div")(({ theme }) => ({
   marginTop: "3rem",
@@ -232,7 +171,7 @@ const Main = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("kh")]: {
     width: "100%",
   },
-  [theme.breakpoints.down("lm")]: {
+  [theme.breakpoints.down("xd")]: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -290,7 +229,7 @@ const ImgDiv = styled("div")(({ theme }) => ({
     paddingBottom: "1.7rem",
   },
 
-  [theme.breakpoints.down("lm")]: {
+  [theme.breakpoints.down("xd")]: {
     display: "none",
   },
 }));
@@ -500,7 +439,7 @@ const Top = () => {
 
       <CardSection className="flex">
         <RightCard style={{ alignItems: "flex-start" }} className="flex">
-          <h1>Register a new plants</h1>
+          <h1>Register a new thunther</h1>
           <p>Help your pocket and the word</p>
 
           <Buttons className="buttons flex">
@@ -508,7 +447,7 @@ const Top = () => {
               <ButtonRegister className="btn">Register</ButtonRegister>
             </Link>
             <Link href="/dashboard/registers">
-              <button className="btn transparent">See Your Plants</button>
+              <button className="btn transparent">See Your Thunthers</button>
             </Link>
           </Buttons>
 
@@ -532,7 +471,7 @@ const Top = () => {
                       <small>{totalEnergyConsumedByBranch} W</small>
                     </span>
                     <span>
-                      All Hours Per Day <br />
+                      All Hours Per Day Average <br />
                       <small>{totalPerHours}</small>
                     </span>
                   </>

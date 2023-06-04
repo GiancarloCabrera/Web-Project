@@ -232,6 +232,7 @@ const theme = createTheme({
       uy: 918,
       ht: 500,
       io: 745,
+      xd: 645,
     },
   },
   palette: {

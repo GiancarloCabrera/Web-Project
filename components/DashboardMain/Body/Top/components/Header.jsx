@@ -46,7 +46,7 @@ const Title = styled("div")(({ theme }) => ({
 
 const SearchBar = styled("div")(({ theme }) => ({
   padding: "1rem 2rem",
-  width: "50%",
+  // width: "12px",
   background: "#021c1e",
   borderRadius: "5px",
   gap: "1rem",
@@ -153,13 +153,13 @@ const Header = () => {
     <HeaderSection className="headerSection flex">
       <Title className="titile">
         <h1>Welcome to River Bird</h1>
-        <p>Hellow Hamlet, Welcome Back</p>
+        <p>Hello Hamlet, Welcome Back</p>
       </Title>
 
-      <SearchBar className="hola flex">
-        {/* <input type="text" placeholder="Search DashBoard" />
-        <SearchIcon className="icon" /> */}
-      </SearchBar>
+      {/* <SearchBar className="hola flex">
+        <input type="text" placeholder="Search DashBoard" />
+        <SearchIcon className="icon" />
+      </SearchBar> */}
 
       <AdminDiv className="oc flex">
         {/* <MessageOutlinedIcon className="icon" />

@@ -165,7 +165,7 @@ const Activity = () => {
   return (
     <ActivitySection>
       <Heading className="flex">
-        <h1>Total Años</h1>
+        <h1>Years Average</h1>
         {isLoading ? (
           <></>
         ) : dataCard.userForms.length > 0 ? (
@@ -207,10 +207,10 @@ const Activity = () => {
                   </span>
                 </div>{" "}
                 <CustomerDetails>
-                  <span className="name">Registro {index + 1}</span>
-                  <span>Años dispositivos</span>
+                  <span className="name">Register {index + 1}</span>
+                  <span>Divices year average</span>
                 </CustomerDetails>
-                <Duration>Uso: {item}</Duration>
+                <Duration>Uses: {item}</Duration>
               </SingleCustomer>
             ))}
           </>
