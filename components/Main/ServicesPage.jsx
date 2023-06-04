@@ -19,9 +19,12 @@ const MainText = styled("div")({
   h2: {
     fontSize: "3.5rem",
     marginBottom: "10px",
+    color: "#2c7873",
   },
   h4: {
-    color: "#336b87",
+    background: "linear-gradient(to left, #6fb98f, greenYellow)",
+    "-webkit-background-clip": "text",
+    "-webkit-text-fill-color": "transparent",
     fontSize: "24px",
     fontWeight: "600",
   },
@@ -38,23 +41,24 @@ const ServicesContent = styled("div")({
 
 const Box = styled("div")({
   padding: "45px",
-  background: "#12141c",
+  background: "#020312",
   borderTop: "5px solid transparent",
   transition: "all .40s ease",
   cursor: "pointer",
   borderRadius: "0.5rem",
   ":hover": {
     transform: "scale(1.01) translateY(-5px)",
-    borderTop: "5px solid #336b87",
+    borderTop: "5px solid #004445",
   },
   h3: {
     fontSize: "24px",
     fontWeight: "600",
     margin: "15px 0",
     transition: "all .40s ease",
+    color: "#6fb98f",
   },
   p: {
-    color: "gray",
+    color: "#2c7873",
     fontSize: "1.1rem",
     lineHeight: "30px",
     fontFamily: "Quicksand, san-serif",
@@ -64,7 +68,7 @@ const Box = styled("div")({
     height: "60px",
   },
   ":hover h3": {
-    color: "#2a3132",
+    color: "#004445",
   },
 });
 

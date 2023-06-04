@@ -27,10 +27,10 @@ const Home = styled("section")(({ theme }) => ({
 }));
 
 const Span = styled("span")({
-  color: "#90afc5",
+  color: "#2c7873",
 });
 const Title = styled("h4")({
-  color: "#336b87",
+  color: "#004445",
   fontSize: "24px",
   fontWeight: "600",
 });
@@ -41,12 +41,14 @@ const Somos = styled("h1")({
   fontWeight: "bold",
   lineHeight: "1.1",
   letterSpacing: "2px",
+  color: "#004445",
 });
 
 const H3 = styled("h3")({
   fontSize: "24px",
   fontWeight: "600",
   marginBottom: "3rem",
+  color: "greenyellow",
 });
 
 const GetStarted = styled("a")({
@@ -56,9 +58,10 @@ const GetStarted = styled("a")({
   borderRadius: "0.5rem",
   fontSize: "17px",
   fontWeight: "500",
-  background: "#763626",
+  background: "linear-gradient(to left, #6fb98f, greenYellow)",
+
   color: "#fff",
-  border: "1px solid #763626",
+  border: "1px solid #6fb98f",
   transition: "all .40s ease",
   ":hover": {
     transform: "scale(1.01) translateY(-5px)",
@@ -73,10 +76,10 @@ export default function HomePage() {
     <Home className="home" id="home">
       <div>
         <Somos>
-          We are programers <br />
-          Ha <Span> Gin</Span>
+          Soy Hamlet <br />
+          Ha<Span>mim</Span>
         </Somos>
-        <H3>Front-End Developers</H3>
+        <H3>Front-End Developer</H3>
         <GetStarted href="/auth" type="button">
           Get Started
         </GetStarted>

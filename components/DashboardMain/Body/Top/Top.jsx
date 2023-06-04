@@ -6,7 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import Image from "next/image";
-import Video from "../../../../public//images/Gif.gif";
+import Video from "../../../../public//images/strom.gif";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Header from "./components/Header";

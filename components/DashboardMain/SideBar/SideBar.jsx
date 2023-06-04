@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
-import imagen from "../../../public/images/pngwing.com.png";
+import imagen from "../../../public/images/logoOfi.png";
 
 import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import SpaIcon from "@mui/icons-material/Spa";
+import BoltIcon from "@mui/icons-material/Bolt";
 import ExploreIcon from "@mui/icons-material/Explore";
 
 import BarChartIcon from "@mui/icons-material/BarChart";
@@ -36,7 +37,7 @@ const LogoDiv = styled("div")(({ theme }) => ({
   padding: "1.5rem 1.5rem 0",
   cursor: "pointer",
   ".image": {
-    maxWidth: "20px",
+    maxWidth: "40px",
     marginRight: ".5rem",
 
     // background: "hsl(330, 12%, 97%)",
@@ -155,8 +156,8 @@ export default function SideBar() {
 
           <ListItem className="listItem">
             <MenuLink href="/dashboard/registers" className="menuLink">
-              <SpaIcon className="icon" />
-              <span className="smallText">My floors</span>
+              <BoltIcon className="icon" />
+              <span className="smallText">My Thunthers</span>
             </MenuLink>
           </ListItem>
         </ul>
