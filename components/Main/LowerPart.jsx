@@ -46,7 +46,7 @@ export default function LowerPart() {
   return (
     <div>
       <LastText>
-        <p>Mejora tu bolsillo con nosotros (hecho por hamlet)</p>
+        <p>Improve your pocket with us </p>
       </LastText>
       <Arrow>
         <A href="#">

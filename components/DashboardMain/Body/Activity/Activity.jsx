@@ -217,38 +217,6 @@ const Activity = () => {
         ) : (
           <></>
         )}
-        {/* <SingleCustomer className="flex">
-          <Image src={image} alt="Lastes" className="lastes" priority />
-          <CustomerDetails>
-            <span className="name">Registro</span>
-            <span>Created at</span>
-          </CustomerDetails>
-          <Duration>12/05/2004</Duration>
-        </SingleCustomer>
-        <SingleCustomer className="flex">
-          <Image src={image} alt="Lastes" className="lastes" priority />
-          <CustomerDetails>
-            <span className="name">House</span>
-            <span>Created at</span>
-          </CustomerDetails>
-          <Duration>12/05/2004</Duration>
-        </SingleCustomer>
-        <SingleCustomer className="flex">
-          <Image src={image} alt="Lastes" className="lastes" priority />
-          <CustomerDetails>
-            <span className="name">House</span>
-            <span>Created at</span>
-          </CustomerDetails>
-          <Duration>3 minutos ago</Duration>
-        </SingleCustomer>
-        <SingleCustomer className="flex">
-          <Image src={image} alt="Lastes" className="lastes" priority />
-          <CustomerDetails>
-            <span className="name">House</span>
-            <span>Created at</span>
-          </CustomerDetails>
-          <Duration>12/05/2004</Duration>
-        </SingleCustomer> */}
       </SecContainer>
     </ActivitySection>
   );

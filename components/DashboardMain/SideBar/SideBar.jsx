@@ -134,7 +134,7 @@ export default function SideBar() {
     <SideBarMain className="grid">
       <LogoDiv className="flex">
         <Image alt="Logo" src={imagen} priority className="image" />
-        <h2>River Bird</h2>
+        <h2>Eco Spark</h2>
       </LogoDiv>
 
       <div className="menuDiv">

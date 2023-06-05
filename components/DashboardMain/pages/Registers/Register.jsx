@@ -157,7 +157,7 @@ export default function Register() {
         </Title>
 
         {isLoading ? (
-          <h1>Cargando perro</h1>
+          <h1>Loading...</h1>
         ) : (
           <Grid container spacing={2} sx={{ marginTop: 0 }}>
             {dataCard.userForms.length !== 0 ? (

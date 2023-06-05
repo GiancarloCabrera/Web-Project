@@ -152,7 +152,7 @@ const Header = () => {
   return (
     <HeaderSection className="headerSection flex">
       <Title className="titile">
-        <h1>Welcome to River Bird</h1>
+        <h1>Welcome to Eco Spark</h1>
         <p>Hello Hamlet, Welcome Back</p>
       </Title>
 

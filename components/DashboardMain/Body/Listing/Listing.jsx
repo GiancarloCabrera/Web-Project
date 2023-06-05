@@ -304,9 +304,6 @@ const Listing = () => {
         <TopSellers>
           <HeadingLower className="flex">
             <h3>Most devices amount</h3>
-            {/* <button className="btn flex">
-              See All <ArrowForwardIcon className="icon" />
-            </button> */}
           </HeadingLower>
 
           <Card className="card flex">
