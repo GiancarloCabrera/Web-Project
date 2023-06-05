@@ -1,20 +1,13 @@
 "use client";
 import SideBar from "../../../components/DashboardMain/SideBar/SideBar";
 import styled from "@emotion/styled";
+import { useSession } from "next-auth/react"
 
 const Container = styled("div")(({ theme }) => ({
-  //   display: "flex",
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  //   margin: "auto",
-  //   padding: "1rem",
   fontFamily: "Montserrat, sans-serif",
-
   display: "grid",
   gridTemplateColumns: "15rem 1fr",
-  // background: "green",
   height: "100vh",
-
   a: {
     textDecoration: "none",
   },
@@ -60,21 +53,15 @@ const Container = styled("div")(({ theme }) => ({
   },
 }));
 
-const ConteinerChildren = styled("div")({
-  position: "relative",
-  width: "95vw",
-  height: "95vh",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  background: "hsl(220, 10%, 94%)",
-
-  borderRadius: "1rem",
-  boxShadow: "2px 2px 8px rgb(190, 190, 190)",
-  color: "black",
-});
-
 export default function Dash({ children }) {
+  const { status } = useSession()
+
+      if (status === 'loading') {
+        return <div style={{ width: '100%', height: '100%', minHeight: '300px', display: 'grid', placeItems: 'center'}}><h1>loading...</h1></div>
+      }
+      if (status === "unauthenticated") {
+        return <div style={{ width: '100%', height: '100%', minHeight: '300px', display: 'grid', placeItems: 'center'}}><h1>Page not found...</h1></div>
+      }
   return (
     <Container>
       <SideBar />

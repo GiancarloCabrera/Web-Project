@@ -2,18 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/system";
-import { Box } from "@mui/material";
 import Gif from "../public/images/Gif.gif";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GoogleIcon from "@mui/icons-material/Google";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import Image from "next/image";
-
 import { useDispatch } from "react-redux";
-import { getSession, signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 import { loginUserAction } from "../app/GlobalRedux/Features/login/login";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const H1 = styled("h1")({
   fontWeight: 700,
@@ -55,28 +50,6 @@ const Link = styled("a")({
   },
 });
 
-const Content = styled("div")({
-  display: "flex",
-  width: "100%",
-  height: "50px",
-  alignItems: "center",
-  justifyContent: "space-around",
-  ".checkbox": {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    input: {
-      accentColor: "#333",
-      width: "12px",
-      height: "12px",
-    },
-    label: {
-      fontSize: "14px",
-      userSelect: "none",
-      paddingLeft: "5px",
-    },
-  },
-});
 
 const Button = styled("button")({
   position: "relative",
@@ -109,30 +82,6 @@ const Button = styled("button")({
       opacity: 0,
       transition: "0.3s ease-in-out",
     },
-    // PENDIENTE POR RESLVER LOS ICONOS
-    // button.ghost i {
-    //     position: absolute;
-    //     opacity: 0;
-    //     transition: 0.3s ease-in-out;
-    // }
-
-    // button.ghost i.register {
-    //     right: 70px;
-    // }
-
-    // button.ghost i.login {
-    //     left: 70px;
-    // }
-
-    // button.ghost:hover i.register {
-    //     right: 40px;
-    //     opacity: 1;
-    // }
-
-    // button.ghost:hover i.login {
-    //     left: 40px;
-    //     opacity: 1;
-    // }
   },
 });
 
@@ -200,7 +149,6 @@ const OverlayContainer = styled("div")({
 });
 
 const Overlay = styled("div")({
-  // backgroundImage: `url(${Gif}})`,
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
   backgroundPosition: "0 0",
@@ -255,24 +203,6 @@ const OverlayPanelRight = styled("div")({
   right: 0,
   transform: "translateX(0)",
 });
-
-// const SocialContainer = styled("div")({
-//   margin: "20px 0",
-//   ".social": {
-//     border: "1px solid #dddddd",
-//     borderRadius: "50%",
-//     display: "inline-flex",
-//     justifyContent: "center",
-//     alignItems: "center",
-//     margin: "0 5px",
-//     height: "40px",
-//     width: "40px",
-//     transition: "0.3s ease-in-out",
-//     ":hover": {
-//       border: "1px solid #4bb6b7",
-//     },
-//   },
-// });
 
 export default function LoginCard() {
   const [loginRegis, setLoginRegis] = useState(true);
@@ -364,7 +294,7 @@ export default function LoginCard() {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!loginForm.email || !loginForm.password) {
-      Swal.fire({
+      return Swal.fire({
         title: 'Error!',
         text: 'Credentials not provided...',
         icon: 'error',
@@ -439,17 +369,6 @@ export default function LoginCard() {
           <Button type="submit" onClick={handleRegister}>
             Register
           </Button>
-          {/* <SocialContainer>
-            <Link href="#" className="social">
-              <FacebookIcon />
-            </Link>
-            <Link href="#" className="social">
-              <GoogleIcon />
-            </Link>
-            <Link href="#" className="social">
-              <LinkedInIcon />
-            </Link>
-          </SocialContainer> */}
         </Form>
       </FormContainerRegister>
 
@@ -477,17 +396,6 @@ export default function LoginCard() {
           <Button type="submit" onClick={handleLogin}>
             Login
           </Button>
-          {/* <SocialContainer>
-            <Link href="#" className="social">
-              <FacebookIcon />
-            </Link>
-            <Link href="#" className="social">
-              <GoogleIcon />
-            </Link>
-            <Link href="#" className="social">
-              <LinkedInIcon />
-            </Link>
-          </SocialContainer> */}
         </Form>
       </FormContainerLogin>
 
