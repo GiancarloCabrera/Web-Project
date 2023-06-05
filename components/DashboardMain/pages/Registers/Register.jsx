@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: "600px",
-    height: "700px",
+    height: "600px",
     borderRadius: "8px",
     padding: "16px",
     display: "flex",
@@ -273,6 +273,7 @@ export default function Register() {
                                 variant="contained"
                                 color="secondary"
                                 onClick={handleClose}
+                                style={{ marginTop: "1rem" }}
                               >
                                 Close Modal
                               </Button>
