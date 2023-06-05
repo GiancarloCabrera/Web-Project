@@ -3,11 +3,10 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/system";
 import { Box } from "@mui/material";
-import Gif from "../assets/login_image.gif";
+import Gif from "../public/images/Gif.gif";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-
 import Image from "next/image";
 
 import { useDispatch } from "react-redux";
@@ -21,7 +20,7 @@ const H1 = styled("h1")({
   letterSpacing: "-1.5px",
   margin: 0,
   marginBottom: "15px",
-  color: 'black'
+  color: "black",
 });
 
 const Title = styled("h1")({
@@ -257,23 +256,23 @@ const OverlayPanelRight = styled("div")({
   transform: "translateX(0)",
 });
 
-const SocialContainer = styled("div")({
-  margin: "20px 0",
-  ".social": {
-    border: "1px solid #dddddd",
-    borderRadius: "50%",
-    display: "inline-flex",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: "0 5px",
-    height: "40px",
-    width: "40px",
-    transition: "0.3s ease-in-out",
-    ":hover": {
-      border: "1px solid #4bb6b7",
-    },
-  },
-});
+// const SocialContainer = styled("div")({
+//   margin: "20px 0",
+//   ".social": {
+//     border: "1px solid #dddddd",
+//     borderRadius: "50%",
+//     display: "inline-flex",
+//     justifyContent: "center",
+//     alignItems: "center",
+//     margin: "0 5px",
+//     height: "40px",
+//     width: "40px",
+//     transition: "0.3s ease-in-out",
+//     ":hover": {
+//       border: "1px solid #4bb6b7",
+//     },
+//   },
+// });
 
 export default function LoginCard() {
   const [loginRegis, setLoginRegis] = useState(true);
@@ -281,20 +280,18 @@ export default function LoginCard() {
   const session = useSession();
   const dispatch = useDispatch();
   // Login Form
-  const [loginForm, setLoginForm] = useState(
-    {
-      email: '',
-      password: ''
-    })
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    password: "",
+  });
 
   // Login Register
-  const [registerForm, setRegisterForm] = useState(
-    {
-      name: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    })
+  const [registerForm, setRegisterForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   useEffect(() => {
     console.log(loginForm);
@@ -302,64 +299,67 @@ export default function LoginCard() {
 
   useEffect(() => {
     console.log(session);
-  }, [session])
+  }, [session]);
 
   const handleLoginChange = ({ target }) => {
-    setLoginForm((val) => ({ ...val, [target.name]: target.value }))
-  }
+    setLoginForm((val) => ({ ...val, [target.name]: target.value }));
+  };
 
   const handleRegisterChange = ({ target }) => {
-    setRegisterForm((val) => ({ ...val, [target.name]: target.value }))
-  }
+    setRegisterForm((val) => ({ ...val, [target.name]: target.value }));
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    if (!registerForm.name || !registerForm.email || !registerForm.password || !registerForm.confirmPassword ) {
+    if (
+      !registerForm.name ||
+      !registerForm.email ||
+      !registerForm.password ||
+      !registerForm.confirmPassword
+    ) {
       return Swal.fire({
-        title: 'Error!',
-        text: 'Data not provided...',
-        icon: 'error',
-      })
+        title: "Error!",
+        text: "Data not provided...",
+        icon: "error",
+      });
     }
     if (registerForm.password !== registerForm.confirmPassword) {
       return Swal.fire({
-        title: 'Error!',
-        text: 'Passwords are not the same...',
-        icon: 'error',
-      })
+        title: "Error!",
+        text: "Passwords are not the same...",
+        icon: "error",
+      });
     }
-    const res = await fetch('http://localhost:3001/api/auth/newUser', 
-      {
-        method: "POST",
-        body: JSON.stringify({
-          name: registerForm.name,
-          email: registerForm.email,
-          password: registerForm.password
-        }),
-          headers: {
-              'Content-Type': 'application/json'
-          }
-      }
-    );
+    const res = await fetch("http://localhost:3001/api/auth/newUser", {
+      method: "POST",
+      body: JSON.stringify({
+        name: registerForm.name,
+        email: registerForm.email,
+        password: registerForm.password,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     const user = await res.json();
     console.log(user);
     if (!user.ok) {
       Swal.fire({
-        title: 'Error!',
-        text: user.msg || 'There are some fields not completed',
-        icon: 'error',
-      })
-    }else {
+        title: "Error!",
+        text: user.msg || "There are some fields not completed",
+        icon: "error",
+      });
+    } else {
       Swal.fire({
-        title: 'Registered!',
-        text: 'You have been registered successfully',
-        icon: 'success',
+        title: "Registered!",
+        text: "You have been registered successfully",
+        icon: "success",
         showConfirmButton: false,
-      })
-      setLoginRegis(true)
+      });
+      setLoginRegis(true);
     }
-  }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -374,23 +374,34 @@ export default function LoginCard() {
       email: loginForm.email,
       password: loginForm.password,
       redirect: false,
-    })
-    console.log('user: ', user);
+    });
+    console.log("user: ", user);
     if (!user.ok) {
       Swal.fire({
-        title: 'Error!',
-        text: 'User not found...',
-        icon: 'error',
-      })
+        title: "Error!",
+        text: "User not found...",
+        icon: "error",
+      });
     } else {
-      dispatch(loginUserAction({ email: loginForm.email }))
-      router.push('/dashboard')
+      dispatch(loginUserAction({ email: loginForm.email }));
+      router.push("/dashboard");
     }
-  }
+  };
 
   return (
     <Container>
-      <FormContainerRegister style={ !loginRegis ? { transform: "translateX(100%)", opacity: 1, zIndex: 5, animation: "show 0.6s" } : null }>
+      <FormContainerRegister
+        style={
+          !loginRegis
+            ? {
+                transform: "translateX(100%)",
+                opacity: 1,
+                zIndex: 5,
+                animation: "show 0.6s",
+              }
+            : null
+        }
+      >
         <Form>
           <H1>Register here</H1>
           <Input
@@ -425,8 +436,10 @@ export default function LoginCard() {
             value={registerForm.confirmPassword}
             onChange={handleRegisterChange}
           />
-          <Button type='submit' onClick={handleRegister}>Register</Button>
-          <SocialContainer>
+          <Button type="submit" onClick={handleRegister}>
+            Register
+          </Button>
+          {/* <SocialContainer>
             <Link href="#" className="social">
               <FacebookIcon />
             </Link>
@@ -436,11 +449,13 @@ export default function LoginCard() {
             <Link href="#" className="social">
               <LinkedInIcon />
             </Link>
-          </SocialContainer>
+          </SocialContainer> */}
         </Form>
       </FormContainerRegister>
 
-      <FormContainerLogin style={ !loginRegis ? { transform: "translateX(100%)" } : null }>
+      <FormContainerLogin
+        style={!loginRegis ? { transform: "translateX(100%)" } : null}
+      >
         <Form>
           <H1>Login here</H1>
           <Input
@@ -459,8 +474,10 @@ export default function LoginCard() {
             value={loginForm.password}
             onChange={handleLoginChange}
           />
-          <Button type='submit' onClick={handleLogin}>Login</Button>
-          <SocialContainer>
+          <Button type="submit" onClick={handleLogin}>
+            Login
+          </Button>
+          {/* <SocialContainer>
             <Link href="#" className="social">
               <FacebookIcon />
             </Link>
@@ -470,7 +487,7 @@ export default function LoginCard() {
             <Link href="#" className="social">
               <LinkedInIcon />
             </Link>
-          </SocialContainer>
+          </SocialContainer> */}
         </Form>
       </FormContainerLogin>
 
@@ -478,30 +495,33 @@ export default function LoginCard() {
         style={
           !loginRegis
             ? {
-              backgroundColor: "black",
-              transform: "translateX(-100%)",
-            }
+                backgroundColor: "black",
+                transform: "translateX(-100%)",
+              }
             : {
-              backgroundColor: "black",
-            }
+                backgroundColor: "black",
+              }
         }
       >
         <Overlay
           style={
             !loginRegis
               ? {
-                transform: "translateX(50%)",
-              }
+                  transform: "translateX(50%)",
+                }
               : null
           }
         >
-          <Image src={Gif} />
+          <Image
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            src={Gif}
+          />
           <OverlayPanelLeft
             style={
               !loginRegis
                 ? {
-                  transform: "translateX(0)",
-                }
+                    transform: "translateX(0)",
+                  }
                 : null
             }
           >
@@ -522,8 +542,8 @@ export default function LoginCard() {
             style={
               !loginRegis
                 ? {
-                  transform: "translateX(20%)",
-                }
+                    transform: "translateX(20%)",
+                  }
                 : null
             }
           >

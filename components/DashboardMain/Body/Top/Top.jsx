@@ -266,7 +266,7 @@ const SideBarCard = styled("div")(({ theme }) => ({
 const CardContent = styled("div")({
   position: "relative",
   padding: "1rem",
-  background: "#bdf094",
+  background: "#2c7873",
   borderRadius: "10px",
   overflow: "hidden",
 
@@ -275,19 +275,22 @@ const CardContent = styled("div")({
     marginTop: "1rem",
     padding: "1rem 0 ",
     fontWeight: "800",
-    color: "hsl(0, 0%, 18%)",
+    color: "#6fb98f",
   },
   p: {
     fontSize: ".938rem",
-    color: "hsl(240,1%, 48%)",
+    color: "#6fb98f",
     paddingBottom: "1rem",
     fontWeight: "500",
   },
 
-  btn: {
+  ".btn": {
     position: "relative",
-    color: "hsl(240,1%, 48%)",
+    color: "#021c1e",
     zIndex: "1000",
+    ":hover": {
+      color: "#004445",
+    },
   },
 });
 
@@ -499,10 +502,11 @@ const Top = () => {
               <CardContent className="cardContent">
                 <Circle1></Circle1>
                 <Circle2></Circle2>
-
                 <h3>Help Center</h3>
                 <p>Having Problems or need a question, please contact us</p>
-                <button className="btn">Go to help center</button>
+                <Link href={`dashboard/info`}>
+                  <button className="btn">Go to help center</button>
+                </Link>
               </CardContent>
             </SideBarCard>
           </Main>

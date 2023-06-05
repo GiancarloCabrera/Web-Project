@@ -46,10 +46,12 @@ const Title = styled("div")(({ theme }) => ({
 const Status = styled("span")(({ status }) => {
   let color;
 
-  if (status >= 80) {
+  if (status == 100) {
     color = "green";
-  } else if (status >= 50) {
+  } else if (status < 100 && status >= 80) {
     color = "blue";
+  } else if (status < 80 && status >= 50) {
+    color = "yellow";
   } else {
     color = "red";
   }
@@ -73,7 +75,7 @@ const Card = styled.div`
   flex-grow: 1;
 
   max-width: 100%;
-  background-color: lightblue;
+  background-color: #021c1e;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -84,7 +86,7 @@ const Card = styled.div`
 `;
 const SmallCard = styled("div")(({ theme }) => ({
   flex: "0 0 auto",
-  backgroundColor: "lightpink",
+  backgroundColor: "#6fb98f",
   borderRadius: "8px",
   marginLeft: "1rem",
   display: "flex",
@@ -99,16 +101,6 @@ const SmallCard = styled("div")(({ theme }) => ({
     marginLeft: "0",
   },
 }));
-
-// const Mejorar = styled("h1")(({ theme }) => ({
-//   fontSize: "1.5rem",
-//   fontWeight: "700",
-//   color: "#6fb98f",
-//   [theme.breakpoints.down("sm")]: {
-//     textAlign: "center",
-//     margin: "auto",
-//   },
-// }));
 
 const Mejorar = styled("h2")(({ theme }) => ({
   fontSize: "1.2rem",
@@ -230,37 +222,32 @@ const RegisterDetails = ({ params }) => {
   let mensajeAdicional = "";
   let areasMejorar = [];
 
-  if (pruebaState?.percResult >= 80) {
-    estadoActual = "Excelente";
-    mensajeAdicional = "No debes mejorar en nada";
-  } else if (pruebaState?.percResult >= 50) {
-    estadoActual = "Bueno";
-    mensajeAdicional = "Debes mejorar en estas cosas puntuales";
+  if (pruebaState?.percResult == 100) {
+    estadoActual = "Excelent";
+    mensajeAdicional = "You don't have to improve on anything";
+  } else if (pruebaState?.percResult < 100 && pruebaState?.percResult >= 80) {
+    estadoActual = "Good";
+    mensajeAdicional = "It's ok but you can improve";
+    areasMejorar = ["Check old devices"];
+  } else if (pruebaState?.percResult < 80 && pruebaState?.percResult >= 50) {
+    estadoActual = "Acceptable";
+    mensajeAdicional = "Check these things: ";
     areasMejorar = [
-      "Energia de los computadores",
-      "Uso responable de la energia",
+      "Very old devices",
+      "Servers connected without use",
+      "Use of ENERGY STAR devices",
     ];
   } else {
-    estadoActual = "Malo";
-    mensajeAdicional = "Debes mejorar mucho, en estas cosas en especifico";
+    estadoActual = "Bad";
+    mensajeAdicional = "You must improve a lot, Check these things: ";
     areasMejorar = [
-      "Energia de los sevidores",
-      "Enrgia de los computadores",
-      "Energia en lso compuadores de mesa",
+      "Very old devices",
+      "Servers connected without use",
+      "Try to use renewable energy",
+      "Use of ENERGY STAR devices",
+      "Implement automatic shutdown policies",
     ];
   }
-
-  useEffect(() => {
-    const data = {
-      name: "Prueba1",
-      apellido: "Estban",
-      estado: {
-        porcentaje: 100,
-      },
-      mejoras: ["Mas Productivo", "Mejor"],
-    };
-    setRegisterDetail(data);
-  }, []);
 
   useEffect(() => {
     if (registerDetail) {
@@ -294,12 +281,14 @@ const RegisterDetails = ({ params }) => {
   const getColor = () => {
     const porcentaje = pruebaState?.percResult;
 
-    if (porcentaje >= 80) {
-      return "green"; // Excelente
-    } else if (porcentaje >= 50) {
-      return "blue"; // Bueno
+    if (porcentaje == 100) {
+      return "green";
+    } else if (porcentaje < 100 && porcentaje >= 80) {
+      return "blue";
+    } else if (porcentaje < 80 && porcentaje >= 50) {
+      return "yellow";
     } else {
-      return "red"; // Malo
+      return "red";
     }
   };
 
@@ -307,20 +296,15 @@ const RegisterDetails = ({ params }) => {
     <Container>
       <DetailsContainer>
         <Title>
-          <h1>Detalles </h1>
-          <p>
-            Detalles acerca de el registro escojido:{" "}
-            <span style={{ color: "#6fb98f" }}>{pruebaState?.percResult}</span>
-          </p>
+          <h1>Details </h1>
+          <p>Details about the hosen record</p>
         </Title>
         <CardContainer>
           <Card>
             <div style={{ paddingBottom: "1.5rem" }}>
               <Mejorar>
-                Tu estado actual es{" "}
+                Your current state{" "}
                 <Status status={pruebaState?.percResult}>{estadoActual}</Status>
-                {", "}
-                {mensajeAdicional}
               </Mejorar>
             </div>
             <CircularProgressBarContainer>
@@ -339,7 +323,7 @@ const RegisterDetails = ({ params }) => {
           <SmallCard>
             {areasMejorar.length !== 0 && (
               <>
-                <Mejorar>Cosas a mejorar</Mejorar>
+                <Mejorar>{mensajeAdicional}</Mejorar>
                 <MejorasList>
                   {areasMejorar.map((mejora, i) => (
                     <MejoraItem key={i}>{mejora}</MejoraItem>
@@ -349,7 +333,10 @@ const RegisterDetails = ({ params }) => {
             )}
 
             {areasMejorar.length === 0 && (
-              <Mejorar>No debes mejorar en nada</Mejorar>
+              <Mejorar>
+                You sholdn't improve at all,{" "}
+                <span style={{ color: "green" }}>EXELENT</span>{" "}
+              </Mejorar>
             )}
           </SmallCard>
         </CardContainer>

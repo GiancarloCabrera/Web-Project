@@ -102,7 +102,7 @@ const ContactForm = styled("div")({
     display: "inline-block",
     fontSize: "17px",
     fontWeight: "500",
-    background: "#4647a5",
+    background: "linear-gradient(to left, #6fb98f, greenYellow)",
     color: "#fff",
     width: "190px",
     transition: "all .40s ease",
@@ -120,33 +120,41 @@ export default function Info() {
       <InfoContainer>
         <Title>
           <h1>Info</h1>
-          <p>Si tienes alguna duda no dudes en preguntar</p>
+          <p>If you have any question do not be afraid to ask</p>
         </Title>
 
         <Accordion className="arc" defaultExpanded>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <p>Pregunta Importante</p>
+            <p>What is the baas of this pages?</p>
           </AccordionSummary>
           <AccordionDetails>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
-              sunt quisquam mollitia assumenda aperiam quibusdam officia laborum
-              suscipit accusantium, nihil inventore labore veniam nam atque
-              rerum sequi, fugit sapiente incidunt?
+              The foundation of the website is to provide professional
+              information, resources, and practical solutions regarding the
+              proper use of electronic devices such as desktop computers,
+              servers, and laptops. It is based on the objective of sustainable
+              development, specifically promoting responsible consumption
+              practices.
             </p>
           </AccordionDetails>
         </Accordion>
 
         <Accordion className="arc" defaultExpanded>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <p>Pregunta Importante</p>
+            <p>What do we base our calculations on?</p>
           </AccordionSummary>
           <AccordionDetails>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
-              sunt quisquam mollitia assumenda aperiam quibusdam officia laborum
-              suscipit accusantium, nihil inventore labore veniam nam atque
-              rerum sequi, fugit sapiente incidunt?
+              The obtained result is returned as a percentage, allowing
+              individuals to personally and directly assess how responsible
+              their consumption is in relation to the evaluated parameters. This
+              percentage reflects the level of responsibility in the consumption
+              of electronic devices, based on the provided data such as average
+              daily usage hours, average years of usage, and the number of
+              devices at the premises. This information provides a tangible
+              measure of environmental impact and offers an opportunity for
+              individuals to reflect on adopting more sustainable consumption
+              practices.
             </p>
           </AccordionDetails>
         </Accordion>
