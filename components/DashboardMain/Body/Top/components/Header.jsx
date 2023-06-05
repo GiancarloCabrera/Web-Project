@@ -29,7 +29,7 @@ const HeaderSection = styled("div")(({ theme }) => ({
 const Title = styled("div")(({ theme }) => ({
   h1: {
     fontSize: "1.5rem",
-    color: "hsl(0, 0%, 18%)",
+    color: "#6fb98f",
     fontWeight: "700",
   },
 
@@ -46,10 +46,11 @@ const Title = styled("div")(({ theme }) => ({
 
 const SearchBar = styled("div")(({ theme }) => ({
   padding: "1rem 2rem",
-  background: "hsl(0, 0%, 100%)",
+  // width: "12px",
+  background: "#021c1e",
   borderRadius: "5px",
   gap: "1rem",
-  boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
+  boxShadow: "0 2px 4px #021c1e",
 
   input: {
     border: "none",
@@ -70,10 +71,10 @@ const AdminDiv = styled("div")(({ theme }) => ({
 
   ".icon": {
     fontSize: "2.8rem",
-    background: "hsl(0, 0%, 100%)",
+    background: "#021c1e",
     borderRadius: "5px",
     padding: "5px",
-    boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
+    boxShadow: "0 2px 4px #021c1e",
     color: "hsl(240, 1%, 48%)",
   },
   ".dropdown-menu.active": {
@@ -91,16 +92,16 @@ const AdminDiv = styled("div")(({ theme }) => ({
 }));
 
 const ImageUser = styled("div")({
-  border: "3px solid hsl(0, 0%, 100%)",
+  border: "3px solid #052f33",
   borderRadius: "10px",
   width: "2.5rem",
   overflow: "hidden",
-  boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
+  boxShadow: "0 2px 4px #021c1e",
 
   ".imagenUser": {
     width: "100%",
     height: "100%",
-    borderRadius: "10px",
+    borderRadius: "100px",
     cursor: "pointer",
   },
 });
@@ -151,18 +152,18 @@ const Header = () => {
   return (
     <HeaderSection className="headerSection flex">
       <Title className="titile">
-        <h1>Welcome to River Bird</h1>
-        <p>Hellow Hamlet, Welcome Back</p>
+        <h1>Welcome to Eco Spark</h1>
+        <p>Hello Hamlet, Welcome Back</p>
       </Title>
 
-      <SearchBar className="hola flex">
+      {/* <SearchBar className="hola flex">
         <input type="text" placeholder="Search DashBoard" />
         <SearchIcon className="icon" />
-      </SearchBar>
+      </SearchBar> */}
 
       <AdminDiv className="oc flex">
-        <MessageOutlinedIcon className="icon" />
-        <NotificationsOutlinedIcon className="icon" />
+        {/* <MessageOutlinedIcon className="icon" />
+        <NotificationsOutlinedIcon className="icon" /> */}
         <ImageUser
           className="imageUser"
           onClick={() => {

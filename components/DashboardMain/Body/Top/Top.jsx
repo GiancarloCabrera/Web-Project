@@ -1,6 +1,5 @@
 import React from "react";
-import imagen from "../../../../public/images/porfile.png";
-import imagePlant from "../../../../public/images/Plant.png";
+import imagePlant from "../../../../public/images/Ligth.png";
 import styled from "@emotion/styled";
 import SearchIcon from "@mui/icons-material/Search";
 import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
@@ -10,39 +9,10 @@ import Video from "../../../../public//images/Gif.gif";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Header from "./components/Header";
-
-const HeaderSection = styled("div")(({ theme }) => ({
-  justifyContent: "space-between",
-
-  [theme.breakpoints.down("dm")]: {
-    ".hola": {
-      display: "none",
-    },
-  },
-  [theme.breakpoints.down("lm")]: {
-    ".oc": {
-      display: "none",
-    },
-  },
-}));
-
-const Title = styled("div")(({ theme }) => ({
-  h1: {
-    fontSize: "1.5rem",
-    color: "hsl(0, 0%, 18%)",
-    fontWeight: "700",
-  },
-
-  p: {
-    fontSize: ".938rem",
-    color: "hsl(240, 1%, 48%)",
-    fontWeight: "500",
-  },
-  [theme.breakpoints.down("lm")]: {
-    textAlign: "center",
-    margin: "auto",
-  },
-}));
+import { useEffect } from "react";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import Link from "next/link";
 
 const SearchBar = styled("div")(({ theme }) => ({
   padding: "1rem 2rem",
@@ -64,33 +34,6 @@ const SearchBar = styled("div")(({ theme }) => ({
     },
   },
 }));
-
-const AdminDiv = styled("div")(({ theme }) => ({
-  gap: "1rem",
-
-  ".icon": {
-    fontSize: "2.5rem",
-    background: "hsl(0, 0%, 100%)",
-    borderRadius: "5px",
-    padding: "5px",
-    boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
-    color: "hsl(240, 1%, 48%)",
-  },
-}));
-
-const ImageUser = styled("div")({
-  border: "3px solid hsl(0, 0%, 100%)",
-  borderRadius: "10px",
-  width: "2.5rem",
-  overflow: "hidden",
-  boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
-
-  ".imagenUser": {
-    width: "100%",
-    height: "100%",
-    borderRadius: "10px",
-  },
-});
 
 const CardSection = styled("div")(({ theme }) => ({
   marginTop: "3rem",
@@ -148,6 +91,7 @@ const RightCard = styled("div")(({ theme }) => ({
 
 const Buttons = styled("div")(({ theme }) => ({
   gap: "1rem",
+  zIndex: "100",
 
   [theme.breakpoints.down("lm")]: {
     margin: "auto",
@@ -188,6 +132,7 @@ const VideoDiv = styled("div")({
     width: "100%",
     height: "100%",
     objectFit: "cover",
+    zIndex: 0,
   },
 });
 
@@ -212,7 +157,7 @@ const Main = styled("div")(({ theme }) => ({
     position: "absolute",
     height: "100%",
     width: "75%",
-    background: "hsl(96, 75%, 89%)",
+    background: "#6fb98f",
     left: "0",
     bottom: "0",
     borderRadius: "1rem",
@@ -226,7 +171,7 @@ const Main = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("kh")]: {
     width: "100%",
   },
-  [theme.breakpoints.down("lm")]: {
+  [theme.breakpoints.down("xd")]: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -284,7 +229,7 @@ const ImgDiv = styled("div")(({ theme }) => ({
     paddingBottom: "1.7rem",
   },
 
-  [theme.breakpoints.down("lm")]: {
+  [theme.breakpoints.down("xd")]: {
     display: "none",
   },
 }));
@@ -321,7 +266,7 @@ const SideBarCard = styled("div")(({ theme }) => ({
 const CardContent = styled("div")({
   position: "relative",
   padding: "1rem",
-  background: "#bdf094",
+  background: "#2c7873",
   borderRadius: "10px",
   overflow: "hidden",
 
@@ -330,19 +275,22 @@ const CardContent = styled("div")({
     marginTop: "1rem",
     padding: "1rem 0 ",
     fontWeight: "800",
-    color: "hsl(0, 0%, 18%)",
+    color: "#6fb98f",
   },
   p: {
     fontSize: ".938rem",
-    color: "hsl(240,1%, 48%)",
+    color: "#6fb98f",
     paddingBottom: "1rem",
     fontWeight: "500",
   },
 
-  btn: {
+  ".btn": {
     position: "relative",
-    color: "hsl(240,1%, 48%)",
+    color: "#021c1e",
     zIndex: "1000",
+    ":hover": {
+      color: "#004445",
+    },
   },
 });
 
@@ -410,19 +358,100 @@ const TopSection = styled("div")({
   },
 });
 
+const ButtonRegister = styled("button")(({ theme }) => ({
+  [theme.breakpoints.down("lm")]: {
+    boxShadow: "none",
+    padding: ".8rem 1.5rem",
+    color: "hsl(94, 59%, 35%)",
+    border: "2px solid transparent",
+    width: "100%",
+  },
+}));
+
 const Top = () => {
+  const [dataCard, setDataCard] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const { email } = useSelector(
+    (state) => state.persistedReducer.login.loginUserCredentials
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
+            email
+          )}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        setDataCard(data);
+
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const sumEnergyConsumedByBranch = () => {
+    let total = 0;
+    if (dataCard?.userForms) {
+      dataCard.userForms.forEach((item) => {
+        total += item.energyConsumedByBranchW11;
+      });
+    }
+    return total;
+  };
+
+  const totalEnergyConsumedByBranch = sumEnergyConsumedByBranch();
+
+  const sumaPerHours = () => {
+    let total = 0;
+    let avgHoursPerDayUsageLaptop9 = 0;
+    let avgHoursPerDayUsageServ6 = 0;
+    let hoursPerDayDeskComp3 = 0;
+
+    if (dataCard?.userForms) {
+      dataCard.userForms.forEach((item) => {
+        avgHoursPerDayUsageLaptop9 += item.avgHoursPerDayUsageLaptop9;
+        avgHoursPerDayUsageServ6 += item.avgHoursPerDayUsageServ6;
+        hoursPerDayDeskComp3 += item.hoursPerDayDeskComp3;
+      });
+      total =
+        avgHoursPerDayUsageLaptop9 +
+        avgHoursPerDayUsageServ6 +
+        hoursPerDayDeskComp3;
+      console.log(total);
+    }
+    return total;
+  };
+
+  const totalPerHours = sumaPerHours();
+
   return (
     <TopSection className="topSection">
       <Header />
 
       <CardSection className="flex">
         <RightCard style={{ alignItems: "flex-start" }} className="flex">
-          <h1>Register a new plants</h1>
+          <h1>Register a new thunther</h1>
           <p>Help your pocket and the word</p>
 
           <Buttons className="buttons flex">
-            <button className="btn">Register</button>
-            <button className="btn transparent">See Your Plants</button>
+            <Link href="/dashboard/form">
+              <ButtonRegister className="btn">Register</ButtonRegister>
+            </Link>
+            <Link href="/dashboard/registers">
+              <button className="btn transparent">See Your Thunthers</button>
+            </Link>
           </Buttons>
 
           <VideoDiv>
@@ -436,12 +465,22 @@ const Top = () => {
               <h1>My Stats</h1>
 
               <DivFlex className="flex">
-                <span>
-                  Today <br /> <small>4 Orders</small>
-                </span>
-                <span>
-                  This Month <br /> <small>127 Orders</small>
-                </span>
+                {isLoading ? (
+                  <h1>Loading...</h1>
+                ) : dataCard.userForms.length > 0 ? (
+                  <>
+                    <span>
+                      All energy <br />{" "}
+                      <small>{totalEnergyConsumedByBranch} W</small>
+                    </span>
+                    <span>
+                      All Hours Per Day Average <br />
+                      <small>{totalPerHours}</small>
+                    </span>
+                  </>
+                ) : (
+                  <></>
+                )}
               </DivFlex>
 
               <span className="flex link">
@@ -463,10 +502,11 @@ const Top = () => {
               <CardContent className="cardContent">
                 <Circle1></Circle1>
                 <Circle2></Circle2>
-
                 <h3>Help Center</h3>
                 <p>Having Problems or need a question, please contact us</p>
-                <button className="btn">Go to help center</button>
+                <Link href={`dashboard/info`}>
+                  <button className="btn">Go to help center</button>
+                </Link>
               </CardContent>
             </SideBarCard>
           </Main>

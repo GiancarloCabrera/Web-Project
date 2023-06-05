@@ -24,15 +24,18 @@ const Contact = styled("section")(({ theme }) => ({
 const ContactText = styled("div")({
   h4: {
     margin: "15px 0",
-    color: "#336b87",
+    background: "linear-gradient(to left, #6fb98f, greenYellow)",
+    "-webkit-background-clip": "text",
+    "-webkit-text-fill-color": "transparent",
     fontSize: "20px",
     fontWeight: "600",
   },
   h2: {
     fontSize: "3.5rem",
+    color: "#2c7873",
   },
   p: {
-    color: "gray",
+    color: "#6fb98f",
     fontSize: "1.1rem",
     lineHeight: "30px",
     marginBottom: "2rem",
@@ -48,9 +51,9 @@ const ContactIcons = styled("div")({
   ".i": {
     height: "40px",
     width: "40px",
-    background: "#2a3132",
+    background: "#004445",
     borderRadius: "0.5rem",
-    color: "#763626",
+    color: "#adff2f ",
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
@@ -61,7 +64,9 @@ const ContactIcons = styled("div")({
   ".i:hover": {
     transform: "scale(1.01) translateY(-5px)",
     color: "#fff",
-    background: "#90afc5",
+    background: "linear-gradient(to left, #6fb98f, greenYellow)",
+    "-webkit-background-clip": "text",
+    "-webkit-text-fill-color": "transparent",
   },
 });
 
@@ -76,14 +81,16 @@ const Li = styled("li")({
 
   A: {
     display: "block",
-    color: "gray",
+    color: "#2c7873",
     fontSize: "1.1rem",
     fontWeight: "600",
     transition: "all .40s ease",
   },
   "A:hover": {
     transform: "scale(1.01) translateY(-5px)",
-    color: "#763626",
+    background: "linear-gradient(to left, #6fb98f, greenYellow)",
+    "-webkit-background-clip": "text",
+    "-webkit-text-fill-color": "transparent",
   },
 });
 
@@ -95,7 +102,7 @@ const ContactForm = styled("div")({
       outline: "none",
       width: " 100%",
       padding: "18px",
-      background: "#12141c",
+      background: "#020312",
       color: "#fff",
       fontSize: "1rem",
       fontWeight: "600",
@@ -112,8 +119,8 @@ const ContactForm = styled("div")({
     display: "inline-block",
     fontSize: "17px",
     fontWeight: "500",
-    background: "#763626",
-    color: "#fff",
+    background: "linear-gradient(to left, #6fb98f, greenYellow)",
+
     width: "190px",
     transition: "all .40s ease",
     cursor: "pointer",
@@ -166,12 +173,19 @@ export default function ConctacPage() {
       </ContactText>
 
       <ContactForm>
-        <form action="">
-          <input type="" placeholder="Enter Your Name" required />
-          <input type="email" placeholder="Enter Your Email" required />
-          <input type="" placeholder="Asutation " required />
+        <form
+          action="https://formsubmit.co/hamletcruzpirazan@gmail.com"
+          method="POST"
+        >
+          <input type="" placeholder="Asunto" required name="asunto" />
+          <input
+            type="email"
+            placeholder="Enter Your Email"
+            required
+            name="email"
+          />
           <textarea
-            name=""
+            name="mensaje"
             id=""
             cols="40"
             rows="10"
@@ -179,6 +193,13 @@ export default function ConctacPage() {
             required
           ></textarea>
           <input type="submit" value="Submit" className="send" />
+
+          <input
+            type="hidden"
+            name="_next"
+            value="http://localhost:3000/dashboard/info"
+          ></input>
+          <input type="hidden" name="_captcha" value="false"></input>
         </form>
       </ContactForm>
     </Contact>

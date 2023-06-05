@@ -34,15 +34,19 @@ const AboutImg = styled("div")(({ theme }) => ({
 const AboutText = styled("div")({
   h4: {
     margin: "10px 0",
-    color: "#336b87",
+    background: "linear-gradient(to left, #6fb98f, greenYellow)",
+    "-webkit-background-clip": "text",
+    "-webkit-text-fill-color": "transparent",
     fontSize: "20px",
     fontWeight: "600",
   },
   h2: {
     fontSize: "3.5rem",
+    color: "#2c7873",
   },
+
   p: {
-    color: "gray",
+    color: "#2c7873",
     fontSize: "1.1rem",
     lineHeight: "30px",
     marginBottom: "2rem",
@@ -62,6 +66,7 @@ const AboutIn = styled("div")({
   h5: {
     fontSize: "22px",
     fontWeight: "600",
+    color: "#6fb98f",
   },
 });
 
@@ -72,9 +77,9 @@ const GetStarted = styled("a")({
   borderRadius: "0.5rem",
   fontSize: "17px",
   fontWeight: "500",
-  background: "#763626",
+  background: "linear-gradient(to left, #6fb98f, greenYellow)",
   color: "#fff",
-  border: "1px solid #763626",
+  border: "1px solid #6fb98f",
   transition: "all .40s ease",
   ":hover": {
     transform: "scale(1.01) translateY(-5px)",
@@ -85,7 +90,9 @@ const GetStarted = styled("a")({
 });
 
 const Span = styled("span")({
-  color: "#90afc5",
+  background: "linear-gradient(to left, #6fb98f, greenYellow)",
+  "-webkit-background-clip": "text",
+  "-webkit-text-fill-color": "transparent",
 });
 
 export default function AboutPage() {
@@ -99,7 +106,7 @@ export default function AboutPage() {
         <h2>About Us</h2>
         <h4>We are here to help the nature</h4>
         <p>
-          At <Span>River Bird</Span>, we are committed to promoting sustainable
+          At <Span>Eco Spark</Span>, we are committed to promoting sustainable
           practices in the ICT sector. Our team of experts provides valuable
           information and practical tools to reduce unnecessary resource
           consumption. Jon us in our mission to create a more sustainable and

@@ -24,7 +24,8 @@ const Arrow = styled("div")({
   ".i": {
     height: "40px",
     width: "40px",
-    background: "#763626",
+    background: "linear-gradient(to left, #6fb98f, greenYellow)",
+
     borderRadius: "0.5rem",
     color: "#fff",
     display: "inline-flex",
@@ -37,7 +38,7 @@ const Arrow = styled("div")({
   },
   ".i:hover": {
     transform: "scale(1.01) translateY(-5px)",
-    background: "#336b87",
+    background: "#2c7873",
   },
 });
 
@@ -45,7 +46,7 @@ export default function LowerPart() {
   return (
     <div>
       <LastText>
-        <p>Mejora tu bolsillo con nosotros</p>
+        <p>Improve your pocket with us </p>
       </LastText>
       <Arrow>
         <A href="#">
