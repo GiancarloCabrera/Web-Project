@@ -48,38 +48,26 @@ const FormContainer = styled("div")(({ theme }) => ({
   },
 }));
 
-const initialValues = {
-  name: "",
-  email: "",
-  password: "",
-  newPassword: "",
-};
-
 const validationSchema = Yup.object({
-  name: Yup.string()
-    .required("Required Field"),
-  email: Yup.string()
-    .required("Required Field"),
-  password: Yup.string()
-    .required("Required Field"),
-  newPassword: Yup.string()
-    .required("Required Field"),
-});
+  // name: Yup.string().required("Required Field"),
 
-const combinedSchema = Yup.object().shape({
-  ...validationSchema.fields,
+  password: Yup.string().required("Required Field"),
+  newPassword: Yup.string().required("Required Field"),
 });
 
 const SimpleForm = () => {
   const fetchData = async (formData) => {
     try {
-      const response = await fetch("http://localhost:3001/api/user/updUserCredByEmail", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "http://localhost:3001/api/user/updUserCredByEmail",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await response.json();
       console.log(data);
@@ -97,7 +85,6 @@ const SimpleForm = () => {
           text: "An error occurred while updating your credentials",
         });
       }
-
     } catch (error) {
       console.error("Error:", error);
       Swal.fire({
@@ -115,30 +102,28 @@ const SimpleForm = () => {
     console.log("MAIN DASHBOARD: ", email);
   }, [email]);
 
-  const handleSubmit = (values) => {
-    // Realizar las acciones necesarias con los datos enviados
-    // ...
+  const initialValues = {
+    email: { email },
+    password: "",
+    newPassword: "",
+  };
 
-    // const email = values.email;
-    console.log('holaa');
-    const password = values.password;
-    const newPassword = values.newPassword;
+  const handleSubmit = (values, { resetForm }) => {
+    console.log("Button clicked!", values); // Agrega este console.log para verificar si se ejecuta la función al hacer clic en el botón
+
+    // Resto del código de la función handleSubmit
 
     const formData = {
-      email,
-      password,
-      newPassword
+      email: email,
+      password: values.password,
+      newPassword: values.newPassword,
     };
+    // Mostrar la alerta SweetAlert
+    console.log(formData);
 
-    console.log(formData, "Holaaaa");
     fetchData(formData);
 
-    // Mostrar la alerta SweetAlert
-
     resetForm();
-    // useEffect(() => {
-    //   console.log(formData);
-    // }, [formData]);
   };
 
   return (
@@ -148,61 +133,47 @@ const SimpleForm = () => {
         <p>Check and modify your credentials!</p>
       </Title>
       <Formik
-        validationSchema={combinedSchema}
+        validationSchema={validationSchema}
         initialValues={initialValues}
         onSubmit={handleSubmit}
-        >
+      >
         {({ touched, errors, values, resetForm }) => {
+          // Actualizar el estado del botón en función de la validez del formulario
 
-           return ( 
+          return (
             <Form style={{ paddingTop: "20px" }}>
               <FormContainer style={{ width: "100%" }}>
                 <div>
-                  <Field
-                    as={TextField}
-                    name="email"
-                    variant="outlined"
-                    fullWidth
-                    disabled
-                    value={email}
-                    error={touched.email && errors.email}
-                    helperText={<ErrorMessage name="email" />}
-                  />
+                  <Field as={TextField} disabled value={email} fullWidth />
                 </div>
-
                 <div>
                   <Field
                     as={TextField}
-                    type='password'
+                    type="password"
                     label="Password"
                     name="password"
                     variant="outlined"
                     fullWidth
                     error={touched.password && errors.password}
-                    helperText={<ErrorMessage name="password" />}
+                    helperText={touched.password && errors.password}
                   />
                 </div>
-
                 <div>
                   <Field
                     as={TextField}
-                    type='password'
+                    type="password"
                     label="New password"
                     name="newPassword"
                     variant="outlined"
                     fullWidth
                     error={touched.newPassword && errors.newPassword}
-                    helperText={<ErrorMessage name="newPassword" />}
+                    helperText={touched.newPassword && errors.newPassword}
                   />
                 </div>
               </FormContainer>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                // disabled={isButtonDisabled}
-              >
-                Update
+
+              <Button type="submit" variant="contained" color="primary">
+                Send
               </Button>
             </Form>
           );
