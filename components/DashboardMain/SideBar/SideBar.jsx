@@ -167,9 +167,9 @@ export default function SideBar() {
         <DivTitle className="divTitle">SETTINGS</DivTitle>
         <ul className="menuList grid">
           <ListItem className="listItem">
-            <MenuLink href="#" className="menuLink">
+            <MenuLink href="/dashboard/user-info" className="menuLink">
               <SettingsIcon className="icon" />
-              <span className="smallText">Settings User</span>
+              <span className="smallText">User settings</span>
             </MenuLink>
           </ListItem>
 

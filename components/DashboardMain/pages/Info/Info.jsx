@@ -1,3 +1,5 @@
+"use client";
+
 import styled from "@emotion/styled";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";

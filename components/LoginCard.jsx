@@ -364,7 +364,7 @@ export default function LoginCard() {
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!loginForm.email || !loginForm.password) {
-       return Swal.fire({
+      Swal.fire({
         title: 'Error!',
         text: 'Credentials not provided...',
         icon: 'error',
