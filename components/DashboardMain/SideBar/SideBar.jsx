@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import Image from "next/image";
-import imagen from "../../../public/images/pngwing.com.png";
+import imagen from "../../../public/images/logoOfi.png";
 
 import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import SpaIcon from "@mui/icons-material/Spa";
+import BoltIcon from "@mui/icons-material/Bolt";
 import ExploreIcon from "@mui/icons-material/Explore";
 
 import BarChartIcon from "@mui/icons-material/BarChart";
@@ -15,7 +16,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import SideCard from "./components/SideCard";
 
 const SideBarMain = styled("div")(({ theme }) => ({
-  background: "hsl(0,0%, 100%)",
+  background: "#021c1e",
   boxShadow: "1px 0px 4px rgb(190, 190, 190)",
   width: "100%",
   height: "100%",
@@ -24,7 +25,7 @@ const SideBarMain = styled("div")(({ theme }) => ({
 
   h2: {
     fontSize: "1.25rem",
-    color: "hsl(94, 59%, 35%)",
+    color: "#6fb98f",
   },
 
   [theme.breakpoints.down("mj")]: {
@@ -36,7 +37,7 @@ const LogoDiv = styled("div")(({ theme }) => ({
   padding: "1.5rem 1.5rem 0",
   cursor: "pointer",
   ".image": {
-    maxWidth: "20px",
+    maxWidth: "40px",
     marginRight: ".5rem",
 
     // background: "hsl(330, 12%, 97%)",
@@ -61,7 +62,7 @@ const LogoDiv = styled("div")(({ theme }) => ({
 
 const DivTitle = styled("h3")(({ theme }) => ({
   fontSize: "1rem",
-  color: "hsl(0,0%,18%)",
+  color: "#004445",
   padding: "0 1.5rem 1.5rem",
   [theme.breakpoints.down("io")]: {
     display: "none",
@@ -75,7 +76,7 @@ const MenuLink = styled("a")(({ theme }) => ({
     marginRight: ".5rem",
   },
   "&:hover .menuLink": {
-    color: "hsl(94, 59%, 35%)",
+    color: "#2c7873",
     transition: 0,
   },
   [theme.breakpoints.down("io")]: {
@@ -108,10 +109,10 @@ const ListItem = styled("li")(({ theme }) => ({
     bottom: "0",
     borderTopRightRadius: "10px",
     borderBottomRightRadius: "10px",
-    background: "hsl(94, 59%, 35%)",
+    background: "#2c7873",
   },
   "&:hover .menuLink": {
-    color: "hsl(94, 59%, 35%)",
+    color: "#2c7873",
     transition: 0,
   },
   "&:hover::before": {
@@ -133,7 +134,7 @@ export default function SideBar() {
     <SideBarMain className="grid">
       <LogoDiv className="flex">
         <Image alt="Logo" src={imagen} priority className="image" />
-        <h2>River Bird</h2>
+        <h2>Eco Spark</h2>
       </LogoDiv>
 
       <div className="menuDiv">
@@ -154,16 +155,9 @@ export default function SideBar() {
           </ListItem>
 
           <ListItem className="listItem">
-            <MenuLink href="#" className="menuLink">
-              <SpaIcon className="icon" />
-              <span className="smallText">My floors</span>
-            </MenuLink>
-          </ListItem>
-
-          <ListItem className="listItem">
-            <MenuLink href="#" className="menuLink">
-              <ExploreIcon className="icon" />
-              <span className="smallText">Explore</span>
+            <MenuLink href="/dashboard/registers" className="menuLink">
+              <BoltIcon className="icon" />
+              <span className="smallText">My Thunthers</span>
             </MenuLink>
           </ListItem>
         </ul>
@@ -173,28 +167,14 @@ export default function SideBar() {
         <DivTitle className="divTitle">SETTINGS</DivTitle>
         <ul className="menuList grid">
           <ListItem className="listItem">
-            <MenuLink href="#" className="menuLink">
-              <BarChartIcon className="icon" />
-              <span className="smallText">Charts</span>
-            </MenuLink>
-          </ListItem>
-
-          <ListItem className="listItem">
-            <MenuLink href="#" className="menuLink">
-              <ShowChartIcon className="icon" />
-              <span className="smallText">Trends</span>
-            </MenuLink>
-          </ListItem>
-
-          <ListItem className="listItem">
-            <MenuLink href="#" className="menuLink">
+            <MenuLink href="/dashboard/user-info" className="menuLink">
               <SettingsIcon className="icon" />
-              <span className="smallText">Settings User</span>
+              <span className="smallText">User settings</span>
             </MenuLink>
           </ListItem>
 
           <ListItem className="listItem">
-            <MenuLink href="#" className="menuLink">
+            <MenuLink href="/dashboard/info" className="menuLink">
               <InfoIcon className="icon" />
               <span className="smallText">Info</span>
             </MenuLink>

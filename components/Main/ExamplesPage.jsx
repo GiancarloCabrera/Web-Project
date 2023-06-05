@@ -23,16 +23,19 @@ const MainText = styled("div")({
   h2: {
     fontSize: "3.5rem",
     marginBottom: "10px",
+    color: "#2c7873",
   },
   h4: {
-    color: "#336b87",
+    background: "linear-gradient(to left, #6fb98f, greenYellow)",
+    "-webkit-background-clip": "text",
+    "-webkit-text-fill-color": "transparent",
     fontSize: "24px",
     fontWeight: "600",
   },
 });
 
 const Span = styled("span")({
-  color: "#90afc5",
+  color: "red",
 });
 
 const ExamplesContent = styled("div")({
@@ -45,7 +48,7 @@ const ExamplesContent = styled("div")({
 
 const Row = styled("div")({
   padding: "25px",
-  background: "#12141c",
+  background: "#020312",
   borderRadius: "0.5rem",
   transition: "all .40s ease",
 
@@ -58,9 +61,10 @@ const Row = styled("div")({
   h3: {
     fontSize: "25px",
     fontWeight: "700",
+    color: "#2c7873",
   },
   h6: {
-    color: "#336b87",
+    color: "#6fb98f",
     fontSize: "16px",
     fontWeight: "500",
     letterSpacing: "1px",
@@ -72,7 +76,7 @@ const Row = styled("div")({
   },
 
   ":hover h6": {
-    color: "#2a3132",
+    color: "#004445",
   },
 });
 

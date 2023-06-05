@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
 import styled from "@emotion/styled";
-import imagen from "../../public/images/image.png";
+import imagen from "../../public/images/menu.png";
 import { useEffect, useState } from "react";
 import "./si.css";
 
@@ -65,7 +65,7 @@ const Navbar = styled("ul")(({ theme }) => ({
     },
   },
   "a:hover": {
-    background: "#2a3132",
+    background: "#021c1e",
     color: "#fff",
   },
 
@@ -76,7 +76,7 @@ const Navbar = styled("ul")(({ theme }) => ({
     left: "0",
     display: "flex",
     flexDirection: "column",
-    background: "#12141c",
+    background: "#021c1e",
     textAling: "left",
     transition: "all .40s ease",
   },
@@ -84,10 +84,12 @@ const Navbar = styled("ul")(({ theme }) => ({
 
 const Li = styled("li")({
   listStyle: "none",
+  // color: "red",
 });
 
 const A = styled("a")({
   textDecoration: "none",
+  // color: "red",
 });
 
 export default function HeaderPage() {
@@ -103,10 +105,7 @@ export default function HeaderPage() {
   };
   useEffect(() => {
     window.addEventListener("scroll", setFixed);
-  
-  }, [])
-  
-  
+  }, []);
 
   return (
     <Encabezado className={fix ? "header fixed" : "header"}>
@@ -122,7 +121,6 @@ export default function HeaderPage() {
 
       <Navbar className={`xd ${active && "active"}`}>
         <Li>
-          
           <A href="#home">Home</A>
         </Li>
         <Li>
