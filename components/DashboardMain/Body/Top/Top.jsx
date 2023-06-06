@@ -375,31 +375,29 @@ const Top = () => {
     (state) => state.persistedReducer.login.loginUserCredentials
   );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
-            email
-          )}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = await response.json();
-        setDataCard(data);
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
+          email
+        )}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      setDataCard(data);
 
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
-    fetchData();
-  }, []);
+  fetchData();
 
   const sumEnergyConsumedByBranch = () => {
     let total = 0;

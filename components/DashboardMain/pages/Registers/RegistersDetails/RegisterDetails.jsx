@@ -180,41 +180,36 @@ const RegisterDetails = ({ params }) => {
   const [pruebaState, setPruebaState] = useState({});
 
   const { id } = params;
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
-            email
-          )}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = await response.json();
-        setDataCard(data);
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
+          email
+        )}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      setDataCard(data);
 
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
-    fetchData();
-  }, []);
+  fetchData();
 
   useEffect(() => {
-    console.log(dataCard);
-
     if (dataCard) {
       const cartaSelectionada = dataCard.userForms.find(
         (carta) => carta._id === id
       );
       setPruebaState(cartaSelectionada);
-      console.log(pruebaState, "PruebaSate");
     }
   }, [id, dataCard]);
 
@@ -334,8 +329,8 @@ const RegisterDetails = ({ params }) => {
 
             {areasMejorar.length === 0 && (
               <Mejorar>
-                You sholdn't improve at all,{" "}
-                <span style={{ color: "green" }}>EXELENT</span>{" "}
+                You shold not improve at all:
+                <span style={{ color: "green" }}>EXELENT</span>
               </Mejorar>
             )}
           </SmallCard>

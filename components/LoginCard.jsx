@@ -50,7 +50,6 @@ const Link = styled("a")({
   },
 });
 
-
 const Button = styled("button")({
   position: "relative",
   borderRadius: "20px",
@@ -295,10 +294,10 @@ export default function LoginCard() {
     e.preventDefault();
     if (!loginForm.email || !loginForm.password) {
       return Swal.fire({
-        title: 'Error!',
-        text: 'Credentials not provided...',
-        icon: 'error',
-      })
+        title: "Error!",
+        text: "Credentials not provided...",
+        icon: "error",
+      });
     }
     const user = await signIn("credentials", {
       email: loginForm.email,
@@ -423,6 +422,8 @@ export default function LoginCard() {
           <Image
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
             src={Gif}
+            priority
+            alt="gif"
           />
           <OverlayPanelLeft
             style={

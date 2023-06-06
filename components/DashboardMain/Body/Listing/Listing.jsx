@@ -231,32 +231,29 @@ const Listing = () => {
   };
 
   const minAllDevicesNum1 = getMinAllDevicesNum1();
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
+          email
+        )}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      setDataCard(data);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
-            email
-          )}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = await response.json();
-        setDataCard(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  fetchData();
 
   return (
     <ListingSection>

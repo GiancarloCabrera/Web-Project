@@ -231,12 +231,10 @@ const SimpleForm = () => {
     // Mostrar la alerta SweetAlert
 
     resetForm();
-    useEffect(() => {
-      console.log(formData);
-    }, [formData]);
   };
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
   useEffect(() => {
     setIsButtonDisabled(true);
   }, []);
@@ -252,11 +250,8 @@ const SimpleForm = () => {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        {({ touched, errors, values, isValid, resetForm }) => {
+        {({ touched, errors, values, resetForm }) => {
           // Actualizar el estado del botón en función de la validez del formulario
-          useEffect(() => {
-            setIsButtonDisabled(!isValid);
-          }, [isValid]);
 
           return (
             <Form style={{ paddingTop: "20px" }}>
@@ -416,12 +411,7 @@ const SimpleForm = () => {
                   helperText={<ErrorMessage name="energyConsumedByBranchW11" />}
                 />
               </div>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                disabled={isButtonDisabled}
-              >
+              <Button type="submit" variant="contained" color="primary">
                 Send
               </Button>
             </Form>

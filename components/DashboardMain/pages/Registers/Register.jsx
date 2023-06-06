@@ -89,51 +89,35 @@ export default function Register() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [dataCard, setDataCard] = useState();
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
-            email
-          )}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = await response.json();
-        setDataCard(data);
-        console.log(data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
 
-    fetchData();
-  }, []);
+  const fetchData = async (formData) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
+          formData
+        )}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      setDataCard(data);
+      console.log(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  fetchData(email);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedForm, setSelectedForm] = useState(null);
-  const [fakeData, setFakeData] = useState([
-    // Datos iniciales
-    {
-      name: "Prueba1",
-      nombre: "Estban",
-      numero: 234,
-      id: 1,
-    },
-    {
-      name: "Prueba2",
-      nombre: "Maria",
-      numero: 233,
-      id: 2,
-    },
-  ]);
 
   const handleShow = (id) => {
     const cartaSeleccionada = dataCard.userForms.find(
