@@ -197,7 +197,7 @@ export default function Info() {
             <input
               type="hidden"
               name="_next"
-              value="http://localhost:3000/dashboard/info"
+              value="http://89.116.25.43:3000/dashboard/info"
             ></input>
             <input type="hidden" name="_captcha" value="false"></input>
           </form>

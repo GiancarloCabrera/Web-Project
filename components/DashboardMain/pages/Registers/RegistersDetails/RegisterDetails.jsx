@@ -183,7 +183,7 @@ const RegisterDetails = ({ params }) => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
+        `http://89.116.25.43:3001/api/form/getByEmail?email=${encodeURIComponent(
           email
         )}`,
         {

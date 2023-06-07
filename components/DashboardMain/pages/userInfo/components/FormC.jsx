@@ -59,7 +59,7 @@ const SimpleForm = () => {
   const fetchData = async (formData) => {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/user/updUserCredByEmail",
+        "http://89.116.25.43:3001/api/user/updUserCredByEmail",
         {
           method: "POST",
           headers: {

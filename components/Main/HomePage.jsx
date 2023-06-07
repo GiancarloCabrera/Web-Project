@@ -76,8 +76,8 @@ export default function HomePage() {
     <Home className="home" id="home">
       <div>
         <Somos>
-          Wellcome <br />
-          to <Span> Eco Spark</Span>
+          Eco <br />
+          <Span>Spark</Span>
         </Somos>
         <H3>Improve your consumption</H3>
         <GetStarted href="/auth" type="button">

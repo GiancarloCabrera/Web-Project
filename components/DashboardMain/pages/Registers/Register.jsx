@@ -93,7 +93,7 @@ export default function Register() {
   const fetchData = async (formData) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/form/getByEmail?email=${encodeURIComponent(
+        `http://89.116.25.43:3001/api/form/getByEmail?email=${encodeURIComponent(
           formData
         )}`,
         {
@@ -105,7 +105,7 @@ export default function Register() {
       );
       const data = await response.json();
       setDataCard(data);
-      console.log(data);
+
       setIsLoading(false);
     } catch (error) {
       console.error("Error:", error);

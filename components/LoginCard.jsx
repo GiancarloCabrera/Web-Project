@@ -259,7 +259,7 @@ export default function LoginCard() {
         icon: "error",
       });
     }
-    const res = await fetch("http://localhost:3001/api/auth/newUser", {
+    const res = await fetch("http://89.116.25.43:3001/api/auth/newUser", {
       method: "POST",
       body: JSON.stringify({
         name: registerForm.name,
