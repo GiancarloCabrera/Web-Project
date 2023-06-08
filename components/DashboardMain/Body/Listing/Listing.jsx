@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import Image from "next/image";
-import image from "../../../../public/images/Example.png";
-import { useSelector } from "react-redux";
 import { Box, Typography, Button, Link } from "@mui/material";
 
 const ListingSection = styled("div")({
@@ -150,7 +146,6 @@ const Card = styled("div")(({ theme }) => ({
 }));
 
 const Users = styled("div")({
-  // paddingLeft: "1000rem",
   borderRight: "2px solid rgb(190, 190, 190)",
   padding: "10px 10px 10px 0",
   display: "flex",
@@ -180,18 +175,15 @@ const CardText = styled("div")({
   small: {
     fontWeight: "400",
     ".date": {
-      // marginLeft: "1rem",
       color: "greenyellow",
     },
   },
 });
 
-const Listing = () => {
-  const [dataCard, setDataCard] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const { email } = useSelector(
-    (state) => state.persistedReducer.login.loginUserCredentials
-  );
+const Listing = ({dataCard}) => {
+  useEffect(() => {
+    console.log('Listing: ',dataCard);
+  },[dataCard])
 
   const getMaxAllDevicesNum1 = () => {
     let maxIndexes = [];
@@ -231,49 +223,26 @@ const Listing = () => {
   };
 
   const minAllDevicesNum1 = getMinAllDevicesNum1();
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        `http://89.116.25.43:3001/api/form/getByEmail?email=${encodeURIComponent(
-          email
-        )}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await response.json();
-      setDataCard(data);
-
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  fetchData();
 
   return (
     <ListingSection>
       <Heading className="flex">
         <h1>My Registers</h1>
-        {isLoading ? (
-          <></>
-        ) : dataCard.userForms.length > 0 ? (
+        {!dataCard ? (
+          <h1>Loading...</h1>
+        ) : dataCard.userForms?.length > 0 ? (
           <Link href="/dashboard/registers">
             <button className="btn flex">
               See All <ArrowForwardIcon className="icon" />
             </button>
           </Link>
         ) : (
-          <></>
+          <h1>Loading...</h1>
         )}
       </Heading>
 
       <SecContainer className="flex">
-        {isLoading ? (
+        {!dataCard.userForms ? (
           <h1>Loading...</h1>
         ) : dataCard.userForms.length > 0 ? (
           <>
@@ -304,7 +273,7 @@ const Listing = () => {
           </HeadingLower>
 
           <Card className="card flex">
-            {isLoading ? (
+            {!dataCard.userForms ? (
               <h1>Loading...</h1>
             ) : dataCard.userForms.length > 0 ? (
               <>
@@ -360,7 +329,7 @@ const Listing = () => {
           </HeadingLower>
 
           <Card className="card flex">
-            {isLoading ? (
+            {!dataCard.userForms ? (
               <h1>Loading...</h1>
             ) : dataCard.userForms.length > 0 ? (
               <>

@@ -82,37 +82,34 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Register() {
   const classes = useStyles();
-
+  const [dataCard, setDataCard] = useState([]);
   const { email } = useSelector(
     (state) => state.persistedReducer.login.loginUserCredentials
   );
 
-  const [isLoading, setIsLoading] = useState(true);
-  const [dataCard, setDataCard] = useState();
-
-  const fetchData = async (formData) => {
+  const formByEmail = async (email) => {
     try {
       const response = await fetch(
-        `http://89.116.25.43:3001/api/form/getByEmail?email=${encodeURIComponent(
-          formData
-        )}`,
+        `http://89.116.25.43:3001/api/form/getByEmail?email=${email}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
         }
-      );
-      const data = await response.json();
-      setDataCard(data);
-
-      setIsLoading(false);
+        );
+        const data = await response.json();
+        console.log(data);
+        setDataCard(data);
     } catch (error) {
       console.error("Error:", error);
     }
+  
   };
 
-  fetchData(email);
+  useEffect(() => {
+    formByEmail(email);
+  },[])
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -140,7 +137,7 @@ export default function Register() {
           <p>See all your register and see details</p>
         </Title>
 
-        {isLoading ? (
+        {!dataCard.userForms ? (
           <h1>Loading...</h1>
         ) : (
           <Grid container spacing={2} sx={{ marginTop: 0 }}>

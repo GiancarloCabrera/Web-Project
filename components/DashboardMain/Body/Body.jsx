@@ -1,9 +1,11 @@
+"use client"
 import { useSelector } from "react-redux";
 import Activity from "./Activity/Activity";
 import Listing from "./Listing/Listing";
 import Top from "./Top/Top";
 import styled from "@emotion/styled";
 import { useEffect } from "react";
+import { useState } from "react";
 
 const MainContent = styled("div")({
   width: "90%",
@@ -25,18 +27,42 @@ const Bottom = styled("div")(({ theme }) => ({
 }));
 
 export default function Body() {
-  const state = useSelector((state) => state);
+  const { email } = useSelector(
+    (state) => state.persistedReducer.login.loginUserCredentials
+  );
+  const [dataCard, setDataCard] = useState([]);
+
+  const formByEmail = async (email) => {
+    try {
+      const response = await fetch(
+        `http://89.116.25.43:3001/api/form/getByEmail?email=${email}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+        );
+        const data = await response.json();
+        console.log(data);
+        setDataCard(data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  
+  };
+
   useEffect(() => {
-    console.log("FORMMMM: ", state);
-  }, [state]);
+    formByEmail(email);
+  },[])
 
   return (
     <MainContent className="MainContent">
-      <Top />
+      <Top dataCard={dataCard}/>
 
       <Bottom className="bottom flex">
-        <Listing />
-        <Activity />
+        <Listing dataCard={dataCard}/>
+        <Activity dataCard={dataCard} />
       </Bottom>
     </MainContent>
   );

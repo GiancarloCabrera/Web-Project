@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Image from "next/image";
-import image from "../../../../public/images/Example.png";
-import { useSelector } from "react-redux";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const ActivitySection = styled("div")(({ theme }) => ({
   flexBasis: "50%",
-  // background: "#021c1e",
-  // padding: "10px",
   borderRadius: "10px",
 
   [theme.breakpoints.down("uy")]: {
@@ -112,35 +108,10 @@ const Duration = styled("div")({
   fontSize: ".813rem",
 });
 
-const Activity = () => {
-  const [dataCard, setDataCard] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const { email } = useSelector(
-    (state) => state.persistedReducer.login.loginUserCredentials
-  );
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        `http://89.116.25.43:3001/api/form/getByEmail?email=${encodeURIComponent(
-          email
-        )}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await response.json();
-      setDataCard(data);
-
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  fetchData();
+const Activity = ({dataCard}) => {
+  useEffect(() => {
+    console.log('Activity: ',dataCard);
+  },[dataCard])
 
   const añosDeUso = () => {
     let totales = [];
@@ -159,12 +130,11 @@ const Activity = () => {
 
   const totalAñosUso = añosDeUso();
 
-  console.log(añosDeUso());
   return (
     <ActivitySection>
       <Heading className="flex">
         <h1>Years Average</h1>
-        {isLoading ? (
+        {!dataCard.userForms ? (
           <></>
         ) : dataCard.userForms.length > 0 ? (
           <Link href="/dashboard/registers">
@@ -178,7 +148,7 @@ const Activity = () => {
       </Heading>
 
       <SecContainer className="grid">
-        {isLoading ? (
+        {!dataCard.userForms ? (
           <h1>Loading...</h1>
         ) : dataCard.userForms.length > 0 ? (
           <>
@@ -195,8 +165,8 @@ const Activity = () => {
                 >
                   <span
                     style={{
-                      margin: "0 9px", // Ajusta el margen vertical según tus necesidades
-                      padding: "0", // Ajusta el relleno según tus necesidades
+                      margin: "0 9px",
+                      padding: "0",
                     }}
                     key={index}
                   >

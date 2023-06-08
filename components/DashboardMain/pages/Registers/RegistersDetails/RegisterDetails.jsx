@@ -175,37 +175,38 @@ const RegisterDetails = ({ params }) => {
   const [registerDetail, setRegisterDetail] = useState({});
   const [progress, setProgress] = useState(0);
 
-  const [dataCard, setDataCard] = useState();
-
   const [pruebaState, setPruebaState] = useState({});
 
   const { id } = params;
-  const fetchData = async () => {
+  
+  const [dataCard, setDataCard] = useState([]);
+
+  const formByEmail = async (email) => {
     try {
       const response = await fetch(
-        `http://89.116.25.43:3001/api/form/getByEmail?email=${encodeURIComponent(
-          email
-        )}`,
+        `http://89.116.25.43:3001/api/form/getByEmail?email=${email}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
         }
-      );
-      const data = await response.json();
-      setDataCard(data);
-
-      setIsLoading(false);
+        );
+        const data = await response.json();
+        console.log(data);
+        setDataCard(data);
     } catch (error) {
       console.error("Error:", error);
     }
+  
   };
 
-  fetchData();
+  useEffect(() => {
+    formByEmail(email);
+  },[])
 
   useEffect(() => {
-    if (dataCard) {
+    if (dataCard.userForms) {
       const cartaSelectionada = dataCard.userForms.find(
         (carta) => carta._id === id
       );
