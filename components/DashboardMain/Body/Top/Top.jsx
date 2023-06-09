@@ -1,39 +1,17 @@
-import React from "react";
+"use client"
+
+import React, { use, useEffect } from "react";
 import imagePlant from "../../../../public/images/Ligth.png";
 import styled from "@emotion/styled";
-import SearchIcon from "@mui/icons-material/Search";
-import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
-import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+
 import Image from "next/image";
 import Video from "../../../../public//images/Gif.gif";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Header from "./components/Header";
-import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
-
-const SearchBar = styled("div")(({ theme }) => ({
-  padding: "1rem 2rem",
-  background: "hsl(0, 0%, 100%)",
-  borderRadius: "5px",
-  gap: "1rem",
-  boxShadow: "0 2px 4px hsl(330, 12%, 97%)",
-
-  input: {
-    border: "none",
-    outline: "none",
-    background: "none",
-  },
-
-  ".icon": {
-    color: "hsl(240, 1%, 48%)",
-    "&:hover": {
-      color: "hsl(94, 59%, 35%)",
-    },
-  },
-}));
 
 const CardSection = styled("div")(({ theme }) => ({
   marginTop: "3rem",
@@ -368,37 +346,7 @@ const ButtonRegister = styled("button")(({ theme }) => ({
   },
 }));
 
-const Top = () => {
-  const [dataCard, setDataCard] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const { email } = useSelector(
-    (state) => state.persistedReducer.login.loginUserCredentials
-  );
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        `http://89.116.25.43:3001/api/form/getByEmail?email=${encodeURIComponent(
-          email
-        )}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await response.json();
-      setDataCard(data);
-
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  fetchData();
-
+const Top =  ({dataCard}) => {
   const sumEnergyConsumedByBranch = () => {
     let total = 0;
     if (dataCard?.userForms) {
@@ -463,9 +411,9 @@ const Top = () => {
               <h1>My Stats</h1>
 
               <DivFlex className="flex">
-                {isLoading ? (
+                {!dataCard.userForms ? (
                   <h1>Loading...</h1>
-                ) : dataCard.userForms.length > 0 ? (
+                ) : dataCard.userForms?.length > 0 ? (
                   <>
                     <span>
                       All energy <br />{" "}

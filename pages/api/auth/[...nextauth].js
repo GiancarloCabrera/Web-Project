@@ -1,6 +1,13 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth/next";
 export const authOptions = {
+  // theme: {
+  //   colorScheme: "dark",
+  // },
+  // debug: true,
+  // session: {},
+  // jwt: {},
+  // secret: 'PALABRA SECRETA',
   providers: [
     CredentialsProvider({
       type: "credentials",
