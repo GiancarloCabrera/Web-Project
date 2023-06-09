@@ -299,22 +299,54 @@ export default function LoginCard() {
         icon: "error",
       });
     }
-    const user = await signIn("credentials", {
-      email: loginForm.email,
-      password: loginForm.password,
-      redirect: false,
-    });
-    console.log("user: ", user);
-    if (!user.ok) {
-      Swal.fire({
-        title: "Error!",
-        text: "User not found...",
-        icon: "error",
+
+    try {
+      console.log("pasooooooo");
+      // const { email, password } = credentials;
+      const res = await fetch("http://89.116.25.43:3001/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify({
+          email: loginForm.email,
+          password: loginForm.password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
-    } else {
-      dispatch(loginUserAction({ email: loginForm.email }));
-      router.push("/dashboard");
+      const user = await res.json();
+      console.log(user);
+      // console.log(email, password);
+      if (user.ok) {
+        dispatch(loginUserAction({ uid: user.uid, name: user.name, email: loginForm.email, token: user.token }));
+        router.push("/dashboard");
+      } 
+      else {
+        Swal.fire({
+          title: "Error!",
+          text: "User not found...",
+          icon: "error",
+        });
+      };
+    } catch (error) {
+      throw new error();
     }
+
+    // const user = await signIn("credentials", {
+    //   email: loginForm.email,
+    //   password: loginForm.password,
+    //   redirect: false,
+    // });
+    // console.log("user: ", user);
+    // if (!user.ok) {
+    //   Swal.fire({
+    //     title: "Error!",
+    //     text: "User not found...",
+    //     icon: "error",
+    //   });
+    // } else {
+    //   dispatch(loginUserAction({ email: loginForm.email }));
+    //   router.push("/dashboard");
+    // }
   };
 
   return (
