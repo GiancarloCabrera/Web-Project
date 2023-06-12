@@ -1,7 +1,7 @@
 "use client";
 import SideBar from "../../../components/DashboardMain/SideBar/SideBar";
 import styled from "@emotion/styled";
-import { useSession } from "next-auth/react"
+import { useSession } from "next-auth/react";
 import { useSelector } from "react-redux";
 
 const Container = styled("div")(({ theme }) => ({
@@ -59,12 +59,24 @@ export default function Dash({ children }) {
   const { token } = useSelector(
     (state) => state.persistedReducer.login.loginUserCredentials
   );
-      // if (status === 'loading') {
-      //   return <div style={{ width: '100%', height: '100%', minHeight: '300px', display: 'grid', placeItems: 'center'}}><h1>loading...</h1></div>
-      // }
-      if (!token) {
-        return <div style={{ width: '100%', height: '100%', minHeight: '300px', display: 'grid', placeItems: 'center'}}><h1>Page not found...</h1></div>
-      }
+  // if (status === 'loading') {
+  //   return <div style={{ width: '100%', height: '100%', minHeight: '300px', display: 'grid', placeItems: 'center'}}><h1>loading...</h1></div>
+  // }
+  if (!token) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          minHeight: "300px",
+          display: "grid",
+          placeItems: "center",
+        }}
+      >
+        <h1>Page not found...</h1>
+      </div>
+    );
+  }
   return (
     <Container>
       <SideBar />

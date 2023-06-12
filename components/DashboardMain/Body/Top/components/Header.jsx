@@ -8,6 +8,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Image from "next/image";
 import DropMenu from "./DropMenu";
+import { useSelector } from "react-redux";
 
 const HeaderSection = styled("div")(({ theme }) => ({
   justifyContent: "space-between",
@@ -148,12 +149,15 @@ const DropDownMenu = styled("div")({
 });
 
 const Header = () => {
+  const { name } = useSelector(
+    (state) => state.persistedReducer.login.loginUserCredentials
+  );
   const [open, setOpen] = useState(false);
   return (
     <HeaderSection className="headerSection flex">
       <Title className="titile">
         <h1>Welcome to Eco Spark</h1>
-        <p>Hello Hamlet, Welcome Back</p>
+        <p>Hello {name}, Welcome Back</p>
       </Title>
 
       {/* <SearchBar className="hola flex">
@@ -181,8 +185,9 @@ const Header = () => {
             <DropMenu
               icon={<SettingsIcon className="iconD" />}
               text={"Settings"}
+              link={"/dashboard/info"}
             />
-            <DropMenu icon={<LogoutIcon className="iconD" />} text={"Logout"} />
+            {/* <DropMenu icon={<LogoutIcon className="iconD" />} text={"Logout"} /> */}
           </ul>
         </DropDownMenu>
       </AdminDiv>

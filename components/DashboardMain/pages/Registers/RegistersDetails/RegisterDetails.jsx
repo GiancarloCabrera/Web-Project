@@ -178,7 +178,7 @@ const RegisterDetails = ({ params }) => {
   const [pruebaState, setPruebaState] = useState({});
 
   const { id } = params;
-  
+
   const [dataCard, setDataCard] = useState([]);
 
   const formByEmail = async (email) => {
@@ -191,19 +191,18 @@ const RegisterDetails = ({ params }) => {
             "Content-Type": "application/json",
           },
         }
-        );
-        const data = await response.json();
-        console.log(data);
-        setDataCard(data);
+      );
+      const data = await response.json();
+      console.log(data);
+      setDataCard(data);
     } catch (error) {
       console.error("Error:", error);
     }
-  
   };
 
   useEffect(() => {
     formByEmail(email);
-  },[])
+  }, []);
 
   useEffect(() => {
     if (dataCard.userForms) {
@@ -331,7 +330,7 @@ const RegisterDetails = ({ params }) => {
             {areasMejorar.length === 0 && (
               <Mejorar>
                 You shold not improve at all:
-                <span style={{ color: "green" }}>EXELENT</span>
+                <span style={{ color: "green" }}>EXCELLENT</span>
               </Mejorar>
             )}
           </SmallCard>

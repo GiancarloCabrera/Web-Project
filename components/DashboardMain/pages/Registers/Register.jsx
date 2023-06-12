@@ -97,19 +97,18 @@ export default function Register() {
             "Content-Type": "application/json",
           },
         }
-        );
-        const data = await response.json();
-        console.log(data);
-        setDataCard(data);
+      );
+      const data = await response.json();
+      console.log(data);
+      setDataCard(data);
     } catch (error) {
       console.error("Error:", error);
     }
-  
   };
 
   useEffect(() => {
     formByEmail(email);
-  },[])
+  }, []);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -245,7 +244,7 @@ export default function Register() {
                                 {selectedForm.avgYearsUsageLaptop10}
                               </p>
                               <p>
-                                Enerrgy consumed by branch:{" "}
+                                Energy consumed by branch:{" "}
                                 {selectedForm.energyConsumedByBranchW11}
                               </p>
 
