@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
@@ -18,10 +18,8 @@ const Container = styled("div")({
 });
 
 const UserInfo = () => {
-  const state = useSelector(state => state);
-  useEffect(() => {
-    console.log('FORMMMM: ',state);
-  }, [state])
+  const state = useSelector((state) => state);
+  useEffect(() => {}, [state]);
 
   return (
     <Container>

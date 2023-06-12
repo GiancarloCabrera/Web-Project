@@ -108,10 +108,8 @@ const Duration = styled("div")({
   fontSize: ".813rem",
 });
 
-const Activity = ({dataCard}) => {
-  useEffect(() => {
-    console.log('Activity: ',dataCard);
-  },[dataCard])
+const Activity = ({ dataCard }) => {
+  useEffect(() => {}, [dataCard]);
 
   const añosDeUso = () => {
     let totales = [];

@@ -70,7 +70,6 @@ const SimpleForm = () => {
       );
 
       const data = await response.json();
-      console.log(data);
 
       if (response.ok) {
         Swal.fire({
@@ -98,9 +97,7 @@ const SimpleForm = () => {
   const { email } = useSelector(
     (state) => state.persistedReducer.login.loginUserCredentials
   );
-  useEffect(() => {
-    console.log("MAIN DASHBOARD: ", email);
-  }, [email]);
+  useEffect(() => {}, [email]);
 
   const initialValues = {
     email: { email },
@@ -109,8 +106,6 @@ const SimpleForm = () => {
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log("Button clicked!", values); // Agrega este console.log para verificar si se ejecuta la función al hacer clic en el botón
-
     // Resto del código de la función handleSubmit
 
     const formData = {
@@ -119,7 +114,6 @@ const SimpleForm = () => {
       newPassword: values.newPassword,
     };
     // Mostrar la alerta SweetAlert
-    console.log(formData);
 
     fetchData(formData);
 

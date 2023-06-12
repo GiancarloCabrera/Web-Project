@@ -16,10 +16,8 @@ const Container = styled("div")({
 });
 
 const Form = () => {
-  const state = useSelector(state => state);
-  useEffect(() => {
-    console.log('FORMMMM: ',state);
-  }, [state])
+  const state = useSelector((state) => state);
+  useEffect(() => {}, [state]);
 
   return (
     <Container>

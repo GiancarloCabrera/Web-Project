@@ -180,10 +180,8 @@ const CardText = styled("div")({
   },
 });
 
-const Listing = ({dataCard}) => {
-  useEffect(() => {
-    console.log('Listing: ',dataCard);
-  },[dataCard])
+const Listing = ({ dataCard }) => {
+  useEffect(() => {}, [dataCard]);
 
   const getMaxAllDevicesNum1 = () => {
     let maxIndexes = [];

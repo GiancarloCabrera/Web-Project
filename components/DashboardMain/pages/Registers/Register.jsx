@@ -99,7 +99,7 @@ export default function Register() {
         }
       );
       const data = await response.json();
-      console.log(data);
+
       setDataCard(data);
     } catch (error) {
       console.error("Error:", error);
@@ -108,7 +108,7 @@ export default function Register() {
 
   useEffect(() => {
     formByEmail(email);
-  }, []);
+  }, [email]);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { use, useEffect } from "react";
 import imagePlant from "../../../../public/images/Ligth.png";
@@ -346,7 +346,7 @@ const ButtonRegister = styled("button")(({ theme }) => ({
   },
 }));
 
-const Top =  ({dataCard}) => {
+const Top = ({ dataCard }) => {
   const sumEnergyConsumedByBranch = () => {
     let total = 0;
     if (dataCard?.userForms) {
@@ -375,7 +375,6 @@ const Top =  ({dataCard}) => {
         avgHoursPerDayUsageLaptop9 +
         avgHoursPerDayUsageServ6 +
         hoursPerDayDeskComp3;
-      console.log(total);
     }
     return total;
   };

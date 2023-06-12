@@ -222,13 +222,9 @@ export default function LoginCard() {
     confirmPassword: "",
   });
 
-  useEffect(() => {
-    console.log(loginForm);
-  }, [loginForm]);
+  useEffect(() => {}, [loginForm]);
 
-  useEffect(() => {
-    console.log(session);
-  }, [session]);
+  useEffect(() => {}, [session]);
 
   const handleLoginChange = ({ target }) => {
     setLoginForm((val) => ({ ...val, [target.name]: target.value }));
@@ -272,7 +268,7 @@ export default function LoginCard() {
     });
 
     const user = await res.json();
-    console.log(user);
+
     if (!user.ok) {
       Swal.fire({
         title: "Error!",
@@ -301,7 +297,6 @@ export default function LoginCard() {
     }
 
     try {
-      console.log("pasooooooo");
       // const { email, password } = credentials;
       const res = await fetch("http://89.116.25.43:3001/api/auth/login", {
         method: "POST",
@@ -314,19 +309,25 @@ export default function LoginCard() {
         },
       });
       const user = await res.json();
-      console.log(user);
+
       // console.log(email, password);
       if (user.ok) {
-        dispatch(loginUserAction({ uid: user.uid, name: user.name, email: loginForm.email, token: user.token }));
+        dispatch(
+          loginUserAction({
+            uid: user.uid,
+            name: user.name,
+            email: loginForm.email,
+            token: user.token,
+          })
+        );
         router.push("/dashboard");
-      } 
-      else {
+      } else {
         Swal.fire({
           title: "Error!",
           text: "User not found...",
           icon: "error",
         });
-      };
+      }
     } catch (error) {
       throw new error();
     }

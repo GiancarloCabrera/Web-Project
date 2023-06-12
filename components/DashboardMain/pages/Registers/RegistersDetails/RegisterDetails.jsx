@@ -193,7 +193,7 @@ const RegisterDetails = ({ params }) => {
         }
       );
       const data = await response.json();
-      console.log(data);
+
       setDataCard(data);
     } catch (error) {
       console.error("Error:", error);
@@ -202,7 +202,7 @@ const RegisterDetails = ({ params }) => {
 
   useEffect(() => {
     formByEmail(email);
-  }, []);
+  }, [email]);
 
   useEffect(() => {
     if (dataCard.userForms) {
@@ -246,10 +246,7 @@ const RegisterDetails = ({ params }) => {
 
   useEffect(() => {
     if (registerDetail) {
-      console.log(registerDetail.mejoras);
     }
-
-    console.log(Object.keys(registerDetail));
   }, [registerDetail]);
 
   useEffect(() => {

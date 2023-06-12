@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useSelector } from "react-redux";
 import Activity from "./Activity/Activity";
 import Listing from "./Listing/Listing";
@@ -42,26 +42,25 @@ export default function Body() {
             "Content-Type": "application/json",
           },
         }
-        );
-        const data = await response.json();
-        console.log(data);
-        setDataCard(data);
+      );
+      const data = await response.json();
+
+      setDataCard(data);
     } catch (error) {
       console.error("Error:", error);
     }
-  
   };
 
   useEffect(() => {
     formByEmail(email);
-  },[])
+  }, []);
 
   return (
     <MainContent className="MainContent">
-      <Top dataCard={dataCard}/>
+      <Top dataCard={dataCard} />
 
       <Bottom className="bottom flex">
-        <Listing dataCard={dataCard}/>
+        <Listing dataCard={dataCard} />
         <Activity dataCard={dataCard} />
       </Bottom>
     </MainContent>

@@ -146,7 +146,6 @@ const SimpleForm = () => {
       });
 
       const data = await response.json();
-      console.log(data);
 
       if (response.ok) {
         Swal.fire({
@@ -165,7 +164,6 @@ const SimpleForm = () => {
       // Mostrar la alerta de éxito si la petición fue exitosa
     } catch (error) {
       console.error("Error:", error);
-      console.log("HOLAAAAAA");
 
       // Mostrar la alerta de error utilizando SweetAlert
       Swal.fire({
@@ -179,9 +177,7 @@ const SimpleForm = () => {
   const { email } = useSelector(
     (state) => state.persistedReducer.login.loginUserCredentials
   );
-  useEffect(() => {
-    console.log("MAIN DASHBOARD: ", email);
-  }, [email]);
+  useEffect(() => {}, [email]);
 
   const handleSubmit = (values, { resetForm }) => {
     // Realizar las acciones necesarias con los datos enviados
@@ -225,7 +221,6 @@ const SimpleForm = () => {
       emailUser: email,
     };
 
-    console.log(formData, "Holaaaa");
     fetchData(formData);
 
     // Mostrar la alerta SweetAlert
